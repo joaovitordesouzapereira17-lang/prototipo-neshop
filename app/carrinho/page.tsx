@@ -69,7 +69,7 @@ export default function CarrinhoPage() {
         </div>
 
         {items.length > 0 && (
-          <aside className="card p-5.5 md:sticky md:top-[90px]">
+          <aside className="card p-5.5 md:sticky md:top-[142px]">
             <h3 className="text-[15.5px] font-extrabold text-navy-950 mb-4">Resumo do pedido</h3>
             <div className="flex justify-between text-sm text-ink-700 mb-2.5">
               <span>Subtotal</span><span>{money(subtotal)}</span>

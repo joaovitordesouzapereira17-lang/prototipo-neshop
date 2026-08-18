@@ -77,7 +77,7 @@ export function CategoriaClient() {
       </div>
 
       <div className="wrap grid md:grid-cols-[260px_1fr] gap-7 pb-15 items-start">
-        <aside className="card p-5 md:sticky md:top-[90px]">
+        <aside className="card p-5 md:sticky md:top-[142px]">
           <h3 className="text-[14.5px] font-extrabold text-navy-950 mb-3.5">Filtrar resultados</h3>
 
           <div className="pb-4">

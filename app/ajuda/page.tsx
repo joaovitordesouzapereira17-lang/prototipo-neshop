@@ -26,25 +26,28 @@ export default function AjudaPage() {
       </div>
 
       <div className="max-w-xl mx-auto py-10 pb-17.5">
-        <div className="flex justify-center mb-8.5">
+        <div className="flex justify-center items-center mb-6 sm:mb-8.5">
           {STEPS.map((s, i) => (
             <div key={s.n} className="flex items-center">
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-1.5 sm:gap-2.5">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-[13.5px] ${
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-extrabold text-[12px] sm:text-[13.5px] flex-shrink-0 ${
                     s.n < step ? "bg-green-600 text-white" : s.n === step ? "bg-orange-500 text-white" : "bg-line-soft text-ink-500"
                   }`}
                 >
                   {s.n}
                 </div>
-                <span className={`text-[12.5px] font-bold ${s.n <= step ? "text-navy-950" : "text-ink-500"}`}>{s.label}</span>
+                <span className={`hidden sm:inline text-[12.5px] font-bold whitespace-nowrap ${s.n <= step ? "text-navy-950" : "text-ink-500"}`}>{s.label}</span>
               </div>
-              {i < STEPS.length - 1 && <div className="w-11 h-0.5 bg-line mx-2" />}
+              {i < STEPS.length - 1 && <div className="w-5 sm:w-11 h-0.5 bg-line mx-1.5 sm:mx-2 flex-shrink-0" />}
             </div>
           ))}
         </div>
+        <p className="sm:hidden text-center text-[12.5px] font-bold text-ink-500 -mt-3 mb-6">
+          Passo {step} de {STEPS.length}: <span className="text-navy-950">{STEPS[step - 1].label}</span>
+        </p>
 
-        <div className="card p-9">
+        <div className="card p-5 sm:p-9">
           {step === 1 && (
             <div>
               <h2 className="text-[21px] font-extrabold text-navy-950">Não sabe qual peça comprar?</h2>
@@ -52,7 +55,7 @@ export default function AjudaPage() {
                 Sem problema. Você não precisa saber o nome técnico da peça — nosso time de especialistas te ajuda a
                 identificar o componente certo a partir de uma foto ou do modelo do equipamento.
               </p>
-              <div className="grid grid-cols-2 gap-3 mt-5.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5.5">
                 <div className="flex gap-2.5 items-start text-[12.5px] text-ink-700 bg-bg rounded-lg p-2.5">
                   <Camera size={18} strokeWidth={1.6} className="text-blue-600 flex-shrink-0" />
                   <div><b className="block text-ink-900 text-[12.5px]">Envie uma foto</b>Da peça ou do equipamento</div>
@@ -104,7 +107,7 @@ export default function AjudaPage() {
             <div>
               <h2 className="text-[21px] font-extrabold text-navy-950">Só mais alguns dados</h2>
               <p className="text-ink-500 mt-2 text-sm">Assim nosso time consegue te responder pelo canal que preferir.</p>
-              <div className="grid grid-cols-2 gap-3.5 mt-5.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-5.5">
                 <div className="field"><label>Nome</label><input type="text" placeholder="Seu nome" /></div>
                 <div className="field"><label>Telefone / WhatsApp</label><input type="text" placeholder="(11) 90000-0000" /></div>
               </div>

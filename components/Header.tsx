@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Search, MessageCircle, User, Package, ShoppingCart } from "lucide-react";
+import { Search, MessageCircle, User, Package, ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { useWhatsApp } from "@/lib/whatsapp-context";
 import { Logo } from "@/components/Logo";
@@ -21,20 +21,28 @@ export function Header() {
   const { totalQty } = useCart();
   const { open: openWhatsApp } = useWhatsApp();
   const [query, setQuery] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   function handleSearch() {
     const q = query.trim();
+    setMenuOpen(false);
     router.push(q ? `/busca?q=${encodeURIComponent(q)}` : "/busca");
+  }
+
+  function handleWhatsAppClick() {
+    setMenuOpen(false);
+    openWhatsApp();
   }
 
   return (
     <header className="bg-white border-b border-line sticky top-0 z-50">
-      <div className="wrap flex items-center gap-7 py-5">
-        <Link href="/" className="flex-shrink-0">
+      <div className="wrap flex items-center gap-4 py-3.5 md:gap-7 md:py-5">
+        <Link href="/" className="flex-shrink-0" onClick={() => setMenuOpen(false)}>
           <Logo />
         </Link>
 
-        <div className="flex-1 flex items-stretch border-2 border-line rounded-full overflow-hidden bg-bg focus-within:border-blue-500 focus-within:bg-white transition-colors">
+        {/* Busca — visível inline a partir de md; some no mobile (fica na linha de baixo) */}
+        <div className="hidden md:flex flex-1 items-stretch border-2 border-line rounded-full overflow-hidden bg-bg focus-within:border-blue-500 focus-within:bg-white transition-colors">
           <input
             type="text"
             placeholder="Buscar por código, modelo ou nome da peça"
@@ -52,7 +60,8 @@ export function Header() {
           </button>
         </div>
 
-        <div className="flex items-center gap-6 flex-shrink-0">
+        {/* Ações — versão completa (ícone + rótulo) a partir de md */}
+        <div className="hidden md:flex items-center gap-6 flex-shrink-0">
           <button
             type="button"
             onClick={() => openWhatsApp()}
@@ -75,10 +84,54 @@ export function Header() {
             )}
           </Link>
         </div>
+
+        {/* Ações compactas — só no mobile: carrinho + hambúrguer */}
+        <div className="flex md:hidden items-center gap-4 ml-auto flex-shrink-0">
+          <Link href="/carrinho" className="relative text-ink-700" onClick={() => setMenuOpen(false)}>
+            <ShoppingCart size={24} strokeWidth={1.8} />
+            {totalQty > 0 && (
+              <span className="absolute -top-2 -right-2 bg-orange-600 text-white rounded-full text-[10px] w-4.5 h-4.5 flex items-center justify-center">
+                {totalQty}
+              </span>
+            )}
+          </Link>
+          <button
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuOpen}
+            className="text-ink-900"
+          >
+            {menuOpen ? <X size={26} strokeWidth={1.8} /> : <Menu size={26} strokeWidth={1.8} />}
+          </button>
+        </div>
       </div>
 
-      <nav className="border-t border-line-soft">
-        <div className="wrap flex gap-7 py-3 overflow-x-auto flex-nowrap md:overflow-visible md:flex-wrap">
+      {/* Busca — linha própria no mobile */}
+      <div className="md:hidden wrap pb-3.5">
+        <div className="flex items-stretch border-2 border-line rounded-full overflow-hidden bg-bg focus-within:border-blue-500 focus-within:bg-white transition-colors">
+          <input
+            type="text"
+            placeholder="Buscar peça, código ou modelo"
+            className="flex-1 min-w-0 border-none bg-transparent px-4 py-2.5 text-sm outline-none text-ink-900"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+          />
+          <button
+            type="button"
+            onClick={handleSearch}
+            aria-label="Buscar"
+            className="border-none bg-orange-500 hover:bg-orange-600 text-white px-4 flex items-center justify-center flex-shrink-0"
+          >
+            <Search size={17} strokeWidth={2} />
+          </button>
+        </div>
+      </div>
+
+      {/* Navegação com dropdowns — apenas desktop/tablet (hover não existe em touch) */}
+      <nav className="hidden md:block border-t border-line-soft">
+        <div className="wrap flex flex-wrap gap-7 py-3">
           {NAV_LINKS.map((link) => (
             <div key={link.href} className="group relative">
               <Link
@@ -116,6 +169,49 @@ export function Header() {
           ))}
         </div>
       </nav>
+
+      {/* Menu mobile — painel deslizante com todas as ações e categorias */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-line-soft bg-white max-h-[75vh] overflow-y-auto">
+          <div className="wrap py-3 flex flex-col">
+            <button
+              type="button"
+              onClick={handleWhatsAppClick}
+              className="flex items-center gap-3 py-3 text-[15px] font-semibold text-ink-700 border-b border-line-soft text-left"
+            >
+              <MessageCircle size={19} strokeWidth={1.8} /> WhatsApp
+            </button>
+            <Link href="/conta" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-[15px] font-semibold text-ink-700 border-b border-line-soft">
+              <User size={19} strokeWidth={1.8} /> Minha conta
+            </Link>
+            <Link href="/pedidos" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-[15px] font-semibold text-ink-700 border-b border-line-soft">
+              <Package size={19} strokeWidth={1.8} /> Meus pedidos
+            </Link>
+
+            <div className="text-[11px] font-bold text-ink-300 uppercase tracking-wide pt-4 pb-1">Categorias</div>
+            {CATEGORIES.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/categoria?cat=${c.slug}`}
+                onClick={() => setMenuOpen(false)}
+                className="py-2.5 text-[15px] font-semibold text-ink-700 border-b border-line-soft"
+              >
+                {c.name}
+              </Link>
+            ))}
+
+            <Link href="/marcas" onClick={() => setMenuOpen(false)} className="py-3 text-[15px] font-semibold text-ink-700 border-b border-line-soft">
+              Marcas
+            </Link>
+            <Link href="/ajuda" onClick={() => setMenuOpen(false)} className="py-3 text-[15px] font-semibold text-ink-700 border-b border-line-soft">
+              Não sabe qual peça?
+            </Link>
+            <Link href="/conteudo" onClick={() => setMenuOpen(false)} className="py-3 text-[15px] font-semibold text-ink-700">
+              Conteúdos
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
