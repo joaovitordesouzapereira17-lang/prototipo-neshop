@@ -15,17 +15,19 @@ export function HeroSearch() {
   }
 
   return (
-    <section className="bg-gradient-to-br from-navy-950 via-navy-800 to-navy-700 text-white py-13 pb-11">
+    <section className="bg-gradient-to-br from-navy-950 via-navy-800 to-navy-700 text-white py-9 sm:py-13 pb-8 sm:pb-11">
       <div className="wrap">
-        <span className="inline-flex items-center gap-2 bg-white/10 border border-white/[.18] rounded-full px-3.5 py-1.5 text-[12.5px] font-semibold text-[#cfe0ee] mb-4.5">
+        <span className="inline-flex items-center gap-2 bg-white/10 border border-white/[.18] rounded-full px-3.5 py-1.5 text-[11.5px] sm:text-[12.5px] font-semibold text-[#cfe0ee] mb-4">
           <Wrench size={13} strokeWidth={2} /> Encontrar → Identificar → Validar → Comprar
         </span>
-        <h1 className="text-[34px] font-extrabold tracking-tight max-w-xl">Encontre a peça que você precisa</h1>
-        <p className="text-[#b9cee2] text-[15.5px] mt-2.5 max-w-lg">
+        <h1 className="text-[26px] sm:text-[34px] font-extrabold tracking-tight max-w-xl leading-tight">Encontre a peça que você precisa</h1>
+        <p className="text-[#b9cee2] text-sm sm:text-[15.5px] mt-2.5 max-w-lg">
           Busque por código, modelo do equipamento ou nome da peça. Catálogo técnico amplo, com peças originais
           para diversas marcas.
         </p>
-        <div className="mt-6 flex bg-white rounded-2xl shadow-lg overflow-hidden max-w-xl">
+
+        {/* Busca — só aparece aqui a partir de sm; no mobile a busca já está fixa no topo do header, evitando duplicidade */}
+        <div className="hidden sm:flex mt-6 bg-white rounded-2xl shadow-lg overflow-hidden max-w-xl">
           <input
             type="text"
             placeholder="Digite código, modelo ou nome da peça"
@@ -42,9 +44,10 @@ export function HeroSearch() {
             <Search size={16} strokeWidth={2} /> Buscar
           </button>
         </div>
-        <div className="mt-4.5 flex items-center gap-2.5 text-[#cfe0ee] text-sm">
+
+        <div className="mt-5 sm:mt-4.5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5 text-[#cfe0ee] text-sm">
           <span>Não sabe qual peça é?</span>
-          <Link href="/ajuda" className="font-bold text-white border-b-2 border-orange-500 pb-0.5 hover:text-orange-500">
+          <Link href="/ajuda" className="inline-block w-fit font-bold text-white border-b-2 border-orange-500 pb-0.5 hover:text-orange-500">
             Envie uma foto ou o modelo →
           </Link>
         </div>
