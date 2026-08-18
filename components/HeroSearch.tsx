@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Wrench, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 export function HeroSearch() {
   const router = useRouter();
@@ -17,9 +17,6 @@ export function HeroSearch() {
   return (
     <section className="bg-gradient-to-br from-navy-950 via-navy-800 to-navy-700 text-white py-9 sm:py-13 pb-8 sm:pb-11">
       <div className="wrap">
-        <span className="inline-flex items-center gap-2 bg-white/10 border border-white/[.18] rounded-full px-3.5 py-1.5 text-[11.5px] sm:text-[12.5px] font-semibold text-[#cfe0ee] mb-4">
-          <Wrench size={13} strokeWidth={2} /> Encontrar → Identificar → Validar → Comprar
-        </span>
         <h1 className="text-[26px] sm:text-[34px] font-extrabold tracking-tight max-w-xl leading-tight">Encontre a peça que você precisa</h1>
         <p className="text-[#b9cee2] text-sm sm:text-[15.5px] mt-2.5 max-w-lg">
           Busque por código, modelo do equipamento ou nome da peça. Catálogo técnico amplo, com peças originais
