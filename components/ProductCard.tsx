@@ -56,11 +56,10 @@ export function ProductCard({ product: p }: { product: Product }) {
 
         <Icon size={64} strokeWidth={1.2} className="text-white/25 transition-transform duration-300 ease-in-out group-hover:scale-105" />
 
-        {/* Overlay de ações rápidas — sempre visível em telas pequenas (sem hover), revelado no hover em telas grandes */}
+        {/* Overlay de ações rápidas — só existe em telas com hover (desktop/tablet com mouse) */}
         <div
-          className="absolute inset-0 bg-navy-800/95 backdrop-blur-sm flex flex-col justify-center gap-3 p-4
-                     opacity-100 translate-y-0
-                     lg:opacity-0 lg:translate-y-2 lg:group-hover:opacity-100 lg:group-hover:translate-y-0
+          className="hidden lg:flex absolute inset-0 bg-navy-800/95 backdrop-blur-sm flex-col justify-center gap-3 p-4
+                     opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
                      transition-all duration-300 ease-in-out"
         >
           <ul className="space-y-1.5 text-[11.5px] text-white/75 leading-snug">
@@ -100,6 +99,15 @@ export function ProductCard({ product: p }: { product: Product }) {
           {p.oldPrice && <span className="text-white/40 text-xs line-through">{money(p.oldPrice)}</span>}
         </div>
         <div className="text-white/40 text-xs">{p.installment}</div>
+
+        {/* Botão de compra fixo — em telas sem hover confiável (mobile/tablet); no desktop o overlay já resolve isso */}
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          className="lg:hidden mt-2 w-full bg-blue-500 hover:bg-blue-600 text-navy-950 font-bold text-[13px] rounded-lg py-2.5 flex items-center justify-center gap-2"
+        >
+          <ShoppingBag size={15} strokeWidth={2} /> Adicionar ao carrinho
+        </button>
       </div>
     </Link>
   );
