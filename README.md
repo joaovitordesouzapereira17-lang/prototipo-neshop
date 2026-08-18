@@ -1,34 +1,54 @@
-# Neshop — Protótipo de Wireframe Navegável (Redesign)
+# Neshop — Projeto de Redesign do E-commerce
 
-⚠️ **Este é um protótipo/wireframe de alta fidelidade estrutural, para apresentação e validação interna com os gestores da Neshop. Não é o site oficial e não deve ser tratado como implementação definitiva.**
+⚠️ **Ainda é uma proposta de redesign em validação com os gestores da Neshop — não é o site oficial em produção.** A estrutura de código, porém, já é a de um projeto real (Next.js + TypeScript + Tailwind), pensada para evoluir diretamente para a versão final, sem precisar reescrever nada do zero.
 
-Não há backend, pagamentos reais, login real, banco de dados ou estoque real. Toda a navegação (busca, filtros, carrinho, WhatsApp, fluxo de identificação de peça) é simulada em HTML/CSS/JS puro para demonstrar arquitetura, hierarquia de informação e fluxo de compra.
+Carrinho, login e busca continuam **simulados** (dados mockados em `lib/products.ts`, carrinho em `localStorage`) — não há backend, pagamentos reais, autenticação real ou banco de dados ainda. É fácil trocar por uma API depois, já que a lógica de dados está isolada em `lib/`.
 
-## Como visualizar
+## Stack
 
-Tudo está em **um único arquivo autocontido** (`index.html` — HTML, CSS e JavaScript embutidos, sem dependências externas nem outros arquivos). Basta abrir com duplo clique direto no navegador, não precisa de servidor nem internet.
+- **Next.js 16** (App Router) — roteamento real por arquivos, cada tela é uma rota de verdade (não é mais hash routing de SPA)
+- **TypeScript**
+- **Tailwind CSS** — paleta customizada (navy/orange/blue) em `tailwind.config.ts`
+- **React Context** para carrinho (`lib/cart-context.tsx`, persistido em `localStorage`) e modal do WhatsApp (`lib/whatsapp-context.tsx`)
 
-A navegação entre telas acontece via JavaScript (hash routing), sem recarregar a página — exatamente como um site real, incluindo suporte ao botão "voltar" do navegador.
-
-Se preferir, também pode servir via HTTP:
+## Como rodar
 
 ```bash
-python3 -m http.server 8000
-# depois acesse http://localhost:8000/index.html
+npm install
+npm run dev
+# acesse http://localhost:3000
 ```
 
-## Telas incluídas (todas dentro do mesmo index.html)
+Para build de produção:
 
-- `#/home` — Home (busca principal, categorias, benefícios, banner, vitrine, autoridade, ajuda, marcas, conteúdo, depoimentos)
-- `#/categoria?cat=` — Listagem de categoria com filtros e ordenação
-- `#/busca?q=` — Resultados de busca
-- `#/produto?id=` — Ficha de produto completa
-- `#/marca?marca=` — Página de marca
-- `#/categorias` / `#/marcas` / `#/conteudo` — Páginas "ver todas"
-- `#/ajuda` — Fluxo "Não sabe qual peça comprar?" (4 passos)
-- `#/carrinho` — Carrinho simulado (localStorage)
-- `#/conta` / `#/pedidos` — Placeholders de área logada
+```bash
+npm run build
+npm start
+```
 
-## Lógica central
+## Estrutura
+
+```
+app/
+  layout.tsx              → header, footer, providers globais, faixa de "protótipo"
+  page.tsx                → Home
+  categoria/               → /categoria?cat=
+  busca/                   → /busca?q=
+  produto/                 → /produto?id=
+  marca/                   → /marca?marca=
+  marcas/, categorias/, conteudo/  → páginas "ver todas"
+  ajuda/                   → fluxo de identificação de peça (4 passos)
+  carrinho/                → carrinho simulado
+  conta/                   → login simulado
+  pedidos/                 → histórico de pedidos (placeholder)
+components/                → Header, Footer, ProductCard, modais etc (compartilhados)
+lib/
+  products.ts              → dataset de produtos/categorias/marcas (mock)
+  cart-context.tsx          → estado do carrinho
+  whatsapp-context.tsx       → estado do modal do WhatsApp
+legacy-wireframe/index.html → versão anterior do protótipo (1 arquivo HTML autocontido), mantida como referência histórica
+```
+
+## Lógica central do produto
 
 **Encontrar → Identificar → Validar → Comprar.**
