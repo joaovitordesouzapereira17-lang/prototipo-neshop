@@ -598,6 +598,44 @@ footer.site-footer{background:var(--navy-950);color:#a9c2d6;margin-top:20px;}
 .empty-cart{text-align:center;padding:70px 0;color:var(--ink-500);}
 .empty-cart .ic{font-size:48px;margin-bottom:16px;}
 
+/* ---------- Login simulado (Minha conta) ---------- */
+.auth-card{
+  margin-top:18px;background:linear-gradient(180deg,var(--blue-100) 0%,#fff 45%);
+  border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);
+  padding:36px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.auth-badge{
+  width:56px;height:56px;border-radius:16px;background:#fff;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:var(--shadow-sm);margin-bottom:18px;
+}
+.auth-title{font-size:21px;font-weight:800;color:var(--navy-950);}
+.auth-sub{font-size:13.5px;color:var(--ink-500);margin-top:8px;margin-bottom:22px;line-height:1.5;}
+.auth-field{position:relative;width:100%;margin-bottom:12px;}
+.auth-field-ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.7;}
+.auth-field input{
+  width:100%;border:1px solid var(--line);border-radius:10px;background:var(--bg);
+  padding:11px 14px 11px 38px;font-size:14px;font-family:inherit;outline:none;color:var(--ink-900);
+}
+.auth-field input:focus{border-color:var(--blue-500);background:#fff;}
+.auth-row{width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:10px;min-height:16px;}
+.auth-error{color:#c94b2b;font-size:12.5px;font-weight:600;text-align:left;}
+.auth-forgot{font-size:12.5px;font-weight:700;color:var(--blue-600);margin-left:auto;white-space:nowrap;}
+.auth-forgot:hover{color:var(--orange-600);}
+.auth-success{
+  width:100%;margin-top:14px;background:#e9f7ee;border:1px solid #cfeadb;color:#1e5c39;
+  border-radius:10px;padding:12px 14px;font-size:13px;text-align:left;line-height:1.5;
+}
+.auth-divider{display:flex;align-items:center;gap:10px;width:100%;margin:22px 0 16px;color:var(--ink-300);font-size:12px;font-weight:700;}
+.auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--line);}
+.auth-social-row{display:flex;gap:10px;width:100%;justify-content:center;}
+.auth-social-btn{
+  flex:1;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;
+  font-weight:800;font-size:15px;color:var(--ink-700);
+}
+.auth-social-btn:hover{border-color:var(--blue-500);color:var(--blue-600);background:var(--blue-100);}
+.auth-footnote{font-size:12.5px;color:var(--ink-500);margin-top:20px;}
+.auth-footnote a{color:var(--blue-600);font-weight:700;}
+
 /* ---------- Utility ---------- */
 .center-cta{display:flex;justify-content:center;margin-top:30px;}
 .badge-proto{
@@ -1146,21 +1184,48 @@ footer.site-footer{background:var(--navy-950);color:#a9c2d6;margin-top:20px;}
   </div>
 </div>
 
-<!-- ================= CONTA ================= -->
+<!-- ================= CONTA (login simulado) ================= -->
 <div class="page" id="page-conta">
   <div class="wrap">
     <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Minha conta</span></div>
-    <div class="page-head"><h1>Minha conta</h1></div>
   </div>
-  <section class="section">
-    <div class="wrap" style="max-width:560px;">
-      <div class="flow-card">
-        <span class="badge-proto">Área simulada</span>
-        <h2 style="margin-top:14px;">Login e cadastro (simulado)</h2>
-        <p>Neste protótipo, a área "Minha conta" representa apenas a existência dessa navegação na arquitetura do site. Não há autenticação real — o objetivo é validar onde esse acesso aparece na hierarquia do header.</p>
-        <div class="field" style="margin-top:20px;"><label>E-mail</label><input type="email" placeholder="seuemail@exemplo.com"></div>
-        <div class="field"><label>Senha</label><input type="password" placeholder="••••••••"></div>
-        <button class="btn btn-primary btn-lg btn-block" type="button" onclick="alert('Simulação: em produção, este botão autenticaria o usuário.')">Entrar (simulado)</button>
+  <section class="section" style="padding-top:24px;">
+    <div class="wrap" style="max-width:400px;">
+      <span class="badge-proto">Área simulada — sem autenticação real</span>
+      <div class="auth-card">
+        <div class="auth-badge">🔑</div>
+        <h1 class="auth-title">Entrar na sua conta</h1>
+        <p class="auth-sub">Acompanhe pedidos, salve peças e agilize sua próxima compra na Neshop.</p>
+
+        <div class="auth-field">
+          <span class="auth-field-ic">✉️</span>
+          <input type="email" id="auth-email" placeholder="E-mail" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <span class="auth-field-ic">🔒</span>
+          <input type="password" id="auth-password" placeholder="Senha" autocomplete="current-password">
+        </div>
+
+        <div class="auth-row">
+          <span id="auth-error" class="auth-error"></span>
+          <a href="#" class="auth-forgot" onclick="event.preventDefault();openWhatsApp('Olá! Esqueci minha senha e preciso de ajuda para acessar minha conta.')">Esqueci a senha</a>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" type="button" onclick="handleSignIn()">Entrar</button>
+
+        <div id="auth-success" class="auth-success" style="display:none;">
+          ✅ Login simulado com sucesso. Em uma implementação real, você seria redirecionado para a sua área de cliente.
+        </div>
+
+        <div class="auth-divider"><span>ou entre com</span></div>
+
+        <div class="auth-social-row">
+          <button type="button" class="auth-social-btn" onclick="alert('Simulação: login social não é funcional neste protótipo.')" aria-label="Entrar com Google">G</button>
+          <button type="button" class="auth-social-btn" onclick="alert('Simulação: login social não é funcional neste protótipo.')" aria-label="Entrar com Facebook">f</button>
+          <button type="button" class="auth-social-btn" onclick="alert('Simulação: login social não é funcional neste protótipo.')" aria-label="Entrar com Apple"></button>
+        </div>
+
+        <p class="auth-footnote">Ainda não tem conta? <a href="#" onclick="event.preventDefault();alert('Simulação: cadastro não é funcional neste protótipo.')">Criar conta</a></p>
       </div>
     </div>
   </section>
@@ -1424,6 +1489,7 @@ function initPage(pageId, params){
   else if(pageId === "categorias") initCategorias();
   else if(pageId === "ajuda") initAjuda();
   else if(pageId === "carrinho") initCarrinho();
+  else if(pageId === "conta") initConta();
 }
 
 /* ---------------------------------------------------------------------- */
@@ -1663,6 +1729,38 @@ function simulateUpload(){
 }
 
 /* ---------------------------------------------------------------------- */
+/* CONTA (login simulado)                                                  */
+/* ---------------------------------------------------------------------- */
+function initConta(){
+  document.getElementById("auth-email").value = "";
+  document.getElementById("auth-password").value = "";
+  document.getElementById("auth-error").textContent = "";
+  document.getElementById("auth-success").style.display = "none";
+}
+function validateEmail(email){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+function handleSignIn(){
+  const email = document.getElementById("auth-email").value.trim();
+  const password = document.getElementById("auth-password").value;
+  const errorEl = document.getElementById("auth-error");
+  const successEl = document.getElementById("auth-success");
+
+  if(!email || !password){
+    errorEl.textContent = "Preencha e-mail e senha.";
+    successEl.style.display = "none";
+    return;
+  }
+  if(!validateEmail(email)){
+    errorEl.textContent = "Digite um e-mail válido.";
+    successEl.style.display = "none";
+    return;
+  }
+  errorEl.textContent = "";
+  successEl.style.display = "block";
+}
+
+/* ---------------------------------------------------------------------- */
 /* CARRINHO                                                                */
 /* ---------------------------------------------------------------------- */
 function initCarrinho(){ renderCart(); }
@@ -1735,6 +1833,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   bindEnterKey("headerSearchInput", ()=>doSearch("headerSearchInput"));
   bindEnterKey("heroSearchInput", ()=>doSearch("heroSearchInput"));
+  bindEnterKey("auth-email", handleSignIn);
+  bindEnterKey("auth-password", handleSignIn);
 
   document.body.addEventListener("click", (e)=>{
     const btn = e.target.closest(".tabs-nav button");
