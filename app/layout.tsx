@@ -5,6 +5,7 @@ import { WhatsAppProvider } from "@/lib/whatsapp-context";
 import { ProtoBar } from "@/components/ProtoBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { BottomNav } from "@/components/BottomNav";
 import { WhatsAppFloatButton, WhatsAppModal } from "@/components/WhatsAppModal";
 
 export const metadata: Metadata = {
@@ -20,8 +21,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartProvider>
             <ProtoBar />
             <Header />
-            <main>{children}</main>
-            <Footer />
+            <div className="pb-16 md:pb-0">
+              <main>{children}</main>
+              <Footer />
+            </div>
+            <BottomNav />
             <WhatsAppFloatButton />
             <WhatsAppModal />
           </CartProvider>

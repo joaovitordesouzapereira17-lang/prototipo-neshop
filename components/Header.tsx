@@ -85,16 +85,8 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Ações compactas — só no mobile: carrinho + hambúrguer */}
+        {/* Ação compacta — só no mobile: hambúrguer (carrinho/início/conta já ficam na barra fixa do rodapé) */}
         <div className="flex md:hidden items-center gap-4 ml-auto flex-shrink-0">
-          <Link href="/carrinho" className="relative text-ink-700" onClick={() => setMenuOpen(false)}>
-            <ShoppingCart size={24} strokeWidth={1.8} />
-            {totalQty > 0 && (
-              <span className="absolute -top-2 -right-2 bg-orange-600 text-white rounded-full text-[10px] w-4.5 h-4.5 flex items-center justify-center">
-                {totalQty}
-              </span>
-            )}
-          </Link>
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
@@ -185,9 +177,6 @@ export function Header() {
             >
               <MessageCircle size={19} strokeWidth={1.8} /> WhatsApp
             </button>
-            <Link href="/conta" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-[15px] font-semibold text-ink-700 border-b border-line-soft">
-              <User size={19} strokeWidth={1.8} /> Minha conta
-            </Link>
             <Link href="/pedidos" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-[15px] font-semibold text-ink-700 border-b border-line-soft">
               <Package size={19} strokeWidth={1.8} /> Meus pedidos
             </Link>

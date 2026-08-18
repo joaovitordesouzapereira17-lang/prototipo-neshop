@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CATEGORIES } from "@/lib/products";
-import { categoryIcon } from "@/lib/category-icons";
+import { CategoryCard } from "@/components/CategoryCard";
 
 export default function CategoriasPage() {
   return (
@@ -16,22 +16,10 @@ export default function CategoriasPage() {
       </div>
 
       <section className="py-6.5 pb-15">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {CATEGORIES.map((c) => {
-            const Icon = categoryIcon(c.slug);
-            return (
-              <Link
-                key={c.slug}
-                href={`/categoria?cat=${c.slug}`}
-                className="card px-3.5 py-5.5 text-center hover:border-blue-500 hover:shadow-md hover:-translate-y-0.5 transition-all"
-              >
-                <span className="w-13 h-13 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-3">
-                  <Icon size={24} strokeWidth={1.6} />
-                </span>
-                <span className="font-bold text-[13.5px] text-navy-950">{c.name}</span>
-              </Link>
-            );
-          })}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 lg:gap-4">
+          {CATEGORIES.map((c) => (
+            <CategoryCard key={c.slug} slug={c.slug} name={c.name} />
+          ))}
         </div>
       </section>
     </div>
