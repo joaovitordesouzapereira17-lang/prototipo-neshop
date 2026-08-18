@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart-context";
 import { WhatsAppProvider } from "@/lib/whatsapp-context";
-import { ProtoBar, TrustStrip } from "@/components/ProtoBar";
+import { ProtoBar } from "@/components/ProtoBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloatButton, WhatsAppModal } from "@/components/WhatsAppModal";
@@ -19,7 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <WhatsAppProvider>
           <CartProvider>
             <ProtoBar />
-            <TrustStrip />
             <Header />
             <main>{children}</main>
             <Footer />

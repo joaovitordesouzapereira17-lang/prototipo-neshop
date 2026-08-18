@@ -11,17 +11,3 @@ export function ProtoBar() {
     </div>
   );
 }
-
-export function TrustStrip() {
-  return (
-    <div className="bg-navy-950 text-[#a9c2d6] text-[12.5px]">
-      <div className="wrap flex justify-center gap-2.5 py-1.5 flex-wrap">
-        <span>35+ anos de mercado</span>
-        <span className="opacity-40">|</span>
-        <span>Peças originais</span>
-        <span className="opacity-40">|</span>
-        <span>Atendimento especializado</span>
-      </div>
-    </div>
-  );
-}
