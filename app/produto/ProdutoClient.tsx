@@ -3,22 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { MessageCircle, CheckCircle2, ShieldCheck, Truck, Headphones, Search, Ruler, FileText } from "lucide-react";
+import {
+  MessageCircle, Heart, Share2, ShoppingCart, Tag, ShieldCheck, CheckCircle2, Truck,
+  ChevronLeft, ChevronRight, ChevronDown, Search, Ruler, FileText,
+} from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { StarRating } from "@/components/StarRating";
 import { useCart } from "@/lib/cart-context";
 import { useWhatsApp } from "@/lib/whatsapp-context";
 import { CAT_NAMES, PRODUCTS, money } from "@/lib/products";
 import { categoryIcon } from "@/lib/category-icons";
-
-type Tab = "desc" | "compat" | "reviews";
-
-const TRUST_ITEMS = [
-  { icon: CheckCircle2, title: "Peça original", desc: "Garantia de procedência" },
-  { icon: ShieldCheck, title: "Garantia", desc: "90 dias contra defeitos" },
-  { icon: Truck, title: "Envio", desc: "Para todo o Brasil" },
-  { icon: Headphones, title: "Suporte técnico", desc: "Antes e depois da compra" },
-];
 
 const GALLERY_EXTRA_ICONS = [Search, Ruler, FileText];
 
@@ -33,13 +27,19 @@ export function ProdutoClient() {
   const router = useRouter();
   const { addToCart } = useCart();
   const { open: openWhatsApp } = useWhatsApp();
-  const [tab, setTab] = useState<Tab>("desc");
 
   const pid = searchParams.get("id") || "p01";
   const p = PRODUCTS.find((x) => x.id === pid) || PRODUCTS[0];
   const related = PRODUCTS.filter((x) => x.cat === p.cat && x.id !== p.id).slice(0, 4);
   const relatedList = related.length ? related : PRODUCTS.filter((x) => x.id !== p.id).slice(0, 4);
   const CatIcon = categoryIcon(p.cat);
+  const gallery = [CatIcon, ...GALLERY_EXTRA_ICONS];
+
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const [favorited, setFavorited] = useState(false);
+  const [shared, setShared] = useState(false);
+  const [descExpanded, setDescExpanded] = useState(false);
+  const GalleryIcon = gallery[galleryIndex];
 
   function handleBuy() {
     if (!p.stock) {
@@ -48,6 +48,21 @@ export function ProdutoClient() {
     }
     addToCart(p.id);
     router.push("/carrinho");
+  }
+
+  async function handleShare() {
+    const url = typeof window !== "undefined" ? window.location.href : "";
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: p.name, url });
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(url);
+        setShared(true);
+        setTimeout(() => setShared(false), 1800);
+      }
+    } catch {
+      // Usuário cancelou o compartilhamento — nada a fazer.
+    }
   }
 
   return (
@@ -62,131 +77,208 @@ export function ProdutoClient() {
         </div>
       </div>
 
-      <div className="wrap grid md:grid-cols-[1fr_1.15fr] gap-11 py-7 pb-5">
-        <div>
-          <div className="aspect-square card flex items-center justify-center text-ink-300 mb-3 relative">
-            {p.orig && (
-              <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-2.5 py-1.5 rounded-md">
-                Original
-              </span>
-            )}
-            <CatIcon size={80} strokeWidth={1.2} />
-          </div>
-          <div className="flex gap-2.5">
-            <div className="w-16 h-16 rounded-lg bg-white border-[1.5px] border-blue-500 flex items-center justify-center text-ink-300">
-              <CatIcon size={22} strokeWidth={1.5} />
-            </div>
-            {GALLERY_EXTRA_ICONS.map((Icon, i) => (
-              <div key={i} className="w-16 h-16 rounded-lg bg-white border-[1.5px] border-line flex items-center justify-center text-ink-300">
-                <Icon size={22} strokeWidth={1.5} />
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Ficha split-screen */}
+      <div className="wrap py-6">
+        <div className="bg-navy-950 rounded-3xl border border-white/10 p-4 md:p-6 grid md:grid-cols-2 gap-6 md:gap-8">
+          {/* Lado esquerdo — galeria */}
+          <div>
+            <div className="relative aspect-square rounded-3xl bg-white/[0.04] flex items-center justify-center overflow-hidden">
+              {p.orig && (
+                <span className="absolute top-4 left-4 z-10 bg-green-600 text-white text-xs font-bold px-2.5 py-1.5 rounded-md">
+                  Original
+                </span>
+              )}
 
-        <div>
-          <span className="text-[12.5px] font-bold text-blue-600 uppercase tracking-wide">{p.brand}</span>
-          <h1 className="text-2xl font-extrabold text-navy-950 mt-2 leading-snug">{p.name}</h1>
-          <div className="flex gap-4.5 mt-2.5 text-[13px] text-ink-500 flex-wrap">
-            <span>Modelo: <b className="text-ink-900">{p.modelo}</b></span>
-            <span>Código/OEM: <b className="text-ink-900">{p.codigo}</b></span>
-          </div>
-          <div className="flex items-center gap-2 mt-2.5 text-[13.5px]">
-            <StarRating rating={p.rating} />
-            <span className="text-blue-600 font-bold">{p.rating} ({p.reviews} avaliações)</span>
-          </div>
-
-          <div className="mt-5 card p-5.5">
-            <div className="text-[30px] font-extrabold text-navy-950">{money(p.price)}</div>
-            <div className="text-[13.5px] text-ink-500 mt-1">ou {p.installment}</div>
-            <div className={`mt-3 flex items-center gap-2 text-[13.5px] font-bold ${p.stock ? "text-green-600" : "text-[#c94b2b]"}`}>
-              <span className={`w-2 h-2 rounded-full ${p.stock ? "bg-green-600" : "bg-[#c94b2b]"}`} />
-              {p.stock ? "Em estoque — envio imediato" : "Fora de estoque — consulte disponibilidade"}
-            </div>
-            <div className="mt-4.5 flex flex-col gap-2.5">
-              <button type="button" onClick={handleBuy} className="btn btn-primary btn-lg btn-block">
-                {p.stock ? "Comprar" : "Avisar quando disponível"}
+              <button
+                type="button"
+                onClick={() => setGalleryIndex((i) => (i - 1 + gallery.length) % gallery.length)}
+                aria-label="Imagem anterior"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/30 border border-white/15 text-white flex items-center justify-center hover:bg-black/50"
+              >
+                <ChevronLeft size={16} strokeWidth={2} />
               </button>
               <button
                 type="button"
-                onClick={() => openWhatsApp("Olá! Tenho uma dúvida sobre um produto do site.")}
-                className="btn btn-whatsapp btn-lg btn-block"
+                onClick={() => setGalleryIndex((i) => (i + 1) % gallery.length)}
+                aria-label="Próxima imagem"
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/30 border border-white/15 text-white flex items-center justify-center hover:bg-black/50"
               >
-                <MessageCircle size={17} strokeWidth={1.8} /> Falar no WhatsApp sobre esta peça
+                <ChevronRight size={16} strokeWidth={2} />
+              </button>
+
+              <GalleryIcon size={96} strokeWidth={1.1} className="text-white/25" />
+
+              {/* Botão "Buscar peças compatíveis" sobreposto no rodapé */}
+              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+                <Link
+                  href={`/categoria?cat=${p.cat}`}
+                  className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white font-bold text-[13px] rounded-lg py-2.5 transition-colors"
+                >
+                  <Search size={15} strokeWidth={2} /> Buscar peças compatíveis
+                </Link>
+              </div>
+            </div>
+
+            {/* Paginação (dots) */}
+            <div className="flex justify-center gap-1.5 mt-3.5">
+              {gallery.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setGalleryIndex(i)}
+                  aria-label={`Ver imagem ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${i === galleryIndex ? "w-5 bg-blue-500" : "w-1.5 bg-white/20"}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Lado direito — informações */}
+          <div className="flex flex-col text-white">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <span className="text-[12.5px] font-bold text-blue-400 uppercase tracking-wide">{p.brand}</span>
+                <h1 className="text-2xl font-extrabold mt-1.5 leading-snug">
+                  {p.name} <span className="text-white/40 font-semibold">— {p.codigo}</span>
+                </h1>
+              </div>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setFavorited((v) => !v)}
+                  aria-label={favorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                  className={`w-9 h-9 rounded-full border flex items-center justify-center transition-colors ${
+                    favorited ? "bg-red-600 border-red-600 text-white" : "border-white/20 text-white/70 hover:border-white/40 hover:text-white"
+                  }`}
+                >
+                  <Heart size={16} strokeWidth={2} fill={favorited ? "currentColor" : "none"} />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleShare}
+                  aria-label="Compartilhar"
+                  className="relative w-9 h-9 rounded-full border border-white/20 text-white/70 hover:border-white/40 hover:text-white flex items-center justify-center transition-colors"
+                >
+                  <Share2 size={15} strokeWidth={2} />
+                  {shared && (
+                    <span className="absolute -bottom-7 right-0 text-[11px] bg-white text-navy-950 font-semibold px-2 py-1 rounded-md whitespace-nowrap">
+                      Link copiado!
+                    </span>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 mt-2.5 text-[13.5px]">
+              <StarRating rating={p.rating} />
+              <span className="text-white/60 font-semibold">{p.rating} ({p.reviews} avaliações)</span>
+            </div>
+
+            <div className="flex items-baseline gap-3 mt-4 flex-wrap">
+              <span className="text-[30px] font-extrabold">{money(p.price)}</span>
+              {p.oldPrice && <span className="text-white/40 text-base line-through">{money(p.oldPrice)}</span>}
+              <span className="text-[13px] text-blue-400 font-semibold">ou {p.installment}</span>
+            </div>
+            <div className={`mt-2 flex items-center gap-2 text-[13px] font-bold ${p.stock ? "text-green-500" : "text-red-400"}`}>
+              <span className={`w-2 h-2 rounded-full ${p.stock ? "bg-green-500" : "bg-red-400"}`} />
+              {p.stock ? "Em estoque — envio imediato" : "Fora de estoque — consulte disponibilidade"}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-2.5 mt-5">
+              <button
+                type="button"
+                onClick={handleBuy}
+                className="flex-1 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-bold text-sm rounded-lg py-3"
+              >
+                <ShoppingCart size={16} strokeWidth={2} /> {p.stock ? "Comprar agora" : "Avisar quando disponível"}
+              </button>
+              <button
+                type="button"
+                onClick={() => openWhatsApp("Olá! Tenho uma dúvida técnica sobre um produto do site.")}
+                className="flex-1 flex items-center justify-center gap-2 border border-white/25 hover:border-white/50 text-white font-bold text-sm rounded-lg py-3 transition-colors"
+              >
+                <MessageCircle size={16} strokeWidth={2} /> Falar com técnico no WhatsApp
               </button>
             </div>
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              {TRUST_ITEMS.map((item) => (
-                <div key={item.title} className="flex gap-2.5 items-start text-[12.5px] text-ink-700 bg-bg rounded-lg p-2.5">
-                  <item.icon size={18} strokeWidth={1.6} className="text-blue-600 flex-shrink-0" />
-                  <div>
-                    <b className="block text-ink-900 text-[12.5px]">{item.title}</b>
-                    {item.desc}
-                  </div>
+
+            <div className="flex flex-wrap gap-2 mt-5">
+              <span className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/10 text-white/80 text-[11.5px] font-semibold px-3 py-1.5 rounded-full">
+                <Tag size={12} strokeWidth={2} /> OEM: {p.codigo}
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/10 text-white/80 text-[11.5px] font-semibold px-3 py-1.5 rounded-full">
+                <ShieldCheck size={12} strokeWidth={2} /> 90 dias de garantia
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/10 text-white/80 text-[11.5px] font-semibold px-3 py-1.5 rounded-full">
+                <CheckCircle2 size={12} strokeWidth={2} /> {p.orig ? "Peça original" : "Peça compatível"}
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/10 text-white/80 text-[11.5px] font-semibold px-3 py-1.5 rounded-full">
+                <Truck size={12} strokeWidth={2} /> Envio para todo o Brasil
+              </span>
+            </div>
+
+            {/* Descrição / compatibilidade em sanfona */}
+            <div className="mt-5 border-t border-white/10 pt-4">
+              <p className="text-[13.5px] text-white/70 leading-relaxed">
+                Peça de reposição indicada para o modelo {p.modelo}. Componente testado e revisado, seguindo os
+                padrões técnicos do fabricante.
+              </p>
+              <button
+                type="button"
+                onClick={() => setDescExpanded((v) => !v)}
+                className="mt-2 flex items-center gap-1.5 text-[13px] font-bold text-blue-400 hover:text-blue-300"
+              >
+                {descExpanded ? "Ver menos" : "Ver detalhes completos de compatibilidade"}
+                <ChevronDown size={15} strokeWidth={2.2} className={`transition-transform ${descExpanded ? "rotate-180" : ""}`} />
+              </button>
+              {descExpanded && (
+                <div className="mt-3 text-[13px] text-white/70 leading-relaxed">
+                  <p>Componente testado e revisado, garantindo o funcionamento correto do equipamento. Compatível com:</p>
+                  <ul className="grid grid-cols-2 gap-2 mt-2.5">
+                    {[p.modelo, `${p.modelo} (variante A)`, `${p.modelo} (variante B)`, "Consulte outros modelos compatíveis"].map((m) => (
+                      <li key={m} className="bg-white/[0.06] rounded-md px-3 py-2 text-[12.5px] text-white/85 font-semibold">
+                        {m}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
+              )}
+            </div>
+
+            {/* Vendedor / autoridade técnica */}
+            <div className="mt-5 pt-4 border-t border-white/10 flex items-center gap-3">
+              <span className="w-10 h-10 rounded-full bg-blue-500 text-navy-950 flex items-center justify-center font-extrabold text-sm flex-shrink-0">
+                NE
+              </span>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-sm">Neshop — Distribuidor Autorizado</div>
+                <StarRating rating={5} size={12} />
+              </div>
+              <Link href={`/marca?marca=${encodeURIComponent(p.brand)}`} className="text-[12.5px] font-bold text-blue-400 hover:text-blue-300 whitespace-nowrap">
+                Ver todos os modelos →
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="wrap mt-9">
-        <div className="flex gap-1.5 border-b-[1.5px] border-line">
-          {([
-            ["desc", "Descrição"],
-            ["compat", "Compatibilidade"],
-            ["reviews", "Avaliações"],
-          ] as [Tab, string][]).map(([value, label]) => (
-            <button
-              key={value}
-              type="button"
-              onClick={() => setTab(value)}
-              className={`border-none bg-transparent px-4.5 py-3.5 font-bold text-sm -mb-[1.5px] border-b-[2.5px] ${
-                tab === value ? "text-navy-950 border-orange-500" : "text-ink-500 border-transparent"
-              }`}
-            >
-              {label}
-            </button>
+      {/* Avaliações */}
+      <div className="wrap mt-3">
+        <h2 className="text-xl font-extrabold text-navy-950">Avaliações</h2>
+        <div className="grid md:grid-cols-3 gap-4.5 mt-4">
+          {REVIEWS.map((r) => (
+            <div key={r.who} className="card p-5.5">
+              <StarRating rating={r.rating} />
+              <p className="mt-3 text-sm text-ink-700 leading-relaxed">&quot;{r.quote}&quot;</p>
+              <div className="mt-3.5 text-[13px] font-bold text-navy-950 flex items-center gap-2">
+                <span className="w-7 h-7 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-extrabold text-xs">
+                  {r.initial}
+                </span>
+                {r.who}
+              </div>
+            </div>
           ))}
         </div>
-
-        {tab === "desc" && (
-          <div className="py-6 text-sm text-ink-700 leading-relaxed">
-            Peça de reposição indicada para o modelo informado. Componente testado e revisado, seguindo os padrões
-            técnicos do fabricante para garantir o funcionamento correto do equipamento.
-          </div>
-        )}
-        {tab === "compat" && (
-          <div className="py-6 text-sm text-ink-700 leading-relaxed">
-            <p>Esta peça é compatível com os seguintes modelos:</p>
-            <ul className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-1.5">
-              {[p.modelo, `${p.modelo} (variante A)`, `${p.modelo} (variante B)`, "Consulte outros modelos compatíveis"].map((m) => (
-                <li key={m} className="bg-bg rounded-md px-3 py-2.5 text-[13px] text-ink-900 font-semibold">
-                  {m}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {tab === "reviews" && (
-          <div className="py-6">
-            <div className="grid md:grid-cols-3 gap-4.5">
-              {REVIEWS.map((r) => (
-                <div key={r.who} className="card p-5.5">
-                  <StarRating rating={r.rating} />
-                  <p className="mt-3 text-sm text-ink-700 leading-relaxed">&quot;{r.quote}&quot;</p>
-                  <div className="mt-3.5 text-[13px] font-bold text-navy-950 flex items-center gap-2">
-                    <span className="w-7 h-7 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-extrabold text-xs">
-                      {r.initial}
-                    </span>
-                    {r.who}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-ink-300 mt-4.5 text-center">Textos ilustrativos para fins de protótipo.</p>
-          </div>
-        )}
+        <p className="text-xs text-ink-300 mt-4.5 text-center">Textos ilustrativos para fins de protótipo.</p>
       </div>
 
       <section className="py-13 bg-white border-t border-line-soft mt-9">
