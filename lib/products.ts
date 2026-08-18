@@ -54,6 +54,10 @@ export function money(v: number): string {
   return "R$ " + v.toFixed(2).replace(".", ",");
 }
 
+export function brandsByCategory(cat: string): string[] {
+  return Array.from(new Set(PRODUCTS.filter((p) => p.cat === cat).map((p) => p.brand)));
+}
+
 export function typeOf(p: Product): "placa" | "motor" | "outros" {
   if (/placa/i.test(p.name)) return "placa";
   if (/motor|compressor/i.test(p.name)) return "motor";

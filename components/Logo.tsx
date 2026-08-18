@@ -9,13 +9,13 @@ import { CircuitBoard } from "lucide-react";
  */
 export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
   return (
-    <span className={`flex items-center gap-2.5 font-extrabold text-xl ${light ? "text-white" : "text-navy-900"} ${className}`}>
-      <span className="w-[38px] h-[38px] rounded-[9px] bg-blue-500 text-navy-950 flex items-center justify-center">
-        <CircuitBoard size={20} strokeWidth={1.8} />
+    <span className={`flex items-center gap-3 font-extrabold text-2xl ${light ? "text-white" : "text-navy-900"} ${className}`}>
+      <span className="w-12 h-12 rounded-[11px] bg-blue-500 text-navy-950 flex items-center justify-center flex-shrink-0">
+        <CircuitBoard size={24} strokeWidth={1.8} />
       </span>
       <span>
         Neshop
-        <span className={`block -mt-0.5 text-[10.5px] font-semibold tracking-wide uppercase ${light ? "text-[#8fa9be]" : "text-ink-500"}`}>
+        <span className={`block -mt-0.5 text-[11.5px] font-semibold tracking-wide uppercase ${light ? "text-[#8fa9be]" : "text-ink-500"}`}>
           Peças &amp; Componentes
         </span>
       </span>
