@@ -66,11 +66,11 @@ export default function HomePage() {
       </section>
 
       <div className="bg-navy-950 text-white">
-        <div className="wrap grid grid-cols-2 md:grid-cols-5 gap-4.5 py-5.5">
+        <div className="wrap grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3.5 sm:gap-4.5 py-5.5">
           {BENEFITS.map((b) => (
             <div key={b.label} className="flex items-center gap-2.5 text-[13.5px] font-semibold text-[#dbe8f2]">
-              <b.icon size={20} strokeWidth={1.6} />
-              {b.label}
+              <b.icon size={20} strokeWidth={1.6} className="flex-shrink-0" />
+              <span className="whitespace-nowrap">{b.label}</span>
             </div>
           ))}
         </div>
