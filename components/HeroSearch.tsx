@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Wrench, Search } from "lucide-react";
 
 export function HeroSearch() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export function HeroSearch() {
     <section className="bg-gradient-to-br from-navy-950 via-navy-800 to-navy-700 text-white py-13 pb-11">
       <div className="wrap">
         <span className="inline-flex items-center gap-2 bg-white/10 border border-white/[.18] rounded-full px-3.5 py-1.5 text-[12.5px] font-semibold text-[#cfe0ee] mb-4.5">
-          🔧 Encontrar → Identificar → Validar → Comprar
+          <Wrench size={13} strokeWidth={2} /> Encontrar → Identificar → Validar → Comprar
         </span>
         <h1 className="text-[34px] font-extrabold tracking-tight max-w-xl">Encontre a peça que você precisa</h1>
         <p className="text-[#b9cee2] text-[15.5px] mt-2.5 max-w-lg">
@@ -38,7 +39,7 @@ export function HeroSearch() {
             onClick={handleSearch}
             className="border-none bg-orange-500 hover:bg-orange-600 text-white font-bold px-7.5 text-[15px] flex items-center gap-2"
           >
-            🔍 Buscar
+            <Search size={16} strokeWidth={2} /> Buscar
           </button>
         </div>
         <div className="mt-4.5 flex items-center gap-2.5 text-[#cfe0ee] text-sm">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Key, Mail, Lock, CheckCircle2 } from "lucide-react";
 import { useWhatsApp } from "@/lib/whatsapp-context";
 
 function validateEmail(email: string) {
@@ -46,8 +47,8 @@ export default function ContaPage() {
           <span className="badge-proto">Área simulada — sem autenticação real</span>
 
           <div className="mt-4.5 bg-gradient-to-b from-blue-100 to-white border border-line rounded-lg shadow-md px-7.5 py-9 flex flex-col items-center text-center">
-            <div className="w-14 h-14 rounded-2xl bg-white border border-line flex items-center justify-center text-[26px] shadow-sm mb-4.5">
-              🔑
+            <div className="w-14 h-14 rounded-2xl bg-white border border-line flex items-center justify-center text-blue-600 shadow-sm mb-4.5">
+              <Key size={24} strokeWidth={1.6} />
             </div>
             <h1 className="text-[21px] font-extrabold text-navy-950">Entrar na sua conta</h1>
             <p className="text-[13.5px] text-ink-500 mt-2 mb-5.5 leading-relaxed">
@@ -55,7 +56,7 @@ export default function ContaPage() {
             </p>
 
             <div className="relative w-full mb-3">
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm opacity-70">✉️</span>
+              <Mail size={15} strokeWidth={1.8} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-500" />
               <input
                 type="email"
                 placeholder="E-mail"
@@ -67,7 +68,7 @@ export default function ContaPage() {
               />
             </div>
             <div className="relative w-full mb-3">
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm opacity-70">🔒</span>
+              <Lock size={15} strokeWidth={1.8} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-500" />
               <input
                 type="password"
                 placeholder="Senha"
@@ -95,9 +96,9 @@ export default function ContaPage() {
             </button>
 
             {success && (
-              <div className="w-full mt-3.5 bg-[#e9f7ee] border border-[#cfeadb] text-[#1e5c39] rounded-[10px] px-3.5 py-3 text-[13px] text-left leading-relaxed">
-                ✅ Login simulado com sucesso. Em uma implementação real, você seria redirecionado para a sua área
-                de cliente.
+              <div className="w-full mt-3.5 bg-[#e9f7ee] border border-[#cfeadb] text-[#1e5c39] rounded-[10px] px-3.5 py-3 text-[13px] text-left leading-relaxed flex gap-2">
+                <CheckCircle2 size={16} strokeWidth={1.8} className="flex-shrink-0 mt-0.5" />
+                <span>Login simulado com sucesso. Em uma implementação real, você seria redirecionado para a sua área de cliente.</span>
               </div>
             )}
 
@@ -108,7 +109,7 @@ export default function ContaPage() {
             </div>
 
             <div className="flex gap-2.5 w-full justify-center">
-              {["G", "f", ""].map((label, i) => (
+              {["G", "F", "A"].map((label, i) => (
                 <button
                   key={i}
                   type="button"

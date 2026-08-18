@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Lock } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 export function Footer() {
   return (
@@ -6,11 +8,8 @@ export function Footer() {
       <div className="wrap pt-12 pb-7">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div>
-            <Link href="/" className="flex items-center gap-2.5 font-extrabold text-xl text-white">
-              <span className="w-[38px] h-[38px] rounded-[9px] bg-gradient-to-br from-orange-500 to-orange-600 text-white font-extrabold text-base flex items-center justify-center">
-                NE
-              </span>
-              Neshop
+            <Link href="/">
+              <Logo light />
             </Link>
             <p className="text-[13px] mt-3 text-[#8fa9be] max-w-[260px]">
               Mais de 35 anos comercializando peças e componentes originais para TVs, ar-condicionados,
@@ -70,7 +69,9 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-3">
-              <span className="text-[11.5px] bg-white/10 px-2.5 py-1 rounded-md text-[#cfe0ee]">🔒 Site seguro</span>
+              <span className="text-[11.5px] bg-white/10 px-2.5 py-1 rounded-md text-[#cfe0ee] inline-flex items-center gap-1.5">
+                <Lock size={13} strokeWidth={2} /> Site seguro
+              </span>
             </div>
           </div>
         </div>

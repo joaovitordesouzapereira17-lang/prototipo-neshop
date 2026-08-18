@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { X } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { CAT_NAMES, CATEGORIES, PRODUCTS, matchesQuery, sortProducts, type SortMode } from "@/lib/products";
 
@@ -110,7 +111,7 @@ export function BuscaClient() {
               {chips.map((c, i) => (
                 <span key={i} className="bg-blue-100 text-blue-600 text-[12.5px] font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
                   {c.label}
-                  <button type="button" onClick={c.onRemove} className="border-none bg-transparent text-blue-600 font-extrabold">✕</button>
+                  <button type="button" onClick={c.onRemove} className="border-none bg-transparent text-blue-600 flex items-center"><X size={13} strokeWidth={2.5} /></button>
                 </span>
               ))}
             </div>

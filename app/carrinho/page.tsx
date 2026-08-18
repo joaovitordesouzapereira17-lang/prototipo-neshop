@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { ShoppingCart, X, CheckCircle2 } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { PRODUCTS, money } from "@/lib/products";
+import { categoryIcon } from "@/lib/category-icons";
 
 export default function CarrinhoPage() {
   const { cart, changeQty, removeItem } = useCart();
@@ -32,7 +34,7 @@ export default function CarrinhoPage() {
         <div>
           {items.length === 0 ? (
             <div className="text-center py-17.5 text-ink-500">
-              <div className="text-5xl mb-4">🛒</div>
+              <ShoppingCart size={48} strokeWidth={1.4} className="mx-auto mb-4" />
               <p className="font-bold text-navy-950">Seu carrinho está vazio</p>
               <p className="mt-1.5">Explore nosso catálogo e encontre a peça certa para o seu equipamento.</p>
               <div className="flex justify-center mt-7.5">
@@ -40,10 +42,12 @@ export default function CarrinhoPage() {
               </div>
             </div>
           ) : (
-            items.map(({ item, product: p }) => (
+            items.map(({ item, product: p }) => {
+              const Icon = categoryIcon(p!.cat);
+              return (
               <div key={item.id} className="card flex gap-3.5 p-4 mb-3.5 items-center">
-                <div className="w-18.5 h-18.5 rounded-lg bg-bg flex items-center justify-center text-2xl text-ink-300 flex-shrink-0">
-                  {p!.icon}
+                <div className="w-18.5 h-18.5 rounded-lg bg-bg flex items-center justify-center text-ink-300 flex-shrink-0">
+                  <Icon size={26} strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
                   <div className="font-bold text-sm text-navy-950">{p!.name}</div>
@@ -59,7 +63,8 @@ export default function CarrinhoPage() {
                 <div className="font-extrabold text-navy-950 text-[15px]">{money(p!.price * item.qty)}</div>
                 <button type="button" onClick={() => removeItem(item.id)} className="btn btn-secondary">Remover</button>
               </div>
-            ))
+              );
+            })
           )}
         </div>
 
@@ -92,11 +97,13 @@ export default function CarrinhoPage() {
             <button
               type="button"
               onClick={() => setCheckoutOpen(false)}
-              className="absolute top-3.5 right-3.5 border-none bg-line-soft w-[30px] h-[30px] rounded-full text-base text-ink-700"
+              className="absolute top-3.5 right-3.5 border-none bg-line-soft w-[30px] h-[30px] rounded-full text-ink-700 flex items-center justify-center"
             >
-              ✕
+              <X size={16} strokeWidth={2} />
             </button>
-            <h3 className="text-lg font-extrabold text-navy-950">✅ Pedido simulado com sucesso</h3>
+            <h3 className="text-lg font-extrabold text-navy-950 flex items-center gap-2.5">
+              <CheckCircle2 size={20} strokeWidth={1.8} className="text-green-600" /> Pedido simulado com sucesso
+            </h3>
             <p className="mt-2.5 text-sm text-ink-700 leading-relaxed">
               Este é um protótipo de UX/UI — nenhuma compra real foi realizada. Em uma implementação final, aqui
               entraria o fluxo de pagamento.

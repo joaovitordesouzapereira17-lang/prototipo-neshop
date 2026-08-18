@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Search, MessageCircle, User, Package, ShoppingCart } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { useWhatsApp } from "@/lib/whatsapp-context";
+import { Logo } from "@/components/Logo";
 
 const NAV_LINKS = [
   { href: "/categoria?cat=tv", label: "TV" },
@@ -32,16 +34,8 @@ export function Header() {
   return (
     <header className="bg-white border-b border-line sticky top-0 z-50">
       <div className="wrap flex items-center gap-6 py-3.5">
-        <Link href="/" className="flex items-center gap-2.5 font-extrabold text-xl text-navy-900 flex-shrink-0">
-          <span className="w-[38px] h-[38px] rounded-[9px] bg-gradient-to-br from-orange-500 to-orange-600 text-white font-extrabold text-base flex items-center justify-center">
-            NE
-          </span>
-          <span>
-            Neshop
-            <span className="block -mt-0.5 text-[10.5px] font-semibold text-ink-500 tracking-wide uppercase">
-              Peças &amp; Componentes
-            </span>
-          </span>
+        <Link href="/" className="flex-shrink-0">
+          <Logo />
         </Link>
 
         <div className="flex-1 flex items-stretch border-[1.5px] border-line rounded-full overflow-hidden bg-bg focus-within:border-blue-500 focus-within:bg-white transition-colors">
@@ -58,7 +52,7 @@ export function Header() {
             onClick={handleSearch}
             className="border-none bg-orange-500 hover:bg-orange-600 text-white px-5 font-bold text-sm flex items-center gap-1.5"
           >
-            🔍 Buscar
+            <Search size={16} strokeWidth={2} /> Buscar
           </button>
         </div>
 
@@ -68,16 +62,16 @@ export function Header() {
             onClick={() => openWhatsApp()}
             className="flex flex-col items-center gap-0.5 text-[11.5px] font-semibold text-ink-700 hover:text-blue-600 min-w-[56px] text-center"
           >
-            <span className="text-lg leading-none">💬</span>WhatsApp
+            <MessageCircle size={19} strokeWidth={1.8} />WhatsApp
           </button>
           <Link href="/conta" className="flex flex-col items-center gap-0.5 text-[11.5px] font-semibold text-ink-700 hover:text-blue-600 min-w-[56px] text-center">
-            <span className="text-lg leading-none">👤</span>Minha conta
+            <User size={19} strokeWidth={1.8} />Minha conta
           </Link>
           <Link href="/pedidos" className="flex flex-col items-center gap-0.5 text-[11.5px] font-semibold text-ink-700 hover:text-blue-600 min-w-[56px] text-center">
-            <span className="text-lg leading-none">📦</span>Meus pedidos
+            <Package size={19} strokeWidth={1.8} />Meus pedidos
           </Link>
           <Link href="/carrinho" className="relative flex flex-col items-center gap-0.5 text-[11.5px] font-semibold text-ink-700 hover:text-blue-600 min-w-[56px] text-center">
-            <span className="text-lg leading-none">🛒</span>Carrinho
+            <ShoppingCart size={19} strokeWidth={1.8} />Carrinho
             {totalQty > 0 && (
               <span className="absolute -top-1.5 right-2 bg-orange-600 text-white rounded-full text-[10px] w-4 h-4 flex items-center justify-center">
                 {totalQty}

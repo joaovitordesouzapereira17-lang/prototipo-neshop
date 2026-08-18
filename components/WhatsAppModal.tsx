@@ -1,5 +1,6 @@
 "use client";
 
+import { MessageCircle, X } from "lucide-react";
 import { useWhatsApp } from "@/lib/whatsapp-context";
 
 export function WhatsAppFloatButton() {
@@ -9,9 +10,9 @@ export function WhatsAppFloatButton() {
       type="button"
       onClick={() => open()}
       title="Fale no WhatsApp"
-      className="fixed bottom-6 right-6 z-[80] w-14 h-14 rounded-full bg-green-600 hover:bg-[#1e8a4b] text-white text-2xl flex items-center justify-center shadow-lg border-none"
+      className="fixed bottom-6 right-6 z-[80] w-14 h-14 rounded-full bg-green-600 hover:bg-[#1e8a4b] text-white flex items-center justify-center shadow-lg border-none"
     >
-      💬
+      <MessageCircle size={26} strokeWidth={1.8} />
     </button>
   );
 }
@@ -29,11 +30,13 @@ export function WhatsAppModal() {
         <button
           type="button"
           onClick={close}
-          className="absolute top-3.5 right-3.5 border-none bg-line-soft w-[30px] h-[30px] rounded-full text-base text-ink-700"
+          className="absolute top-3.5 right-3.5 border-none bg-line-soft w-[30px] h-[30px] rounded-full text-ink-700 flex items-center justify-center"
         >
-          ✕
+          <X size={16} strokeWidth={2} />
         </button>
-        <h3 className="text-lg font-extrabold text-navy-950 flex items-center gap-2.5">💬 Atendimento via WhatsApp</h3>
+        <h3 className="text-lg font-extrabold text-navy-950 flex items-center gap-2.5">
+          <MessageCircle size={20} strokeWidth={1.8} /> Atendimento via WhatsApp
+        </h3>
         <p className="mt-2.5 text-sm text-ink-700 leading-relaxed">
           Este é um protótipo — em produção, este botão abriria uma conversa real no WhatsApp com nosso time de
           especialistas.

@@ -1,14 +1,17 @@
 import Link from "next/link";
+import { Truck, CreditCard, ShieldCheck, Headphones, CheckCircle2, CircuitBoard, Search } from "lucide-react";
 import { HeroSearch } from "@/components/HeroSearch";
 import { ProductCard } from "@/components/ProductCard";
+import { StarRating } from "@/components/StarRating";
 import { CATEGORIES, PRODUCTS } from "@/lib/products";
+import { categoryIcon } from "@/lib/category-icons";
 
 const BENEFITS = [
-  { icon: "🚚", label: "Envio rápido" },
-  { icon: "💳", label: "Até 6x sem juros" },
-  { icon: "🛡️", label: "Garantia nas peças" },
-  { icon: "🎧", label: "Atendimento especializado" },
-  { icon: "✅", label: "Peças originais" },
+  { icon: Truck, label: "Envio rápido" },
+  { icon: CreditCard, label: "Até 6x sem juros" },
+  { icon: ShieldCheck, label: "Garantia nas peças" },
+  { icon: Headphones, label: "Atendimento especializado" },
+  { icon: CheckCircle2, label: "Peças originais" },
 ];
 
 const CONTENT_CARDS = [
@@ -18,9 +21,9 @@ const CONTENT_CARDS = [
 ];
 
 const TESTIMONIALS = [
-  { stars: "★★★★★", quote: "Encontrei a placa exata para minha TV em poucos minutos. Atendimento explicou tudo antes da compra.", who: "Roberto S. — Técnico em eletrônicos", initial: "R" },
-  { stars: "★★★★★", quote: "Compro peças para o meu comércio há anos na Neshop. Sempre com peças originais e prazo certo.", who: "Marcia L. — Assistência técnica", initial: "M" },
-  { stars: "★★★★☆", quote: "Não sabia identificar a peça do meu ar-condicionado, o time da Neshop me ajudou pelo WhatsApp.", who: "João P. — Consumidor final", initial: "J" },
+  { rating: 5, quote: "Encontrei a placa exata para minha TV em poucos minutos. Atendimento explicou tudo antes da compra.", who: "Roberto S. — Técnico em eletrônicos", initial: "R" },
+  { rating: 5, quote: "Compro peças para o meu comércio há anos na Neshop. Sempre com peças originais e prazo certo.", who: "Marcia L. — Assistência técnica", initial: "M" },
+  { rating: 4, quote: "Não sabia identificar a peça do meu ar-condicionado, o time da Neshop me ajudou pelo WhatsApp.", who: "João P. — Consumidor final", initial: "J" },
 ];
 
 export default function HomePage() {
@@ -42,18 +45,21 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {CATEGORIES.map((c) => (
-              <Link
-                key={c.slug}
-                href={`/categoria?cat=${c.slug}`}
-                className="card px-3.5 py-5.5 text-center hover:border-blue-500 hover:shadow-md hover:-translate-y-0.5 transition-all"
-              >
-                <span className="w-13 h-13 rounded-2xl bg-blue-100 flex items-center justify-center text-2xl mx-auto mb-3">
-                  {c.icon}
-                </span>
-                <span className="font-bold text-[13.5px] text-navy-950">{c.name}</span>
-              </Link>
-            ))}
+            {CATEGORIES.map((c) => {
+              const Icon = categoryIcon(c.slug);
+              return (
+                <Link
+                  key={c.slug}
+                  href={`/categoria?cat=${c.slug}`}
+                  className="card px-3.5 py-5.5 text-center hover:border-blue-500 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
+                  <span className="w-13 h-13 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-3">
+                    <Icon size={24} strokeWidth={1.6} />
+                  </span>
+                  <span className="font-bold text-[13.5px] text-navy-950">{c.name}</span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -62,7 +68,7 @@ export default function HomePage() {
         <div className="wrap grid grid-cols-2 md:grid-cols-5 gap-4.5 py-5.5">
           {BENEFITS.map((b) => (
             <div key={b.label} className="flex items-center gap-2.5 text-[13.5px] font-semibold text-[#dbe8f2]">
-              <span className="text-xl">{b.icon}</span>
+              <b.icon size={20} strokeWidth={1.6} />
               {b.label}
             </div>
           ))}
@@ -83,8 +89,8 @@ export default function HomePage() {
                 Encontrar peças →
               </Link>
             </div>
-            <div className="w-[190px] h-[190px] rounded-[20px] bg-white/[.08] border border-white/[.18] flex-shrink-0 flex items-center justify-center text-[64px]">
-              🔩
+            <div className="w-[190px] h-[190px] rounded-[20px] bg-white/[.08] border border-white/[.18] flex-shrink-0 flex items-center justify-center">
+              <CircuitBoard size={64} strokeWidth={1.2} />
             </div>
           </div>
         </div>
@@ -140,8 +146,8 @@ export default function HomePage() {
       <section className="py-9">
         <div className="wrap">
           <div className="bg-gradient-to-br from-orange-100 to-white border border-orange-100 rounded-lg flex flex-col md:flex-row items-center justify-between gap-9 px-11 py-11">
-            <div className="w-24 h-24 rounded-[22px] bg-white border border-line flex items-center justify-center text-[44px] flex-shrink-0 shadow-sm">
-              🔍
+            <div className="w-24 h-24 rounded-[22px] bg-white border border-line flex items-center justify-center text-blue-600 flex-shrink-0 shadow-sm">
+              <Search size={40} strokeWidth={1.5} />
             </div>
             <div className="flex-1">
               <h2 className="text-2xl font-extrabold text-navy-950">Não sabe qual peça você precisa?</h2>
@@ -214,7 +220,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-4.5">
             {TESTIMONIALS.map((t) => (
               <div key={t.who} className="card p-5.5">
-                <div className="text-star text-sm tracking-widest">{t.stars}</div>
+                <StarRating rating={t.rating} />
                 <p className="mt-3 text-sm text-ink-700 leading-relaxed">&quot;{t.quote}&quot;</p>
                 <div className="mt-3.5 text-[13px] font-bold text-navy-950 flex items-center gap-2">
                   <span className="w-7 h-7 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-extrabold text-xs">

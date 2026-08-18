@@ -3,17 +3,29 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { MessageCircle, CheckCircle2, ShieldCheck, Truck, Headphones, Search, Ruler, FileText } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
+import { StarRating } from "@/components/StarRating";
 import { useCart } from "@/lib/cart-context";
 import { useWhatsApp } from "@/lib/whatsapp-context";
-import { CAT_NAMES, PRODUCTS, money, starsHtml } from "@/lib/products";
+import { CAT_NAMES, PRODUCTS, money } from "@/lib/products";
+import { categoryIcon } from "@/lib/category-icons";
 
 type Tab = "desc" | "compat" | "reviews";
 
+const TRUST_ITEMS = [
+  { icon: CheckCircle2, title: "Peça original", desc: "Garantia de procedência" },
+  { icon: ShieldCheck, title: "Garantia", desc: "90 dias contra defeitos" },
+  { icon: Truck, title: "Envio", desc: "Para todo o Brasil" },
+  { icon: Headphones, title: "Suporte técnico", desc: "Antes e depois da compra" },
+];
+
+const GALLERY_EXTRA_ICONS = [Search, Ruler, FileText];
+
 const REVIEWS = [
-  { stars: "★★★★★", quote: "Peça original, chegou rápido e resolveu o problema do equipamento.", who: "Carlos M.", initial: "C" },
-  { stars: "★★★★★", quote: "Atendimento tirou minha dúvida sobre o código antes da compra.", who: "Ana F.", initial: "A" },
-  { stars: "★★★★☆", quote: "Produto bom, entrega dentro do prazo informado.", who: "Paulo R.", initial: "P" },
+  { rating: 5, quote: "Peça original, chegou rápido e resolveu o problema do equipamento.", who: "Carlos M.", initial: "C" },
+  { rating: 5, quote: "Atendimento tirou minha dúvida sobre o código antes da compra.", who: "Ana F.", initial: "A" },
+  { rating: 4, quote: "Produto bom, entrega dentro do prazo informado.", who: "Paulo R.", initial: "P" },
 ];
 
 export function ProdutoClient() {
@@ -27,6 +39,7 @@ export function ProdutoClient() {
   const p = PRODUCTS.find((x) => x.id === pid) || PRODUCTS[0];
   const related = PRODUCTS.filter((x) => x.cat === p.cat && x.id !== p.id).slice(0, 4);
   const relatedList = related.length ? related : PRODUCTS.filter((x) => x.id !== p.id).slice(0, 4);
+  const CatIcon = categoryIcon(p.cat);
 
   function handleBuy() {
     if (!p.stock) {
@@ -51,21 +64,21 @@ export function ProdutoClient() {
 
       <div className="wrap grid md:grid-cols-[1fr_1.15fr] gap-11 py-7 pb-5">
         <div>
-          <div className="aspect-square card flex items-center justify-center text-[80px] text-ink-300 mb-3 relative">
+          <div className="aspect-square card flex items-center justify-center text-ink-300 mb-3 relative">
             {p.orig && (
               <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-2.5 py-1.5 rounded-md">
                 Original
               </span>
             )}
-            {p.icon}
+            <CatIcon size={80} strokeWidth={1.2} />
           </div>
           <div className="flex gap-2.5">
-            <div className="w-16 h-16 rounded-lg bg-white border-[1.5px] border-blue-500 flex items-center justify-center text-[22px] text-ink-300">
-              {p.icon}
+            <div className="w-16 h-16 rounded-lg bg-white border-[1.5px] border-blue-500 flex items-center justify-center text-ink-300">
+              <CatIcon size={22} strokeWidth={1.5} />
             </div>
-            {["🔎", "📐", "📄"].map((ic) => (
-              <div key={ic} className="w-16 h-16 rounded-lg bg-white border-[1.5px] border-line flex items-center justify-center text-[22px] text-ink-300">
-                {ic}
+            {GALLERY_EXTRA_ICONS.map((Icon, i) => (
+              <div key={i} className="w-16 h-16 rounded-lg bg-white border-[1.5px] border-line flex items-center justify-center text-ink-300">
+                <Icon size={22} strokeWidth={1.5} />
               </div>
             ))}
           </div>
@@ -78,8 +91,8 @@ export function ProdutoClient() {
             <span>Modelo: <b className="text-ink-900">{p.modelo}</b></span>
             <span>Código/OEM: <b className="text-ink-900">{p.codigo}</b></span>
           </div>
-          <div className="flex items-center gap-2 mt-2.5 text-[13.5px] text-star">
-            <span>{starsHtml(p.rating)}</span>
+          <div className="flex items-center gap-2 mt-2.5 text-[13.5px]">
+            <StarRating rating={p.rating} />
             <span className="text-blue-600 font-bold">{p.rating} ({p.reviews} avaliações)</span>
           </div>
 
@@ -99,18 +112,13 @@ export function ProdutoClient() {
                 onClick={() => openWhatsApp("Olá! Tenho uma dúvida sobre um produto do site.")}
                 className="btn btn-whatsapp btn-lg btn-block"
               >
-                💬 Falar no WhatsApp sobre esta peça
+                <MessageCircle size={17} strokeWidth={1.8} /> Falar no WhatsApp sobre esta peça
               </button>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-3">
-              {[
-                { ic: "✅", title: "Peça original", desc: "Garantia de procedência" },
-                { ic: "🛡️", title: "Garantia", desc: "90 dias contra defeitos" },
-                { ic: "🚚", title: "Envio", desc: "Para todo o Brasil" },
-                { ic: "🎧", title: "Suporte técnico", desc: "Antes e depois da compra" },
-              ].map((item) => (
+              {TRUST_ITEMS.map((item) => (
                 <div key={item.title} className="flex gap-2.5 items-start text-[12.5px] text-ink-700 bg-bg rounded-lg p-2.5">
-                  <span className="text-lg">{item.ic}</span>
+                  <item.icon size={18} strokeWidth={1.6} className="text-blue-600 flex-shrink-0" />
                   <div>
                     <b className="block text-ink-900 text-[12.5px]">{item.title}</b>
                     {item.desc}
@@ -165,7 +173,7 @@ export function ProdutoClient() {
             <div className="grid md:grid-cols-3 gap-4.5">
               {REVIEWS.map((r) => (
                 <div key={r.who} className="card p-5.5">
-                  <div className="text-star text-sm">{r.stars}</div>
+                  <StarRating rating={r.rating} />
                   <p className="mt-3 text-sm text-ink-700 leading-relaxed">&quot;{r.quote}&quot;</p>
                   <div className="mt-3.5 text-[13px] font-bold text-navy-950 flex items-center gap-2">
                     <span className="w-7 h-7 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-extrabold text-xs">

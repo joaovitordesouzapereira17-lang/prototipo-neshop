@@ -5,21 +5,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Paleta oficial Neshop: fundo escuro, azul-petróleo e ciano de destaque.
         navy: {
-          950: "#0b1f33",
-          900: "#0f2c47",
-          800: "#15406b",
-          700: "#1c5490",
+          950: "#030a1a",
+          900: "#042038",
+          800: "#053755",
+          700: "#064e74",
         },
         blue: {
-          600: "#1f6fb8",
-          500: "#2f8ada",
-          100: "#e8f2fb",
+          600: "#00b5ff",
+          500: "#00b5ff",
+          100: "#e0f6ff",
         },
         orange: {
-          600: "#e0651a",
-          500: "#f2791f",
-          100: "#fdecdc",
+          600: "#0090cc",
+          500: "#00b5ff",
+          100: "#e0f6ff",
         },
         ink: {
           900: "#101820",

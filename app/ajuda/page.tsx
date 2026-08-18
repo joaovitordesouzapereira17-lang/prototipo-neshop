@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Camera, Search, CheckCircle2 } from "lucide-react";
 import { useWhatsApp } from "@/lib/whatsapp-context";
 
 const STEPS = [
@@ -53,11 +54,11 @@ export default function AjudaPage() {
               </p>
               <div className="grid grid-cols-2 gap-3 mt-5.5">
                 <div className="flex gap-2.5 items-start text-[12.5px] text-ink-700 bg-bg rounded-lg p-2.5">
-                  <span className="text-lg">📷</span>
+                  <Camera size={18} strokeWidth={1.6} className="text-blue-600 flex-shrink-0" />
                   <div><b className="block text-ink-900 text-[12.5px]">Envie uma foto</b>Da peça ou do equipamento</div>
                 </div>
                 <div className="flex gap-2.5 items-start text-[12.5px] text-ink-700 bg-bg rounded-lg p-2.5">
-                  <span className="text-lg">🔎</span>
+                  <Search size={18} strokeWidth={1.6} className="text-blue-600 flex-shrink-0" />
                   <div><b className="block text-ink-900 text-[12.5px]">Ou o modelo</b>Encontrado na etiqueta do aparelho</div>
                 </div>
               </div>
@@ -72,12 +73,16 @@ export default function AjudaPage() {
               <h2 className="text-[21px] font-extrabold text-navy-950">Envie uma foto ou o modelo do equipamento</h2>
               <p className="text-ink-500 mt-2 text-sm">Isso ajuda nosso time a identificar rapidamente a peça correta.</p>
               <div className="mt-5.5 border-2 border-dashed border-line rounded-xl p-9 text-center text-ink-500 bg-bg">
-                <div className="text-[34px]">📷</div>
+                <Camera size={34} strokeWidth={1.4} className="mx-auto text-ink-300" />
                 <p>Arraste uma imagem aqui ou clique para simular o envio</p>
                 <button type="button" onClick={() => setUploaded(true)} className="btn btn-secondary mt-3.5">
                   Selecionar foto (simulado)
                 </button>
-                {uploaded && <p className="mt-2.5 font-bold text-green-600">✅ Foto anexada (simulação)</p>}
+                {uploaded && (
+                  <p className="mt-2.5 font-bold text-green-600 flex items-center justify-center gap-1.5">
+                    <CheckCircle2 size={16} strokeWidth={1.8} /> Foto anexada (simulação)
+                  </p>
+                )}
               </div>
               <div className="flex items-center gap-2.5 my-5.5 text-ink-300 text-xs font-bold">
                 <div className="flex-1 h-px bg-line" />
@@ -114,8 +119,8 @@ export default function AjudaPage() {
 
           {step === 4 && (
             <div className="text-center py-5">
-              <div className="w-18.5 h-18.5 rounded-full bg-[#e9f7ee] text-green-600 flex items-center justify-center text-4xl mx-auto mb-4.5">
-                ✅
+              <div className="w-18.5 h-18.5 rounded-full bg-[#e9f7ee] text-green-600 flex items-center justify-center mx-auto mb-4.5">
+                <CheckCircle2 size={36} strokeWidth={1.6} />
               </div>
               <h2 className="text-[21px] font-extrabold text-navy-950">Solicitação enviada com sucesso!</h2>
               <p className="text-ink-500 mt-2">
