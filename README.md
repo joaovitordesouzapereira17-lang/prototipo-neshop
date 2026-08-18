@@ -6,24 +6,26 @@ Não há backend, pagamentos reais, login real, banco de dados ou estoque real. 
 
 ## Como visualizar
 
-Não é necessário build. Basta servir os arquivos estáticos e abrir `index.html`:
+Tudo está em um único arquivo (`index.html`), como um site real — a navegação entre telas acontece via JavaScript (hash routing), sem recarregar a página. Basta abrir o arquivo direto no navegador ou servir a pasta:
 
 ```bash
 python3 -m http.server 8000
 # depois acesse http://localhost:8000/index.html
 ```
 
-## Telas incluídas
+Também é possível abrir `index.html` diretamente com duplo clique (file://), sem precisar de servidor.
 
-- `index.html` — Home (busca principal, categorias, benefícios, banner, vitrine, autoridade, ajuda, marcas, conteúdo, depoimentos)
-- `categoria.html?cat=` — Listagem de categoria com filtros e ordenação
-- `busca.html?q=` — Resultados de busca
-- `produto.html?id=` — Ficha de produto completa
-- `marca.html?marca=` — Página de marca
-- `categorias.html` / `marcas.html` / `conteudo.html` — Páginas "ver todas"
-- `ajuda.html` — Fluxo "Não sabe qual peça comprar?" (4 passos)
-- `carrinho.html` — Carrinho simulado (localStorage)
-- `conta.html` / `pedidos.html` — Placeholders de área logada
+## Telas incluídas (todas dentro do mesmo index.html)
+
+- `#/home` — Home (busca principal, categorias, benefícios, banner, vitrine, autoridade, ajuda, marcas, conteúdo, depoimentos)
+- `#/categoria?cat=` — Listagem de categoria com filtros e ordenação
+- `#/busca?q=` — Resultados de busca
+- `#/produto?id=` — Ficha de produto completa
+- `#/marca?marca=` — Página de marca
+- `#/categorias` / `#/marcas` / `#/conteudo` — Páginas "ver todas"
+- `#/ajuda` — Fluxo "Não sabe qual peça comprar?" (4 passos)
+- `#/carrinho` — Carrinho simulado (localStorage)
+- `#/conta` / `#/pedidos` — Placeholders de área logada
 
 ## Lógica central
 

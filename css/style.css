@@ -50,6 +50,10 @@ h1,h2,h3,h4,p{margin:0;}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 
+/* ---------- Roteador de páginas (single HTML, hash routing) ---------- */
+.page{display:none;}
+.page.active{display:block;}
+
 /* ---------- Prototype disclaimer ribbon ---------- */
 .proto-bar{
   background:var(--ink-900);

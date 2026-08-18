@@ -13,221 +13,570 @@
 
 <header class="site-header">
   <div class="header-main">
-    <a href="index.html" class="logo"><span class="mark">NE</span><span>Neshop<span class="tag">Peças &amp; Componentes</span></span></a>
+    <a href="#/home" class="logo"><span class="mark">NE</span><span>Neshop<span class="tag">Peças &amp; Componentes</span></span></a>
     <div class="header-search">
       <input type="text" id="headerSearchInput" placeholder="Buscar por código, modelo ou nome da peça">
       <button type="button" onclick="doSearch('headerSearchInput')">🔍 Buscar</button>
     </div>
     <div class="header-actions">
       <a href="#" data-open-wa><span class="ico">💬</span>WhatsApp</a>
-      <a href="conta.html"><span class="ico">👤</span>Minha conta</a>
-      <a href="pedidos.html"><span class="ico">📦</span>Meus pedidos</a>
-      <a href="carrinho.html" class="cart-count"><span class="ico">🛒</span>Carrinho<span class="badge js-cart-badge" style="display:none">0</span></a>
+      <a href="#/conta"><span class="ico">👤</span>Minha conta</a>
+      <a href="#/pedidos"><span class="ico">📦</span>Meus pedidos</a>
+      <a href="#/carrinho" class="cart-count"><span class="ico">🛒</span>Carrinho<span class="badge js-cart-badge" style="display:none">0</span></a>
     </div>
   </div>
   <nav class="header-nav"><div class="wrap">
-     <a href="categoria.html?cat=tv">TV</a>
-     <a href="categoria.html?cat=ar-condicionado">Ar-condicionado</a>
-     <a href="categoria.html?cat=lava-e-seca">Lava e seca</a>
-     <a href="categoria.html?cat=refrigerador">Refrigerador</a>
-     <a href="categoria.html?cat=radio-e-som">Rádio e som</a>
-     <a href="categoria.html?cat=ferramentas">Ferramentas</a>
-     <a href="marcas.html">Marcas</a>
-     <a href="ajuda.html">Não sabe qual peça?</a>
-     <a href="conteudo.html">Conteúdos</a>
+     <a href="#/categoria?cat=tv" data-nav="tv">TV</a>
+     <a href="#/categoria?cat=ar-condicionado" data-nav="ar-condicionado">Ar-condicionado</a>
+     <a href="#/categoria?cat=lava-e-seca" data-nav="lava-e-seca">Lava e seca</a>
+     <a href="#/categoria?cat=refrigerador" data-nav="refrigerador">Refrigerador</a>
+     <a href="#/categoria?cat=radio-e-som" data-nav="radio-e-som">Rádio e som</a>
+     <a href="#/categoria?cat=ferramentas" data-nav="ferramentas">Ferramentas</a>
+     <a href="#/marcas" data-nav="marcas">Marcas</a>
+     <a href="#/ajuda" data-nav="ajuda">Não sabe qual peça?</a>
+     <a href="#/conteudo" data-nav="conteudo">Conteúdos</a>
   </div></nav>
 </header>
 
-<!-- 2. BUSCA PRINCIPAL -->
-<section class="hero-search">
-  <div class="wrap">
-    <span class="eyebrow">🔧 Encontrar → Identificar → Validar → Comprar</span>
-    <h1>Encontre a peça que você precisa</h1>
-    <p class="sub">Busque por código, modelo do equipamento ou nome da peça. Catálogo técnico amplo, com peças originais para diversas marcas.</p>
-    <div class="hero-search-box">
-      <input type="text" id="heroSearchInput" placeholder="Digite código, modelo ou nome da peça">
-      <button type="button" onclick="doSearch('heroSearchInput')">🔍 Buscar</button>
-    </div>
-    <div class="hero-help-line">
-      <span>Não sabe qual peça é?</span>
-      <a href="ajuda.html">Envie uma foto ou o modelo →</a>
-    </div>
-  </div>
-</section>
+<main id="app">
 
-<!-- 3. CATEGORIAS -->
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2>Encontre por equipamento</h2>
-        <p>Selecione o tipo de aparelho para ver as peças compatíveis.</p>
+<!-- ================= HOME ================= -->
+<div class="page" id="page-home">
+
+  <section class="hero-search">
+    <div class="wrap">
+      <span class="eyebrow">🔧 Encontrar → Identificar → Validar → Comprar</span>
+      <h1>Encontre a peça que você precisa</h1>
+      <p class="sub">Busque por código, modelo do equipamento ou nome da peça. Catálogo técnico amplo, com peças originais para diversas marcas.</p>
+      <div class="hero-search-box">
+        <input type="text" id="heroSearchInput" placeholder="Digite código, modelo ou nome da peça">
+        <button type="button" onclick="doSearch('heroSearchInput')">🔍 Buscar</button>
       </div>
-      <a class="link-all" href="categorias.html">Ver todas as categorias →</a>
+      <div class="hero-help-line">
+        <span>Não sabe qual peça é?</span>
+        <a href="#/ajuda">Envie uma foto ou o modelo →</a>
+      </div>
     </div>
-    <div class="cat-grid">
-      <a class="cat-card" href="categoria.html?cat=tv"><span class="ic">📺</span><span class="name">TV</span></a>
-      <a class="cat-card" href="categoria.html?cat=ar-condicionado"><span class="ic">❄️</span><span class="name">Ar-condicionado</span></a>
-      <a class="cat-card" href="categoria.html?cat=lava-e-seca"><span class="ic">🌀</span><span class="name">Lava e seca</span></a>
-      <a class="cat-card" href="categoria.html?cat=refrigerador"><span class="ic">🧊</span><span class="name">Refrigerador</span></a>
-      <a class="cat-card" href="categoria.html?cat=radio-e-som"><span class="ic">🔊</span><span class="name">Rádio e som</span></a>
-      <a class="cat-card" href="categoria.html?cat=ferramentas"><span class="ic">🛠️</span><span class="name">Ferramentas</span></a>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Encontre por equipamento</h2><p>Selecione o tipo de aparelho para ver as peças compatíveis.</p></div>
+        <a class="link-all" href="#/categorias">Ver todas as categorias →</a>
+      </div>
+      <div class="cat-grid">
+        <a class="cat-card" href="#/categoria?cat=tv"><span class="ic">📺</span><span class="name">TV</span></a>
+        <a class="cat-card" href="#/categoria?cat=ar-condicionado"><span class="ic">❄️</span><span class="name">Ar-condicionado</span></a>
+        <a class="cat-card" href="#/categoria?cat=lava-e-seca"><span class="ic">🌀</span><span class="name">Lava e seca</span></a>
+        <a class="cat-card" href="#/categoria?cat=refrigerador"><span class="ic">🧊</span><span class="name">Refrigerador</span></a>
+        <a class="cat-card" href="#/categoria?cat=radio-e-som"><span class="ic">🔊</span><span class="name">Rádio e som</span></a>
+        <a class="cat-card" href="#/categoria?cat=ferramentas"><span class="ic">🛠️</span><span class="name">Ferramentas</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="benefits-strip">
+    <div class="wrap">
+      <div class="benefit"><span class="ic">🚚</span>Envio rápido</div>
+      <div class="benefit"><span class="ic">💳</span>Até 6x sem juros</div>
+      <div class="benefit"><span class="ic">🛡️</span>Garantia nas peças</div>
+      <div class="benefit"><span class="ic">🎧</span>Atendimento especializado</div>
+      <div class="benefit"><span class="ic">✅</span>Peças originais</div>
     </div>
   </div>
-</section>
 
-<!-- 4. BENEFÍCIOS -->
-<div class="benefits-strip">
+  <section class="section">
+    <div class="wrap">
+      <div class="banner-campaign">
+        <div class="content">
+          <span class="kicker">Campanha</span>
+          <h2>PEÇAS ORIGINAIS PARA SEU EQUIPAMENTO</h2>
+          <p>Encontre o componente certo para o seu aparelho, com a garantia e o conhecimento técnico de quem entende do assunto há mais de 35 anos.</p>
+          <a class="cta" href="#/categorias">Encontrar peças →</a>
+        </div>
+        <div class="visual">🔩</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Peças mais procuradas</h2><p>Uma seleção das peças com maior procura no nosso catálogo.</p></div>
+        <a class="link-all" href="#/categorias">Ver mais peças →</a>
+      </div>
+      <div class="product-grid" id="grid-destaques"></div>
+    </div>
+  </section>
+
+  <section class="section authority">
+    <div class="wrap authority-inner">
+      <div>
+        <h2>Mais de 35 anos ajudando equipamentos a voltar a funcionar.</h2>
+        <p>Conhecimento técnico, peças originais e atendimento especializado para ajudar você a encontrar o componente certo — da identificação até a compra.</p>
+      </div>
+      <div class="authority-stats">
+        <div class="stat"><div class="num">35+</div><div class="lbl">Anos de mercado</div></div>
+        <div class="stat"><div class="num">200mil+</div><div class="lbl">Clientes atendidos</div></div>
+        <div class="stat"><div class="num">14+</div><div class="lbl">Marcas trabalhadas</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="help-block">
+        <div class="icon-badge">🔍</div>
+        <div class="content">
+          <h2>Não sabe qual peça você precisa?</h2>
+          <p>Envie uma foto do componente ou o modelo do equipamento. Nosso time ajuda você a encontrar a peça adequada — sem complicação.</p>
+          <div class="actions">
+            <a class="btn btn-primary btn-lg" href="#/ajuda">Enviar foto ou modelo</a>
+            <a class="btn btn-whatsapp btn-lg" href="#" data-open-wa="Olá! Não sei qual peça preciso, podem me ajudar?">Falar com especialista</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Encontre peças por marca</h2><p>Trabalhamos com as principais marcas do mercado.</p></div>
+        <a class="link-all" href="#/marcas">Ver todas as marcas →</a>
+      </div>
+      <div class="brand-grid">
+        <a class="brand-card" href="#/marca?marca=LG">LG</a>
+        <a class="brand-card" href="#/marca?marca=Samsung">Samsung</a>
+        <a class="brand-card" href="#/marca?marca=Philco">Philco</a>
+        <a class="brand-card" href="#/marca?marca=AOC">AOC</a>
+        <a class="brand-card" href="#/marca?marca=Toshiba">Toshiba</a>
+        <a class="brand-card" href="#/marcas">+9 marcas</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Conteúdos para ajudar você</h2><p>Guias práticos para identificar e escolher a peça certa.</p></div>
+        <a class="link-all" href="#/conteudo">Ver todos os conteúdos →</a>
+      </div>
+      <div class="content-grid">
+        <a class="content-card" href="#/conteudo"><span class="kicker">Guia técnico</span><h3>Como encontrar o código correto da sua peça</h3><span class="read-more">Ler conteúdo →</span></a>
+        <a class="content-card" href="#/conteudo"><span class="kicker">Comparativo</span><h3>Peça original x paralela: qual escolher?</h3><span class="read-more">Ler conteúdo →</span></a>
+        <a class="content-card" href="#/conteudo"><span class="kicker">Guia técnico</span><h3>Como identificar a placa correta do seu equipamento?</h3><span class="read-more">Ler conteúdo →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Quem compra, confia.</h2><p>Depoimentos de clientes reais da Neshop (texto ilustrativo para o protótipo).</p></div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card"><div class="stars">★★★★★</div><p>"Encontrei a placa exata para minha TV em poucos minutos. Atendimento explicou tudo antes da compra."</p><div class="who"><span class="av">R</span> Roberto S. — Técnico em eletrônicos</div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p>"Compro peças para o meu comércio há anos na Neshop. Sempre com peças originais e prazo certo."</p><div class="who"><span class="av">M</span> Marcia L. — Assistência técnica</div></div>
+        <div class="testi-card"><div class="stars">★★★★☆</div><p>"Não sabia identificar a peça do meu ar-condicionado, o time da Neshop me ajudou pelo WhatsApp."</p><div class="who"><span class="av">J</span> João P. — Consumidor final</div></div>
+      </div>
+      <p class="testi-note">Textos ilustrativos para fins de protótipo — na versão final, utilizar depoimentos reais da base da Neshop.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- ================= CATEGORIA ================= -->
+<div class="page" id="page-categoria">
   <div class="wrap">
-    <div class="benefit"><span class="ic">🚚</span>Envio rápido</div>
-    <div class="benefit"><span class="ic">💳</span>Até 6x sem juros</div>
-    <div class="benefit"><span class="ic">🛡️</span>Garantia nas peças</div>
-    <div class="benefit"><span class="ic">🎧</span>Atendimento especializado</div>
-    <div class="benefit"><span class="ic">✅</span>Peças originais</div>
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span id="cat-bc">Categoria</span></div>
+    <div class="page-head">
+      <h1 id="cat-title">Categoria</h1>
+      <p class="count"><span id="cat-count">0</span> produtos encontrados</p>
+    </div>
+  </div>
+  <div class="wrap listing-layout">
+    <aside class="filters">
+      <h3>Filtrar resultados</h3>
+      <div class="filter-group">
+        <div class="fg-title">Marca</div>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" data-cat-filter="brand" value="LG"> LG</label>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" data-cat-filter="brand" value="Samsung"> Samsung</label>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" data-cat-filter="brand" value="Philco"> Philco</label>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" data-cat-filter="brand" value="Brastemp"> Brastemp</label>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" data-cat-filter="brand" value="Consul"> Consul</label>
+      </div>
+      <div class="filter-group">
+        <div class="fg-title">Tipo de peça</div>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" data-cat-filter="type" value="placa"> Placas</label>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" data-cat-filter="type" value="motor"> Motores / Compressores</label>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" data-cat-filter="type" value="outros"> Outras peças</label>
+      </div>
+      <div class="filter-group">
+        <div class="fg-title">Faixa de preço</div>
+        <div class="price-range">
+          <input type="number" placeholder="Mín." id="catPriceMin">
+          <input type="number" placeholder="Máx." id="catPriceMax">
+        </div>
+        <button class="btn btn-secondary btn-block" type="button" onclick="applyCategoriaFilters()">Aplicar</button>
+      </div>
+      <div class="filter-group">
+        <div class="fg-title">Disponibilidade</div>
+        <label><input type="checkbox" onchange="applyCategoriaFilters()" id="catOnlyStock"> Somente em estoque</label>
+      </div>
+      <button class="btn btn-secondary btn-block" type="button" onclick="clearCategoriaFilters()">Limpar filtros</button>
+    </aside>
+    <div>
+      <div class="listing-toolbar">
+        <div class="chips" id="cat-chips"></div>
+        <select class="sort-select" id="catSortSelect" onchange="applyCategoriaSort()">
+          <option value="relevance">Mais relevantes</option>
+          <option value="price-asc">Menor preço</option>
+          <option value="price-desc">Maior preço</option>
+          <option value="rating">Melhor avaliados</option>
+        </select>
+      </div>
+      <div class="listing-grid" id="grid-categoria"></div>
+    </div>
   </div>
 </div>
 
-<!-- 5. BANNER PRINCIPAL -->
-<section class="section">
+<!-- ================= BUSCA ================= -->
+<div class="page" id="page-busca">
   <div class="wrap">
-    <div class="banner-campaign">
-      <div class="content">
-        <span class="kicker">Campanha</span>
-        <h2>PEÇAS ORIGINAIS PARA SEU EQUIPAMENTO</h2>
-        <p>Encontre o componente certo para o seu aparelho, com a garantia e o conhecimento técnico de quem entende do assunto há mais de 35 anos.</p>
-        <a class="cta" href="categorias.html">Encontrar peças →</a>
-      </div>
-      <div class="visual">🔩</div>
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Busca</span></div>
+    <div class="page-head">
+      <h1>Resultados para "<span class="query" id="q-title"></span>"</h1>
+      <p class="count"><span id="res-count">0</span> peças encontradas</p>
     </div>
   </div>
-</section>
-
-<!-- 6. PRODUTOS MAIS PROCURADOS -->
-<section class="section alt">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2>Peças mais procuradas</h2>
-        <p>Uma seleção das peças com maior procura no nosso catálogo.</p>
+  <div class="wrap listing-layout">
+    <aside class="filters">
+      <h3>Filtrar resultados</h3>
+      <div class="filter-group">
+        <div class="fg-title">Categoria</div>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="cat" value="tv"> TV</label>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="cat" value="ar-condicionado"> Ar-condicionado</label>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="cat" value="lava-e-seca"> Lava e seca</label>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="cat" value="refrigerador"> Refrigerador</label>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="cat" value="radio-e-som"> Rádio e som</label>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="cat" value="ferramentas"> Ferramentas</label>
       </div>
-      <a class="link-all" href="categorias.html">Ver mais peças →</a>
-    </div>
-    <div class="product-grid" id="grid-destaques"></div>
-  </div>
-</section>
-
-<!-- 7. BLOCO DE AUTORIDADE -->
-<section class="section authority">
-  <div class="wrap authority-inner">
+      <div class="filter-group">
+        <div class="fg-title">Marca</div>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="brand" value="LG"> LG</label>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="brand" value="Samsung"> Samsung</label>
+        <label><input type="checkbox" onchange="applyBuscaFilters()" data-busca-filter="brand" value="Philco"> Philco</label>
+      </div>
+      <div class="filter-group">
+        <div class="fg-title">Faixa de preço</div>
+        <div class="price-range">
+          <input type="number" placeholder="Mín." id="buscaPriceMin">
+          <input type="number" placeholder="Máx." id="buscaPriceMax">
+        </div>
+        <button class="btn btn-secondary btn-block" type="button" onclick="applyBuscaFilters()">Aplicar</button>
+      </div>
+      <button class="btn btn-secondary btn-block" type="button" onclick="clearBuscaFilters()">Limpar filtros</button>
+    </aside>
     <div>
-      <h2>Mais de 35 anos ajudando equipamentos a voltar a funcionar.</h2>
-      <p>Conhecimento técnico, peças originais e atendimento especializado para ajudar você a encontrar o componente certo — da identificação até a compra.</p>
-    </div>
-    <div class="authority-stats">
-      <div class="stat"><div class="num">35+</div><div class="lbl">Anos de mercado</div></div>
-      <div class="stat"><div class="num">200mil+</div><div class="lbl">Clientes atendidos</div></div>
-      <div class="stat"><div class="num">14+</div><div class="lbl">Marcas trabalhadas</div></div>
+      <div class="listing-toolbar">
+        <div class="chips" id="busca-chips"></div>
+        <select class="sort-select" id="buscaSortSelect" onchange="applyBuscaSort()">
+          <option value="relevance">Mais relevantes</option>
+          <option value="price-asc">Menor preço</option>
+          <option value="price-desc">Maior preço</option>
+          <option value="rating">Melhor avaliados</option>
+        </select>
+      </div>
+      <div class="listing-grid" id="grid-busca"></div>
+      <div id="no-results" style="display:none;text-align:center;padding:60px 0;">
+        <p style="font-size:16px;font-weight:700;color:var(--navy-950);">Não encontramos peças exatas para essa busca.</p>
+        <p style="color:var(--ink-500);margin-top:8px;">Tente buscar pelo código da peça, modelo do equipamento ou fale com um especialista.</p>
+        <div class="center-cta"><a class="btn btn-primary" href="#/ajuda">Enviar foto ou modelo</a></div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- 8. BLOCO DE AJUDA -->
-<section class="section tight">
+<!-- ================= PRODUTO ================= -->
+<div class="page" id="page-produto">
   <div class="wrap">
-    <div class="help-block">
-      <div class="icon-badge">🔍</div>
-      <div class="content">
-        <h2>Não sabe qual peça você precisa?</h2>
-        <p>Envie uma foto do componente ou o modelo do equipamento. Nosso time ajuda você a encontrar a peça adequada — sem complicação.</p>
-        <div class="actions">
-          <a class="btn btn-primary btn-lg" href="ajuda.html">Enviar foto ou modelo</a>
-          <a class="btn btn-whatsapp btn-lg" href="#" data-open-wa="Olá! Não sei qual peça preciso, podem me ajudar?">Falar com especialista</a>
+    <div class="breadcrumb">
+      <a href="#/home">Início</a><span class="sep">/</span>
+      <a id="pd-bc-cat" href="#">Categoria</a><span class="sep">/</span>
+      <span id="pd-bc-name">Produto</span>
+    </div>
+  </div>
+  <div class="wrap product-detail">
+    <div>
+      <div class="gallery-main"><span class="tag-orig" id="pd-orig-tag" style="display:none">Original</span><span id="pd-icon">📦</span></div>
+      <div class="gallery-thumbs">
+        <div class="th active" id="pd-icon-th">📦</div>
+        <div class="th">🔎</div>
+        <div class="th">📐</div>
+        <div class="th">📄</div>
+      </div>
+    </div>
+    <div>
+      <span class="pd-brand" id="pd-brand">Marca</span>
+      <h1 class="pd-title" id="pd-name">Nome do produto</h1>
+      <div class="pd-codes">
+        <span>Modelo: <b id="pd-modelo">—</b></span>
+        <span>Código/OEM: <b id="pd-codigo">—</b></span>
+      </div>
+      <div class="pd-stars"><span id="pd-stars">★★★★★</span><span class="n" id="pd-rating-num">4.8 (42 avaliações)</span></div>
+      <div class="pd-price-box">
+        <div class="pd-price" id="pd-price">R$ 0,00</div>
+        <div class="pd-installment" id="pd-installment">—</div>
+        <div class="pd-stock" id="pd-stock"><span class="dot"></span> Em estoque — envio imediato</div>
+        <div class="pd-actions">
+          <button class="btn btn-primary btn-lg btn-block" type="button" id="pd-buy-btn">Comprar</button>
+          <button class="btn btn-whatsapp btn-lg btn-block" type="button" data-open-wa="Olá! Tenho uma dúvida sobre um produto do site.">💬 Falar no WhatsApp sobre esta peça</button>
+        </div>
+        <div class="pd-trust">
+          <div class="item"><span class="ic">✅</span><div><b>Peça original</b>Garantia de procedência</div></div>
+          <div class="item"><span class="ic">🛡️</span><div><b>Garantia</b>90 dias contra defeitos</div></div>
+          <div class="item"><span class="ic">🚚</span><div><b>Envio</b>Para todo o Brasil</div></div>
+          <div class="item"><span class="ic">🎧</span><div><b>Suporte técnico</b>Antes e depois da compra</div></div>
         </div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- 9. MARCAS -->
-<section class="section alt">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2>Encontre peças por marca</h2>
-        <p>Trabalhamos com as principais marcas do mercado.</p>
+  <div class="wrap pd-tabs">
+    <div class="tabs-nav">
+      <button type="button" class="active" data-tab="desc">Descrição</button>
+      <button type="button" data-tab="compat">Compatibilidade</button>
+      <button type="button" data-tab="reviews">Avaliações</button>
+    </div>
+    <div class="tab-panel active" id="tab-desc">
+      <p id="pd-description">Peça de reposição indicada para o modelo informado. Componente testado e revisado, seguindo os padrões técnicos do fabricante para garantir o funcionamento correto do equipamento.</p>
+    </div>
+    <div class="tab-panel" id="tab-compat">
+      <p>Esta peça é compatível com os seguintes modelos:</p>
+      <ul class="compat-list" id="pd-compat-list"></ul>
+    </div>
+    <div class="tab-panel" id="tab-reviews">
+      <div class="testi-grid">
+        <div class="testi-card"><div class="stars">★★★★★</div><p>"Peça original, chegou rápido e resolveu o problema do equipamento."</p><div class="who"><span class="av">C</span> Carlos M.</div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p>"Atendimento tirou minha dúvida sobre o código antes da compra."</p><div class="who"><span class="av">A</span> Ana F.</div></div>
+        <div class="testi-card"><div class="stars">★★★★☆</div><p>"Produto bom, entrega dentro do prazo informado."</p><div class="who"><span class="av">P</span> Paulo R.</div></div>
       </div>
-      <a class="link-all" href="marcas.html">Ver todas as marcas →</a>
-    </div>
-    <div class="brand-grid">
-      <a class="brand-card" href="marca.html?marca=LG">LG</a>
-      <a class="brand-card" href="marca.html?marca=Samsung">Samsung</a>
-      <a class="brand-card" href="marca.html?marca=Philco">Philco</a>
-      <a class="brand-card" href="marca.html?marca=AOC">AOC</a>
-      <a class="brand-card" href="marca.html?marca=Toshiba">Toshiba</a>
-      <a class="brand-card" href="marcas.html">+9 marcas</a>
-    </div>
-  </div>
-</section>
-
-<!-- 10. CONTEÚDO -->
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2>Conteúdos para ajudar você</h2>
-        <p>Guias práticos para identificar e escolher a peça certa.</p>
-      </div>
-      <a class="link-all" href="conteudo.html">Ver todos os conteúdos →</a>
-    </div>
-    <div class="content-grid">
-      <a class="content-card" href="conteudo.html">
-        <span class="kicker">Guia técnico</span>
-        <h3>Como encontrar o código correto da sua peça</h3>
-        <span class="read-more">Ler conteúdo →</span>
-      </a>
-      <a class="content-card" href="conteudo.html">
-        <span class="kicker">Comparativo</span>
-        <h3>Peça original x paralela: qual escolher?</h3>
-        <span class="read-more">Ler conteúdo →</span>
-      </a>
-      <a class="content-card" href="conteudo.html">
-        <span class="kicker">Guia técnico</span>
-        <h3>Como identificar a placa correta do seu equipamento?</h3>
-        <span class="read-more">Ler conteúdo →</span>
-      </a>
+      <p class="testi-note">Textos ilustrativos para fins de protótipo.</p>
     </div>
   </div>
-</section>
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head"><div><h2>Produtos relacionados</h2><p>Outras peças da mesma categoria que podem te interessar.</p></div></div>
+      <div class="product-grid" id="grid-relacionados"></div>
+    </div>
+  </section>
+</div>
 
-<!-- 11. DEPOIMENTOS -->
-<section class="section alt">
+<!-- ================= MARCA ================= -->
+<div class="page" id="page-marca">
   <div class="wrap">
-    <div class="section-head">
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><a href="#/marcas">Marcas</a><span class="sep">/</span><span id="marca-bc">Marca</span></div>
+    <div class="brand-hero">
+      <div class="logo-badge" id="marca-badge">LG</div>
       <div>
-        <h2>Quem compra, confia.</h2>
-        <p>Depoimentos de clientes reais da Neshop (texto ilustrativo para o protótipo).</p>
+        <h1 id="marca-nome">Marca</h1>
+        <p id="marca-desc">Peças e componentes originais para os equipamentos desta marca, com o conhecimento técnico da Neshop.</p>
+        <div class="brand-cats" id="marca-cats"></div>
       </div>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p>"Encontrei a placa exata para minha TV em poucos minutos. Atendimento explicou tudo antes da compra."</p>
-        <div class="who"><span class="av">R</span> Roberto S. — Técnico em eletrônicos</div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p>"Compro peças para o meu comércio há anos na Neshop. Sempre com peças originais e prazo certo."</p>
-        <div class="who"><span class="av">M</span> Marcia L. — Assistência técnica</div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★☆</div>
-        <p>"Não sabia identificar a peça do meu ar-condicionado, o time da Neshop me ajudou pelo WhatsApp."</p>
-        <div class="who"><span class="av">J</span> João P. — Consumidor final</div>
-      </div>
-    </div>
-    <p class="testi-note">Textos ilustrativos para fins de protótipo — na versão final, utilizar depoimentos reais da base da Neshop.</p>
   </div>
-</section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><div><h2>Produtos desta marca</h2><p>Peças disponíveis para os equipamentos da marca selecionada.</p></div></div>
+      <div class="product-grid" id="grid-marca"></div>
+      <div id="marca-empty" style="display:none;text-align:center;padding:40px 0;color:var(--ink-500);">
+        Ainda não há peças cadastradas para esta marca no protótipo. <a href="#/ajuda" style="color:var(--blue-600);font-weight:700;">Fale com um especialista</a>.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= MARCAS (todas) ================= -->
+<div class="page" id="page-marcas">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Marcas</span></div>
+    <div class="page-head"><h1>Encontre peças por marca</h1><p class="count">Trabalhamos com as principais marcas do mercado de eletroeletrônicos.</p></div>
+  </div>
+  <section class="section">
+    <div class="wrap">
+      <div class="brand-grid" id="grid-marcas" style="grid-template-columns:repeat(6,1fr);"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= CATEGORIAS (todas) ================= -->
+<div class="page" id="page-categorias">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Categorias</span></div>
+    <div class="page-head"><h1>Encontre por equipamento</h1><p class="count">Selecione o tipo de aparelho para ver as peças compatíveis.</p></div>
+  </div>
+  <section class="section">
+    <div class="wrap"><div class="cat-grid" id="grid-categorias"></div></div>
+  </section>
+</div>
+
+<!-- ================= CONTEÚDO ================= -->
+<div class="page" id="page-conteudo">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Conteúdos</span></div>
+    <div class="page-head"><h1>Conteúdos para ajudar você</h1><p class="count">Guias práticos para identificar e escolher a peça certa antes de comprar.</p></div>
+  </div>
+  <section class="section">
+    <div class="wrap">
+      <div class="content-grid">
+        <a class="content-card" href="#"><span class="kicker">Guia técnico</span><h3>Como encontrar o código correto da sua peça</h3><span class="read-more">Ler conteúdo →</span></a>
+        <a class="content-card" href="#"><span class="kicker">Comparativo</span><h3>Peça original x paralela: qual escolher?</h3><span class="read-more">Ler conteúdo →</span></a>
+        <a class="content-card" href="#"><span class="kicker">Guia técnico</span><h3>Como identificar a placa correta do seu equipamento?</h3><span class="read-more">Ler conteúdo →</span></a>
+        <a class="content-card" href="#"><span class="kicker">Guia técnico</span><h3>Onde encontro o código OEM na etiqueta do produto?</h3><span class="read-more">Ler conteúdo →</span></a>
+        <a class="content-card" href="#"><span class="kicker">Manutenção</span><h3>Sinais de que a placa do seu ar-condicionado precisa de troca</h3><span class="read-more">Ler conteúdo →</span></a>
+        <a class="content-card" href="#"><span class="kicker">Compra segura</span><h3>Como validar a compatibilidade antes de comprar</h3><span class="read-more">Ler conteúdo →</span></a>
+      </div>
+      <div class="center-cta">
+        <a class="btn btn-whatsapp btn-lg" href="#" data-open-wa="Olá! Tenho uma dúvida técnica sobre uma peça.">Ainda com dúvidas? Fale com um especialista</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= AJUDA ================= -->
+<div class="page" id="page-ajuda">
+  <div class="wrap"><div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Ajuda para encontrar peça</span></div></div>
+  <div class="wrap help-flow">
+    <div class="flow-steps">
+      <div class="step active" id="step-ind-1"><div class="circle current">1</div><span class="label">Não sei a peça</span></div>
+      <div class="line"></div>
+      <div class="step" id="step-ind-2"><div class="circle">2</div><span class="label">Enviar foto/modelo</span></div>
+      <div class="line"></div>
+      <div class="step" id="step-ind-3"><div class="circle">3</div><span class="label">Formulário</span></div>
+      <div class="line"></div>
+      <div class="step" id="step-ind-4"><div class="circle">4</div><span class="label">Confirmação</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-panel active" id="panel-1">
+        <h2>Não sabe qual peça comprar?</h2>
+        <p>Sem problema. Você não precisa saber o nome técnico da peça — nosso time de especialistas te ajuda a identificar o componente certo a partir de uma foto ou do modelo do equipamento.</p>
+        <div class="pd-trust" style="margin-top:22px;">
+          <div class="item"><span class="ic">📷</span><div><b>Envie uma foto</b>Da peça ou do equipamento</div></div>
+          <div class="item"><span class="ic">🔎</span><div><b>Ou o modelo</b>Encontrado na etiqueta do aparelho</div></div>
+        </div>
+        <div class="flow-nav"><span></span><button class="btn btn-primary btn-lg" type="button" onclick="goStep(2)">Continuar →</button></div>
+      </div>
+      <div class="flow-panel" id="panel-2">
+        <h2>Envie uma foto ou o modelo do equipamento</h2>
+        <p>Isso ajuda nosso time a identificar rapidamente a peça correta.</p>
+        <div class="upload-zone">
+          <div class="ic">📷</div>
+          <p>Arraste uma imagem aqui ou clique para simular o envio</p>
+          <button class="btn btn-secondary" type="button" onclick="simulateUpload()">Selecionar foto (simulado)</button>
+          <p id="upload-status" style="margin-top:10px;font-weight:700;color:var(--green-600);display:none;">✅ Foto anexada (simulação)</p>
+        </div>
+        <div class="or-sep">ou</div>
+        <div class="field"><label>Modelo do equipamento</label><input type="text" placeholder="Ex: LG 55UK6520"></div>
+        <div class="flow-nav">
+          <button class="btn btn-secondary btn-lg" type="button" onclick="goStep(1)">← Voltar</button>
+          <button class="btn btn-primary btn-lg" type="button" onclick="goStep(3)">Continuar →</button>
+        </div>
+      </div>
+      <div class="flow-panel" id="panel-3">
+        <h2>Só mais alguns dados</h2>
+        <p>Assim nosso time consegue te responder pelo canal que preferir.</p>
+        <div class="field-row">
+          <div class="field"><label>Nome</label><input type="text" placeholder="Seu nome"></div>
+          <div class="field"><label>Telefone / WhatsApp</label><input type="text" placeholder="(11) 90000-0000"></div>
+        </div>
+        <div class="field"><label>E-mail</label><input type="email" placeholder="seuemail@exemplo.com"></div>
+        <div class="field"><label>Descreva o problema (opcional)</label><textarea rows="3" placeholder="Ex: TV não liga o painel de imagem"></textarea></div>
+        <div class="flow-nav">
+          <button class="btn btn-secondary btn-lg" type="button" onclick="goStep(2)">← Voltar</button>
+          <button class="btn btn-primary btn-lg" type="button" onclick="goStep(4)">Enviar solicitação →</button>
+        </div>
+      </div>
+      <div class="flow-panel" id="panel-4">
+        <div class="confirm-box">
+          <div class="ic">✅</div>
+          <h2>Solicitação enviada com sucesso!</h2>
+          <p style="color:var(--ink-500);margin-top:8px;">Nosso time de especialistas vai analisar as informações enviadas e retornar em breve com a peça correta para o seu equipamento.</p>
+          <div class="ticket">Protocolo simulado: <b>#NESHOP-2026-08421</b><br>Tempo médio de resposta: até 1 dia útil.</div>
+          <div class="actions" style="justify-content:center;margin-top:24px;">
+            <a class="btn btn-whatsapp btn-lg" href="#" data-open-wa="Olá! Acabei de enviar uma solicitação de identificação de peça (protocolo #NESHOP-2026-08421).">Continuar no WhatsApp</a>
+            <a class="btn btn-secondary btn-lg" href="#/home">Voltar para a Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CARRINHO ================= -->
+<div class="page" id="page-carrinho">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Carrinho</span></div>
+    <div class="page-head"><h1>Seu carrinho</h1><p class="count"><span class="badge-proto">Simulação — nenhum pagamento é processado neste protótipo</span></p></div>
+  </div>
+  <div class="wrap cart-layout">
+    <div id="cart-items"></div>
+    <aside class="cart-summary" id="cart-summary">
+      <h3>Resumo do pedido</h3>
+      <div class="summary-row"><span>Subtotal</span><span id="sum-subtotal">R$ 0,00</span></div>
+      <div class="summary-row"><span>Frete</span><span id="sum-frete">Calculado a seguir</span></div>
+      <div class="summary-row total"><span>Total</span><span id="sum-total">R$ 0,00</span></div>
+      <button class="btn btn-primary btn-lg btn-block" type="button" onclick="fakeCheckout()" style="margin-top:16px;">Finalizar compra (simulado)</button>
+      <a class="btn btn-secondary btn-block" href="#/categorias" style="margin-top:10px;">Continuar comprando</a>
+    </aside>
+  </div>
+</div>
+
+<!-- ================= CONTA ================= -->
+<div class="page" id="page-conta">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Minha conta</span></div>
+    <div class="page-head"><h1>Minha conta</h1></div>
+  </div>
+  <section class="section">
+    <div class="wrap" style="max-width:560px;">
+      <div class="flow-card">
+        <span class="badge-proto">Área simulada</span>
+        <h2 style="margin-top:14px;">Login e cadastro (simulado)</h2>
+        <p>Neste protótipo, a área "Minha conta" representa apenas a existência dessa navegação na arquitetura do site. Não há autenticação real — o objetivo é validar onde esse acesso aparece na hierarquia do header.</p>
+        <div class="field" style="margin-top:20px;"><label>E-mail</label><input type="email" placeholder="seuemail@exemplo.com"></div>
+        <div class="field"><label>Senha</label><input type="password" placeholder="••••••••"></div>
+        <button class="btn btn-primary btn-lg btn-block" type="button" onclick="alert('Simulação: em produção, este botão autenticaria o usuário.')">Entrar (simulado)</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= PEDIDOS ================= -->
+<div class="page" id="page-pedidos">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#/home">Início</a><span class="sep">/</span><span>Meus pedidos</span></div>
+    <div class="page-head"><h1>Meus pedidos</h1></div>
+  </div>
+  <section class="section">
+    <div class="wrap" style="max-width:720px;">
+      <span class="badge-proto">Área simulada</span>
+      <div class="cart-item" style="margin-top:16px;">
+        <div class="thumb">📺</div>
+        <div class="info"><div class="name">Placa Principal para TV LED — LG 55UK6520</div><div class="meta">Pedido #NESHOP-58231 · Entregue em 12/07/2026</div></div>
+        <div class="price">R$ 389,90</div>
+      </div>
+      <div class="cart-item">
+        <div class="thumb">❄️</div>
+        <div class="info"><div class="name">Compressor para Ar-condicionado Split — Springer</div><div class="meta">Pedido #NESHOP-58109 · Em transporte</div></div>
+        <div class="price">R$ 749,00</div>
+      </div>
+      <p style="color:var(--ink-500);font-size:13.5px;margin-top:16px;">Pedidos ilustrativos para fins de protótipo — na versão final, esta área listaria o histórico real de compras do cliente.</p>
+    </div>
+  </section>
+</div>
+
+</main>
 
 <button type="button" class="wa-float" data-open-wa title="Fale no WhatsApp">💬</button>
 
@@ -236,13 +585,17 @@
     <button class="close" data-modal-close="wa-modal" type="button">✕</button>
     <h3>💬 Atendimento via WhatsApp</h3>
     <p>Este é um protótipo — em produção, este botão abriria uma conversa real no WhatsApp com nosso time de especialistas.</p>
-    <div class="wa-preview">
-      <strong>Simulação da mensagem:</strong><br>
-      "<span id="wa-context">Olá! Preciso de ajuda para encontrar uma peça.</span>"
-    </div>
-    <div class="actions">
-      <button class="btn btn-whatsapp btn-block" data-modal-close="wa-modal" type="button">Entendi, fechar</button>
-    </div>
+    <div class="wa-preview"><strong>Simulação da mensagem:</strong><br>"<span id="wa-context">Olá! Preciso de ajuda para encontrar uma peça.</span>"</div>
+    <div class="actions"><button class="btn btn-whatsapp btn-block" data-modal-close="wa-modal" type="button">Entendi, fechar</button></div>
+  </div>
+</div>
+
+<div id="checkout-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="close" data-modal-close="checkout-modal" type="button">✕</button>
+    <h3>✅ Pedido simulado com sucesso</h3>
+    <p>Este é um protótipo de UX/UI — nenhuma compra real foi realizada. Em uma implementação final, aqui entraria o fluxo de pagamento.</p>
+    <div class="actions"><a class="btn btn-primary btn-block" href="#/home" data-modal-close="checkout-modal">Voltar para a Home</a></div>
   </div>
 </div>
 
@@ -250,48 +603,29 @@
   <div class="wrap footer-top">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="logo"><span class="mark">NE</span>Neshop</a>
+        <a href="#/home" class="logo"><span class="mark">NE</span>Neshop</a>
         <p>Mais de 35 anos comercializando peças e componentes originais para TVs, ar-condicionados, refrigeradores, lavadoras e muito mais.</p>
-        <div class="footer-social">
-          <a href="#" title="Facebook">f</a><a href="#" title="Instagram">ig</a><a href="#" title="LinkedIn">in</a><a href="#" title="YouTube">yt</a>
-        </div>
+        <div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">in</a><a href="#">yt</a></div>
       </div>
-      <div>
-        <h4>Institucional</h4>
-        <ul>
-          <li><a href="#">Sobre a Neshop</a></li>
-          <li><a href="#">Como comprar</a></li>
-          <li><a href="#">Segurança</a></li>
-          <li><a href="#">Política de privacidade</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Atendimento</h4>
-        <ul>
-          <li><a href="#" data-open-wa>WhatsApp: (11) 4000-0000</a></li>
-          <li><a href="#">Telefone: (11) 3000-0000</a></li>
-          <li><a href="#">contato@neshop.com.br</a></li>
-          <li>Seg. a sáb. · 8h às 18h</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Categorias</h4>
-        <ul>
-          <li><a href="categoria.html?cat=tv">TV</a></li>
-          <li><a href="categoria.html?cat=ar-condicionado">Ar-condicionado</a></li>
-          <li><a href="categoria.html?cat=lava-e-seca">Lava e seca</a></li>
-          <li><a href="categoria.html?cat=refrigerador">Refrigerador</a></li>
-          <li><a href="categorias.html">Ver todas →</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Pagamento e segurança</h4>
-        <div class="pay-icons">
-          <span>Pix</span><span>Visa</span><span>Master</span><span>Boleto</span>
-        </div>
-        <div class="seal-icons" style="margin-top:12px;">
-          <span>🔒 Site seguro</span>
-        </div>
+      <div><h4>Institucional</h4><ul>
+        <li><a href="#">Sobre a Neshop</a></li><li><a href="#">Como comprar</a></li>
+        <li><a href="#">Segurança</a></li><li><a href="#">Política de privacidade</a></li>
+      </ul></div>
+      <div><h4>Atendimento</h4><ul>
+        <li><a href="#" data-open-wa>WhatsApp: (11) 4000-0000</a></li>
+        <li><a href="#">Telefone: (11) 3000-0000</a></li>
+        <li><a href="#">contato@neshop.com.br</a></li><li>Seg. a sáb. · 8h às 18h</li>
+      </ul></div>
+      <div><h4>Categorias</h4><ul>
+        <li><a href="#/categoria?cat=tv">TV</a></li>
+        <li><a href="#/categoria?cat=ar-condicionado">Ar-condicionado</a></li>
+        <li><a href="#/categoria?cat=lava-e-seca">Lava e seca</a></li>
+        <li><a href="#/categoria?cat=refrigerador">Refrigerador</a></li>
+        <li><a href="#/categorias">Ver todas →</a></li>
+      </ul></div>
+      <div><h4>Pagamento e segurança</h4>
+        <div class="pay-icons"><span>Pix</span><span>Visa</span><span>Master</span><span>Boleto</span></div>
+        <div class="seal-icons" style="margin-top:12px;"><span>🔒 Site seguro</span></div>
       </div>
     </div>
   </div>
@@ -302,8 +636,5 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script>
-  renderGrid("grid-destaques", NESHOP_PRODUCTS.slice(0,8));
-</script>
 </body>
 </html>
