@@ -3,7 +3,8 @@ import { Truck, CreditCard, ShieldCheck, Headphones, CheckCircle2, CircuitBoard,
 import { HeroSearch } from "@/components/HeroSearch";
 import { ProductCard } from "@/components/ProductCard";
 import { StarRating } from "@/components/StarRating";
-import { CATEGORIES, PRODUCTS } from "@/lib/products";
+import { BrandMarquee } from "@/components/BrandMarquee";
+import { CATEGORIES, PRODUCTS, BRANDS } from "@/lib/products";
 import { categoryIcon } from "@/lib/category-icons";
 
 const BENEFITS = [
@@ -168,24 +169,15 @@ export default function HomePage() {
         <div className="wrap">
           <div className="flex justify-between items-end gap-4 mb-6.5">
             <div>
-              <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Encontre peças por marca</h2>
-              <p className="text-ink-500 text-[14.5px] mt-1.5">Trabalhamos com as principais marcas do mercado.</p>
+              <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Marcas parceiras</h2>
+              <p className="text-ink-500 text-[14.5px] mt-1.5">Trabalhamos com as principais marcas do mercado de eletroeletrônicos.</p>
             </div>
             <Link href="/marcas" className="text-[13.5px] font-bold text-blue-600 hover:text-orange-600 whitespace-nowrap">
               Ver todas as marcas →
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {["LG", "Samsung", "Philco", "AOC", "Toshiba"].map((b) => (
-              <Link key={b} href={`/marca?marca=${b}`} className="card px-3 py-6 text-center font-extrabold text-navy-900 text-[15px] hover:border-blue-500 hover:shadow-md hover:-translate-y-0.5 transition-all">
-                {b}
-              </Link>
-            ))}
-            <Link href="/marcas" className="card px-3 py-6 text-center font-extrabold text-navy-900 text-[15px] hover:border-blue-500 hover:shadow-md hover:-translate-y-0.5 transition-all">
-              +9 marcas
-            </Link>
-          </div>
         </div>
+        <BrandMarquee brands={BRANDS} />
       </section>
 
       <section className="py-13">

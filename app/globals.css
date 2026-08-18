@@ -42,3 +42,8 @@
     @apply bg-white border border-line rounded-lg shadow-sm;
   }
 }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
