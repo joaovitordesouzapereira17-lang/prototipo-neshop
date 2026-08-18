@@ -33,7 +33,7 @@ export function ProductCard({ product: p }: { product: Product }) {
   return (
     <Link
       href={`/produto?id=${p.id}`}
-      className="group relative flex flex-col bg-navy-950 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10"
+      className="group relative flex flex-col bg-navy-800 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10"
     >
       {/* Área da imagem */}
       <div className="relative aspect-square bg-white/[0.04] flex items-center justify-center overflow-hidden">
@@ -48,7 +48,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           onClick={handleToggleFavorite}
           aria-label={favorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
           className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full border flex items-center justify-center backdrop-blur transition-colors ${
-            favorited ? "bg-red-600 border-red-600 text-white" : "bg-black/20 border-white/20 text-white hover:border-white/40"
+            favorited ? "bg-red-600 border-red-600 text-white" : "bg-navy-950/30 border-white/20 text-white hover:border-white/40"
           }`}
         >
           <Heart size={14} strokeWidth={2} fill={favorited ? "currentColor" : "none"} />
@@ -58,7 +58,7 @@ export function ProductCard({ product: p }: { product: Product }) {
 
         {/* Overlay de ações rápidas — sempre visível em telas pequenas (sem hover), revelado no hover em telas grandes */}
         <div
-          className="absolute inset-0 bg-navy-950/92 backdrop-blur-sm flex flex-col justify-center gap-3 p-4
+          className="absolute inset-0 bg-navy-800/95 backdrop-blur-sm flex flex-col justify-center gap-3 p-4
                      opacity-100 translate-y-0
                      lg:opacity-0 lg:translate-y-2 lg:group-hover:opacity-100 lg:group-hover:translate-y-0
                      transition-all duration-300 ease-in-out"

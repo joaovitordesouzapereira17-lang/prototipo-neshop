@@ -79,7 +79,7 @@ export function ProdutoClient() {
 
       {/* Ficha split-screen */}
       <div className="wrap py-6">
-        <div className="bg-navy-950 rounded-3xl border border-white/10 p-4 md:p-6 grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="bg-navy-800 rounded-3xl border border-white/10 p-4 md:p-6 grid md:grid-cols-2 gap-6 md:gap-8">
           {/* Lado esquerdo — galeria */}
           <div>
             <div className="relative aspect-square rounded-3xl bg-white/[0.04] flex items-center justify-center overflow-hidden">
@@ -93,7 +93,7 @@ export function ProdutoClient() {
                 type="button"
                 onClick={() => setGalleryIndex((i) => (i - 1 + gallery.length) % gallery.length)}
                 aria-label="Imagem anterior"
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/30 border border-white/15 text-white flex items-center justify-center hover:bg-black/50"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-navy-950/40 border border-white/15 text-white flex items-center justify-center hover:bg-navy-950/60"
               >
                 <ChevronLeft size={16} strokeWidth={2} />
               </button>
@@ -101,7 +101,7 @@ export function ProdutoClient() {
                 type="button"
                 onClick={() => setGalleryIndex((i) => (i + 1) % gallery.length)}
                 aria-label="Próxima imagem"
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/30 border border-white/15 text-white flex items-center justify-center hover:bg-black/50"
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-navy-950/40 border border-white/15 text-white flex items-center justify-center hover:bg-navy-950/60"
               >
                 <ChevronRight size={16} strokeWidth={2} />
               </button>
@@ -109,7 +109,7 @@ export function ProdutoClient() {
               <GalleryIcon size={96} strokeWidth={1.1} className="text-white/25" />
 
               {/* Botão "Buscar peças compatíveis" sobreposto no rodapé */}
-              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-navy-950/70 to-transparent">
                 <Link
                   href={`/categoria?cat=${p.cat}`}
                   className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white font-bold text-[13px] rounded-lg py-2.5 transition-colors"
