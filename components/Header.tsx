@@ -78,7 +78,7 @@ export function Header() {
       </div>
 
       <nav className="border-t border-line-soft">
-        <div className="wrap flex gap-7 py-3 overflow-x-auto">
+        <div className="wrap flex gap-7 py-3 overflow-x-auto flex-nowrap md:overflow-visible md:flex-wrap">
           {NAV_LINKS.map((link) => (
             <div key={link.href} className="group relative">
               <Link
