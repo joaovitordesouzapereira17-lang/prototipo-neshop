@@ -28,8 +28,8 @@ export function BrandMarquee({ brands, speed = "normal" }: BrandMarqueeProps) {
       style={{ maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)" }}
     >
       <div
-        className="flex w-max items-center gap-4 py-1 hover:[animation-play-state:paused]"
-        style={{ animation: `marquee ${duration} linear infinite` }}
+        className="marquee-track flex w-max items-center gap-4 py-1"
+        style={{ "--marquee-duration": duration } as React.CSSProperties}
       >
         {doubled.map((brand, i) => (
           <Link
