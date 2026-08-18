@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart-context";
 import { WhatsAppProvider } from "@/lib/whatsapp-context";
@@ -13,6 +13,15 @@ export const metadata: Metadata = {
   description: "Proposta de redesign do e-commerce Neshop — protótipo navegável para validação interna.",
 };
 
+// viewportFit "cover" deixa o conteúdo se estender até a borda física da tela
+// (necessário em iPhones com barra de indicador embaixo) e habilita
+// env(safe-area-inset-bottom), usado para acolchoar a barra de navegação fixa.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
@@ -21,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartProvider>
             <ProtoBar />
             <Header />
-            <div className="pb-16 md:pb-0">
+            <div className="pb-24 md:pb-0">
               <main>{children}</main>
               <Footer />
             </div>
