@@ -45,23 +45,25 @@ export default function CarrinhoPage() {
             items.map(({ item, product: p }) => {
               const Icon = categoryIcon(p!.cat);
               return (
-              <div key={item.id} className="card flex gap-3.5 p-4 mb-3.5 items-center">
+              <div key={item.id} className="card flex flex-wrap gap-3.5 p-4 mb-3.5 items-center">
                 <div className="w-18.5 h-18.5 rounded-lg bg-bg flex items-center justify-center text-ink-300 flex-shrink-0">
                   <Icon size={26} strokeWidth={1.5} />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-[140px]">
                   <div className="font-bold text-sm text-navy-950">{p!.name}</div>
                   <div className="text-xs text-ink-500 mt-1">
                     {p!.brand} · Modelo {p!.modelo} · Cód. {p!.codigo}
                   </div>
                 </div>
-                <div className="flex items-center border border-line rounded-lg overflow-hidden">
-                  <button type="button" onClick={() => changeQty(item.id, -1)} className="w-7 h-7 border-none bg-bg font-extrabold text-sm">−</button>
-                  <span className="w-8 text-center text-[13.5px] font-bold">{item.qty}</span>
-                  <button type="button" onClick={() => changeQty(item.id, 1)} className="w-7 h-7 border-none bg-bg font-extrabold text-sm">+</button>
+                <div className="w-full sm:w-auto flex items-center justify-between sm:justify-end gap-3">
+                  <div className="flex items-center border border-line rounded-lg overflow-hidden flex-shrink-0">
+                    <button type="button" onClick={() => changeQty(item.id, -1)} className="w-7 h-7 border-none bg-bg font-extrabold text-sm">−</button>
+                    <span className="w-8 text-center text-[13.5px] font-bold">{item.qty}</span>
+                    <button type="button" onClick={() => changeQty(item.id, 1)} className="w-7 h-7 border-none bg-bg font-extrabold text-sm">+</button>
+                  </div>
+                  <div className="font-extrabold text-navy-950 text-[15px] flex-shrink-0">{money(p!.price * item.qty)}</div>
+                  <button type="button" onClick={() => removeItem(item.id)} className="btn btn-secondary flex-shrink-0">Remover</button>
                 </div>
-                <div className="font-extrabold text-navy-950 text-[15px]">{money(p!.price * item.qty)}</div>
-                <button type="button" onClick={() => removeItem(item.id)} className="btn btn-secondary">Remover</button>
               </div>
               );
             })

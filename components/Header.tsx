@@ -132,7 +132,7 @@ export function Header() {
       {/* Navegação com dropdowns — apenas desktop/tablet (hover não existe em touch) */}
       <nav className="hidden md:block border-t border-line-soft">
         <div className="wrap flex flex-wrap gap-7 py-3">
-          {NAV_LINKS.map((link) => (
+          {NAV_LINKS.map((link, i) => (
             <div key={link.href} className="group relative">
               <Link
                 href={link.href}
@@ -142,7 +142,11 @@ export function Header() {
               </Link>
 
               {"cat" in link && (
-                <div className="absolute left-0 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-150 z-50">
+                <div
+                  className={`absolute top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-150 z-50 ${
+                    i >= CATEGORIES.length - 2 ? "right-0" : "left-0"
+                  }`}
+                >
                   <div className="w-56 bg-white border border-line rounded-lg shadow-lg p-3">
                     <div className="text-[11px] font-bold text-ink-300 uppercase tracking-wide px-2 mb-1.5">
                       Marcas em {CAT_NAMES[link.cat]}
