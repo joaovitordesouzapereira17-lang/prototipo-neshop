@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neshop — Encontre a peça que você precisa (Protótipo)</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="proto-bar">🛠️ <strong>PROTÓTIPO / WIREFRAME</strong> — proposta de redesign para validação interna. Não é o site oficial da Neshop.<span class="dot">•</span>Todas as interações são simuladas.</div>
+<div class="trust-strip"><div class="wrap"><span>35+ anos de mercado</span><span class="sep">|</span><span>Peças originais</span><span class="sep">|</span><span>Atendimento especializado</span></div></div>
+
+<header class="site-header">
+  <div class="header-main">
+    <a href="index.html" class="logo"><span class="mark">NE</span><span>Neshop<span class="tag">Peças &amp; Componentes</span></span></a>
+    <div class="header-search">
+      <input type="text" id="headerSearchInput" placeholder="Buscar por código, modelo ou nome da peça">
+      <button type="button" onclick="doSearch('headerSearchInput')">🔍 Buscar</button>
+    </div>
+    <div class="header-actions">
+      <a href="#" data-open-wa><span class="ico">💬</span>WhatsApp</a>
+      <a href="conta.html"><span class="ico">👤</span>Minha conta</a>
+      <a href="pedidos.html"><span class="ico">📦</span>Meus pedidos</a>
+      <a href="carrinho.html" class="cart-count"><span class="ico">🛒</span>Carrinho<span class="badge js-cart-badge" style="display:none">0</span></a>
+    </div>
+  </div>
+  <nav class="header-nav"><div class="wrap">
+     <a href="categoria.html?cat=tv">TV</a>
+     <a href="categoria.html?cat=ar-condicionado">Ar-condicionado</a>
+     <a href="categoria.html?cat=lava-e-seca">Lava e seca</a>
+     <a href="categoria.html?cat=refrigerador">Refrigerador</a>
+     <a href="categoria.html?cat=radio-e-som">Rádio e som</a>
+     <a href="categoria.html?cat=ferramentas">Ferramentas</a>
+     <a href="marcas.html">Marcas</a>
+     <a href="ajuda.html">Não sabe qual peça?</a>
+     <a href="conteudo.html">Conteúdos</a>
+  </div></nav>
+</header>
+
+<!-- 2. BUSCA PRINCIPAL -->
+<section class="hero-search">
+  <div class="wrap">
+    <span class="eyebrow">🔧 Encontrar → Identificar → Validar → Comprar</span>
+    <h1>Encontre a peça que você precisa</h1>
+    <p class="sub">Busque por código, modelo do equipamento ou nome da peça. Catálogo técnico amplo, com peças originais para diversas marcas.</p>
+    <div class="hero-search-box">
+      <input type="text" id="heroSearchInput" placeholder="Digite código, modelo ou nome da peça">
+      <button type="button" onclick="doSearch('heroSearchInput')">🔍 Buscar</button>
+    </div>
+    <div class="hero-help-line">
+      <span>Não sabe qual peça é?</span>
+      <a href="ajuda.html">Envie uma foto ou o modelo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CATEGORIAS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Encontre por equipamento</h2>
+        <p>Selecione o tipo de aparelho para ver as peças compatíveis.</p>
+      </div>
+      <a class="link-all" href="categorias.html">Ver todas as categorias →</a>
+    </div>
+    <div class="cat-grid">
+      <a class="cat-card" href="categoria.html?cat=tv"><span class="ic">📺</span><span class="name">TV</span></a>
+      <a class="cat-card" href="categoria.html?cat=ar-condicionado"><span class="ic">❄️</span><span class="name">Ar-condicionado</span></a>
+      <a class="cat-card" href="categoria.html?cat=lava-e-seca"><span class="ic">🌀</span><span class="name">Lava e seca</span></a>
+      <a class="cat-card" href="categoria.html?cat=refrigerador"><span class="ic">🧊</span><span class="name">Refrigerador</span></a>
+      <a class="cat-card" href="categoria.html?cat=radio-e-som"><span class="ic">🔊</span><span class="name">Rádio e som</span></a>
+      <a class="cat-card" href="categoria.html?cat=ferramentas"><span class="ic">🛠️</span><span class="name">Ferramentas</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. BENEFÍCIOS -->
+<div class="benefits-strip">
+  <div class="wrap">
+    <div class="benefit"><span class="ic">🚚</span>Envio rápido</div>
+    <div class="benefit"><span class="ic">💳</span>Até 6x sem juros</div>
+    <div class="benefit"><span class="ic">🛡️</span>Garantia nas peças</div>
+    <div class="benefit"><span class="ic">🎧</span>Atendimento especializado</div>
+    <div class="benefit"><span class="ic">✅</span>Peças originais</div>
+  </div>
+</div>
+
+<!-- 5. BANNER PRINCIPAL -->
+<section class="section">
+  <div class="wrap">
+    <div class="banner-campaign">
+      <div class="content">
+        <span class="kicker">Campanha</span>
+        <h2>PEÇAS ORIGINAIS PARA SEU EQUIPAMENTO</h2>
+        <p>Encontre o componente certo para o seu aparelho, com a garantia e o conhecimento técnico de quem entende do assunto há mais de 35 anos.</p>
+        <a class="cta" href="categorias.html">Encontrar peças →</a>
+      </div>
+      <div class="visual">🔩</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PRODUTOS MAIS PROCURADOS -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Peças mais procuradas</h2>
+        <p>Uma seleção das peças com maior procura no nosso catálogo.</p>
+      </div>
+      <a class="link-all" href="categorias.html">Ver mais peças →</a>
+    </div>
+    <div class="product-grid" id="grid-destaques"></div>
+  </div>
+</section>
+
+<!-- 7. BLOCO DE AUTORIDADE -->
+<section class="section authority">
+  <div class="wrap authority-inner">
+    <div>
+      <h2>Mais de 35 anos ajudando equipamentos a voltar a funcionar.</h2>
+      <p>Conhecimento técnico, peças originais e atendimento especializado para ajudar você a encontrar o componente certo — da identificação até a compra.</p>
+    </div>
+    <div class="authority-stats">
+      <div class="stat"><div class="num">35+</div><div class="lbl">Anos de mercado</div></div>
+      <div class="stat"><div class="num">200mil+</div><div class="lbl">Clientes atendidos</div></div>
+      <div class="stat"><div class="num">14+</div><div class="lbl">Marcas trabalhadas</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. BLOCO DE AJUDA -->
+<section class="section tight">
+  <div class="wrap">
+    <div class="help-block">
+      <div class="icon-badge">🔍</div>
+      <div class="content">
+        <h2>Não sabe qual peça você precisa?</h2>
+        <p>Envie uma foto do componente ou o modelo do equipamento. Nosso time ajuda você a encontrar a peça adequada — sem complicação.</p>
+        <div class="actions">
+          <a class="btn btn-primary btn-lg" href="ajuda.html">Enviar foto ou modelo</a>
+          <a class="btn btn-whatsapp btn-lg" href="#" data-open-wa="Olá! Não sei qual peça preciso, podem me ajudar?">Falar com especialista</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. MARCAS -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Encontre peças por marca</h2>
+        <p>Trabalhamos com as principais marcas do mercado.</p>
+      </div>
+      <a class="link-all" href="marcas.html">Ver todas as marcas →</a>
+    </div>
+    <div class="brand-grid">
+      <a class="brand-card" href="marca.html?marca=LG">LG</a>
+      <a class="brand-card" href="marca.html?marca=Samsung">Samsung</a>
+      <a class="brand-card" href="marca.html?marca=Philco">Philco</a>
+      <a class="brand-card" href="marca.html?marca=AOC">AOC</a>
+      <a class="brand-card" href="marca.html?marca=Toshiba">Toshiba</a>
+      <a class="brand-card" href="marcas.html">+9 marcas</a>
+    </div>
+  </div>
+</section>
+
+<!-- 10. CONTEÚDO -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Conteúdos para ajudar você</h2>
+        <p>Guias práticos para identificar e escolher a peça certa.</p>
+      </div>
+      <a class="link-all" href="conteudo.html">Ver todos os conteúdos →</a>
+    </div>
+    <div class="content-grid">
+      <a class="content-card" href="conteudo.html">
+        <span class="kicker">Guia técnico</span>
+        <h3>Como encontrar o código correto da sua peça</h3>
+        <span class="read-more">Ler conteúdo →</span>
+      </a>
+      <a class="content-card" href="conteudo.html">
+        <span class="kicker">Comparativo</span>
+        <h3>Peça original x paralela: qual escolher?</h3>
+        <span class="read-more">Ler conteúdo →</span>
+      </a>
+      <a class="content-card" href="conteudo.html">
+        <span class="kicker">Guia técnico</span>
+        <h3>Como identificar a placa correta do seu equipamento?</h3>
+        <span class="read-more">Ler conteúdo →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 11. DEPOIMENTOS -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Quem compra, confia.</h2>
+        <p>Depoimentos de clientes reais da Neshop (texto ilustrativo para o protótipo).</p>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Encontrei a placa exata para minha TV em poucos minutos. Atendimento explicou tudo antes da compra."</p>
+        <div class="who"><span class="av">R</span> Roberto S. — Técnico em eletrônicos</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Compro peças para o meu comércio há anos na Neshop. Sempre com peças originais e prazo certo."</p>
+        <div class="who"><span class="av">M</span> Marcia L. — Assistência técnica</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★☆</div>
+        <p>"Não sabia identificar a peça do meu ar-condicionado, o time da Neshop me ajudou pelo WhatsApp."</p>
+        <div class="who"><span class="av">J</span> João P. — Consumidor final</div>
+      </div>
+    </div>
+    <p class="testi-note">Textos ilustrativos para fins de protótipo — na versão final, utilizar depoimentos reais da base da Neshop.</p>
+  </div>
+</section>
+
+<button type="button" class="wa-float" data-open-wa title="Fale no WhatsApp">💬</button>
+
+<div id="wa-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="close" data-modal-close="wa-modal" type="button">✕</button>
+    <h3>💬 Atendimento via WhatsApp</h3>
+    <p>Este é um protótipo — em produção, este botão abriria uma conversa real no WhatsApp com nosso time de especialistas.</p>
+    <div class="wa-preview">
+      <strong>Simulação da mensagem:</strong><br>
+      "<span id="wa-context">Olá! Preciso de ajuda para encontrar uma peça.</span>"
+    </div>
+    <div class="actions">
+      <button class="btn btn-whatsapp btn-block" data-modal-close="wa-modal" type="button">Entendi, fechar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="mark">NE</span>Neshop</a>
+        <p>Mais de 35 anos comercializando peças e componentes originais para TVs, ar-condicionados, refrigeradores, lavadoras e muito mais.</p>
+        <div class="footer-social">
+          <a href="#" title="Facebook">f</a><a href="#" title="Instagram">ig</a><a href="#" title="LinkedIn">in</a><a href="#" title="YouTube">yt</a>
+        </div>
+      </div>
+      <div>
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="#">Sobre a Neshop</a></li>
+          <li><a href="#">Como comprar</a></li>
+          <li><a href="#">Segurança</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="#" data-open-wa>WhatsApp: (11) 4000-0000</a></li>
+          <li><a href="#">Telefone: (11) 3000-0000</a></li>
+          <li><a href="#">contato@neshop.com.br</a></li>
+          <li>Seg. a sáb. · 8h às 18h</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="categoria.html?cat=tv">TV</a></li>
+          <li><a href="categoria.html?cat=ar-condicionado">Ar-condicionado</a></li>
+          <li><a href="categoria.html?cat=lava-e-seca">Lava e seca</a></li>
+          <li><a href="categoria.html?cat=refrigerador">Refrigerador</a></li>
+          <li><a href="categorias.html">Ver todas →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Pagamento e segurança</h4>
+        <div class="pay-icons">
+          <span>Pix</span><span>Visa</span><span>Master</span><span>Boleto</span>
+        </div>
+        <div class="seal-icons" style="margin-top:12px;">
+          <span>🔒 Site seguro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© <span class="js-year"></span> Neshop — Protótipo de wireframe para validação interna. Não é o site oficial.</span>
+    <span>CNPJ fictício para fins de protótipo</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  renderGrid("grid-destaques", NESHOP_PRODUCTS.slice(0,8));
+</script>
+</body>
+</html>

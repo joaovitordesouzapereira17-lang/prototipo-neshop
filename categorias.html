@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todas as categorias — Neshop (Protótipo)</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="proto-bar">🛠️ <strong>PROTÓTIPO / WIREFRAME</strong> — proposta de redesign para validação interna. Não é o site oficial da Neshop.<span class="dot">•</span>Todas as interações são simuladas.</div>
+<div class="trust-strip"><div class="wrap"><span>35+ anos de mercado</span><span class="sep">|</span><span>Peças originais</span><span class="sep">|</span><span>Atendimento especializado</span></div></div>
+
+<header class="site-header">
+  <div class="header-main">
+    <a href="index.html" class="logo"><span class="mark">NE</span><span>Neshop<span class="tag">Peças &amp; Componentes</span></span></a>
+    <div class="header-search">
+      <input type="text" id="headerSearchInput" placeholder="Buscar por código, modelo ou nome da peça">
+      <button type="button" onclick="doSearch('headerSearchInput')">🔍 Buscar</button>
+    </div>
+    <div class="header-actions">
+      <a href="#" data-open-wa><span class="ico">💬</span>WhatsApp</a>
+      <a href="conta.html"><span class="ico">👤</span>Minha conta</a>
+      <a href="pedidos.html"><span class="ico">📦</span>Meus pedidos</a>
+      <a href="carrinho.html" class="cart-count"><span class="ico">🛒</span>Carrinho<span class="badge js-cart-badge" style="display:none">0</span></a>
+    </div>
+  </div>
+  <nav class="header-nav"><div class="wrap">
+     <a href="categoria.html?cat=tv">TV</a>
+     <a href="categoria.html?cat=ar-condicionado">Ar-condicionado</a>
+     <a href="categoria.html?cat=lava-e-seca">Lava e seca</a>
+     <a href="categoria.html?cat=refrigerador">Refrigerador</a>
+     <a href="categoria.html?cat=radio-e-som">Rádio e som</a>
+     <a href="categoria.html?cat=ferramentas">Ferramentas</a>
+     <a href="marcas.html">Marcas</a>
+     <a href="ajuda.html">Não sabe qual peça?</a>
+     <a href="conteudo.html">Conteúdos</a>
+  </div></nav>
+</header>
+
+<div class="wrap">
+  <div class="breadcrumb"><a href="index.html">Início</a><span class="sep">/</span><span>Categorias</span></div>
+  <div class="page-head"><h1>Encontre por equipamento</h1><p class="count">Selecione o tipo de aparelho para ver as peças compatíveis.</p></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cat-grid" id="grid-categorias"></div>
+  </div>
+</section>
+
+<button type="button" class="wa-float" data-open-wa title="Fale no WhatsApp">💬</button>
+<div id="wa-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="close" data-modal-close="wa-modal" type="button">✕</button>
+    <h3>💬 Atendimento via WhatsApp</h3>
+    <p>Este é um protótipo — em produção, este botão abriria uma conversa real no WhatsApp com nosso time de especialistas.</p>
+    <div class="wa-preview"><strong>Simulação da mensagem:</strong><br>"<span id="wa-context">Olá! Preciso de ajuda para encontrar uma peça.</span>"</div>
+    <div class="actions"><button class="btn btn-whatsapp btn-block" data-modal-close="wa-modal" type="button">Entendi, fechar</button></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="mark">NE</span>Neshop</a>
+        <p>Mais de 35 anos comercializando peças e componentes originais para TVs, ar-condicionados, refrigeradores, lavadoras e muito mais.</p>
+        <div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">in</a><a href="#">yt</a></div>
+      </div>
+      <div><h4>Institucional</h4><ul>
+        <li><a href="#">Sobre a Neshop</a></li><li><a href="#">Como comprar</a></li>
+        <li><a href="#">Segurança</a></li><li><a href="#">Política de privacidade</a></li>
+      </ul></div>
+      <div><h4>Atendimento</h4><ul>
+        <li><a href="#" data-open-wa>WhatsApp: (11) 4000-0000</a></li>
+        <li><a href="#">Telefone: (11) 3000-0000</a></li>
+        <li><a href="#">contato@neshop.com.br</a></li><li>Seg. a sáb. · 8h às 18h</li>
+      </ul></div>
+      <div><h4>Categorias</h4><ul>
+        <li><a href="categoria.html?cat=tv">TV</a></li>
+        <li><a href="categoria.html?cat=ar-condicionado">Ar-condicionado</a></li>
+        <li><a href="categorias.html">Ver todas →</a></li>
+      </ul></div>
+      <div><h4>Pagamento e segurança</h4>
+        <div class="pay-icons"><span>Pix</span><span>Visa</span><span>Master</span><span>Boleto</span></div>
+        <div class="seal-icons" style="margin-top:12px;"><span>🔒 Site seguro</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© <span class="js-year"></span> Neshop — Protótipo de wireframe para validação interna. Não é o site oficial.</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  document.getElementById("grid-categorias").innerHTML = NESHOP_CATEGORIES.map(c=>
+    `<a class="cat-card" href="categoria.html?cat=${c.slug}"><span class="ic">${c.icon}</span><span class="name">${c.name}</span></a>`
+  ).join("");
+</script>
+</body>
+</html>
