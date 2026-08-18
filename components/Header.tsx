@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Search, MessageCircle, User, Package, ShoppingCart, Menu, X } from "lucide-react";
+import { Search, MessageCircle, User, Package, ShoppingCart, Menu, X, Camera } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { useWhatsApp } from "@/lib/whatsapp-context";
 import { Logo } from "@/components/Logo";
@@ -110,6 +110,14 @@ export function Header() {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           />
+          <Link
+            href="/ajuda"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Não sabe qual peça? Enviar foto"
+            className="border-l border-line px-3 flex items-center justify-center flex-shrink-0 text-ink-500"
+          >
+            <Camera size={18} strokeWidth={1.8} />
+          </Link>
           <button
             type="button"
             onClick={handleSearch}

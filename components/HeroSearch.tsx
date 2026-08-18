@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, Camera } from "lucide-react";
 
 export function HeroSearch() {
   const router = useRouter();
@@ -16,15 +16,14 @@ export function HeroSearch() {
 
   return (
     <section className="bg-gradient-to-br from-navy-950 via-navy-800 to-navy-700 text-white py-9 sm:py-13 pb-8 sm:pb-11">
-      <div className="wrap">
+      <div className="wrap flex flex-col items-center text-center sm:items-start sm:text-left">
         <h1 className="text-[26px] sm:text-[34px] font-extrabold tracking-tight max-w-xl leading-tight">Encontre a peça que você precisa</h1>
         <p className="text-[#b9cee2] text-sm sm:text-[15.5px] mt-2.5 max-w-lg">
-          Busque por código, modelo do equipamento ou nome da peça. Catálogo técnico amplo, com peças originais
-          para diversas marcas.
+          Busque por código, modelo ou nome da peça.
         </p>
 
         {/* Busca — só aparece aqui a partir de sm; no mobile a busca já está fixa no topo do header, evitando duplicidade */}
-        <div className="hidden sm:flex mt-6 bg-white rounded-2xl shadow-lg overflow-hidden max-w-xl">
+        <div className="hidden sm:flex mt-6 bg-white rounded-2xl shadow-lg overflow-hidden max-w-xl w-full">
           <input
             type="text"
             placeholder="Digite código, modelo ou nome da peça"
@@ -42,12 +41,12 @@ export function HeroSearch() {
           </button>
         </div>
 
-        <div className="mt-5 sm:mt-4.5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5 text-[#cfe0ee] text-sm">
-          <span>Não sabe qual peça é?</span>
-          <Link href="/ajuda" className="inline-block w-fit font-bold text-white border-b-2 border-orange-500 pb-0.5 hover:text-orange-500">
-            Envie uma foto ou o modelo →
-          </Link>
-        </div>
+        <Link
+          href="/ajuda"
+          className="mt-5 sm:mt-6 inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-5.5 py-3 rounded-full text-[14px] sm:text-[14.5px]"
+        >
+          <Camera size={17} strokeWidth={2} /> Não sabe qual peça? Envie uma foto
+        </Link>
       </div>
     </section>
   );

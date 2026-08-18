@@ -36,7 +36,7 @@ export default function HomePage() {
 
       <section className="py-13">
         <div className="wrap">
-          <div className="flex justify-between items-end gap-4 mb-6.5">
+          <div className="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:items-end sm:text-left gap-4 mb-6.5">
             <div>
               <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Encontre por equipamento</h2>
               <p className="text-ink-500 text-[14.5px] mt-1.5">Selecione o tipo de aparelho para ver as peças compatíveis.</p>
@@ -87,7 +87,7 @@ export default function HomePage() {
 
       <section className="py-13 bg-white border-y border-line-soft">
         <div className="wrap">
-          <div className="flex justify-between items-end gap-4 mb-6.5">
+          <div className="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:items-end sm:text-left gap-4 mb-6.5">
             <div>
               <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Peças mais procuradas</h2>
               <p className="text-ink-500 text-[14.5px] mt-1.5">Uma seleção das peças com maior procura no nosso catálogo.</p>
@@ -155,7 +155,7 @@ export default function HomePage() {
 
       <section className="py-13 bg-white border-y border-line-soft">
         <div className="wrap">
-          <div className="flex justify-between items-end gap-4 mb-6.5">
+          <div className="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:items-end sm:text-left gap-4 mb-6.5">
             <div>
               <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Marcas parceiras</h2>
               <p className="text-ink-500 text-[14.5px] mt-1.5">Trabalhamos com as principais marcas do mercado de eletroeletrônicos.</p>
@@ -170,7 +170,7 @@ export default function HomePage() {
 
       <section className="py-13">
         <div className="wrap">
-          <div className="flex justify-between items-end gap-4 mb-6.5">
+          <div className="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:items-end sm:text-left gap-4 mb-6.5">
             <div>
               <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Conteúdos para ajudar você</h2>
               <p className="text-ink-500 text-[14.5px] mt-1.5">Guias práticos para identificar e escolher a peça certa.</p>
