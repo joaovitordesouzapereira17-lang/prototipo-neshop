@@ -6,14 +6,16 @@ Não há backend, pagamentos reais, login real, banco de dados ou estoque real. 
 
 ## Como visualizar
 
-Tudo está em um único arquivo (`index.html`), como um site real — a navegação entre telas acontece via JavaScript (hash routing), sem recarregar a página. Basta abrir o arquivo direto no navegador ou servir a pasta:
+Tudo está em **um único arquivo autocontido** (`index.html` — HTML, CSS e JavaScript embutidos, sem dependências externas nem outros arquivos). Basta abrir com duplo clique direto no navegador, não precisa de servidor nem internet.
+
+A navegação entre telas acontece via JavaScript (hash routing), sem recarregar a página — exatamente como um site real, incluindo suporte ao botão "voltar" do navegador.
+
+Se preferir, também pode servir via HTTP:
 
 ```bash
 python3 -m http.server 8000
 # depois acesse http://localhost:8000/index.html
 ```
-
-Também é possível abrir `index.html` diretamente com duplo clique (file://), sem precisar de servidor.
 
 ## Telas incluídas (todas dentro do mesmo index.html)
 
