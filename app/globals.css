@@ -9,6 +9,17 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
+
+  /* iOS Safari aumenta o zoom da página automaticamente ao focar em um campo
+     com font-size menor que 16px. Forçamos 16px em telas pequenas para evitar
+     esse zoom indesejado ao tocar em qualquer busca/campo do site. */
+  @media (max-width: 767px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
+  }
 }
 
 @layer components {
