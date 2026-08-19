@@ -76,7 +76,7 @@ export function BuscaClient() {
           <span>Busca</span>
         </div>
         <div className="py-5 pb-2.5">
-          <h1 className="text-[26px] font-extrabold text-navy-950">
+          <h1 className="text-[26px] font-semibold tracking-tight text-navy-950">
             Resultados para &quot;<span className="text-blue-600">{q}</span>&quot;
           </h1>
           <p className="text-ink-500 text-sm mt-1.5">{sorted.length} peças encontradas</p>

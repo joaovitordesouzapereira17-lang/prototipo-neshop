@@ -11,7 +11,7 @@ export default function CategoriasPage() {
         <span>Categorias</span>
       </div>
       <div className="py-5 pb-2.5">
-        <h1 className="text-[26px] font-extrabold text-navy-950">Encontre por equipamento</h1>
+        <h1 className="text-[26px] font-semibold tracking-tight text-navy-950">Encontre por equipamento</h1>
         <p className="text-ink-500 text-sm mt-1.5">Selecione o tipo de aparelho para ver as peças compatíveis.</p>
       </div>
 

@@ -26,7 +26,7 @@ export function MarcaClient() {
           {marca.slice(0, 2).toUpperCase()}
         </div>
         <div>
-          <h1 className="text-2xl font-extrabold text-navy-950">{marca}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight text-navy-950">{marca}</h1>
           <p className="mt-2 text-ink-500 text-sm max-w-xl">
             Peças e componentes originais {marca} para equipamentos de TV, ar-condicionado, refrigeração e mais,
             com o conhecimento técnico da Neshop.
@@ -49,7 +49,7 @@ export function MarcaClient() {
 
       <section className="py-13">
         <div className="mb-6.5">
-          <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Produtos desta marca</h2>
+          <h2 className="text-2xl font-semibold text-navy-950 tracking-tight">Produtos desta marca</h2>
           <p className="text-ink-500 text-[14.5px] mt-1.5">Peças disponíveis para os equipamentos da marca selecionada.</p>
         </div>
         {marcaProducts.length ? (

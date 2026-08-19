@@ -23,7 +23,7 @@ export default function ConteudoPage() {
         <span>Conteúdos</span>
       </div>
       <div className="py-5 pb-2.5">
-        <h1 className="text-[26px] font-extrabold text-navy-950">Conteúdos para ajudar você</h1>
+        <h1 className="text-[26px] font-semibold tracking-tight text-navy-950">Conteúdos para ajudar você</h1>
         <p className="text-ink-500 text-sm mt-1.5">Guias práticos para identificar e escolher a peça certa antes de comprar.</p>
       </div>
 

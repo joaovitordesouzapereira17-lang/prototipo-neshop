@@ -50,7 +50,7 @@ export default function ContaPage() {
             <div className="w-14 h-14 rounded-2xl bg-white border border-line flex items-center justify-center text-blue-600 shadow-sm mb-4.5">
               <Key size={24} strokeWidth={1.6} />
             </div>
-            <h1 className="text-[21px] font-extrabold text-navy-950">Entrar na sua conta</h1>
+            <h1 className="text-[21px] font-semibold tracking-tight text-navy-950">Entrar na sua conta</h1>
             <p className="text-[13.5px] text-ink-500 mt-2 mb-5.5 leading-relaxed">
               Acompanhe pedidos, salve peças e agilize sua próxima compra na Neshop.
             </p>

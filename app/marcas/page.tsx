@@ -10,7 +10,7 @@ export default function MarcasPage() {
         <span>Marcas</span>
       </div>
       <div className="py-5 pb-2.5">
-        <h1 className="text-[26px] font-extrabold text-navy-950">Encontre peças por marca</h1>
+        <h1 className="text-[26px] font-semibold tracking-tight text-navy-950">Encontre peças por marca</h1>
         <p className="text-ink-500 text-sm mt-1.5">Trabalhamos com as principais marcas do mercado de eletroeletrônicos.</p>
       </div>
 

@@ -17,7 +17,7 @@ export function HeroSearch() {
   return (
     <section className="bg-gradient-to-br from-navy-950 via-navy-800 to-navy-700 text-white py-9 sm:py-13 pb-8 sm:pb-11">
       <div className="wrap flex flex-col items-center text-center sm:items-start sm:text-left">
-        <h1 className="text-[26px] sm:text-[34px] font-extrabold tracking-tight max-w-xl leading-tight">Encontre a peça que você precisa</h1>
+        <h1 className="text-[26px] sm:text-[34px] font-semibold tracking-tight max-w-xl leading-tight">Encontre a peça que você precisa</h1>
         <p className="text-[#b9cee2] text-sm sm:text-[15.5px] mt-2.5 max-w-lg">
           Busque por código, modelo ou nome da peça.
         </p>
@@ -35,7 +35,7 @@ export function HeroSearch() {
           <button
             type="button"
             onClick={handleSearch}
-            className="border-none bg-orange-500 hover:bg-orange-600 text-white font-bold px-7.5 text-[15px] flex items-center gap-2"
+            className="border-none bg-orange-500 hover:bg-orange-600 text-white font-semibold px-7.5 text-[15px] flex items-center gap-2"
           >
             <Search size={16} strokeWidth={2} /> Buscar
           </button>
@@ -43,7 +43,7 @@ export function HeroSearch() {
 
         <Link
           href="/ajuda"
-          className="mt-5 sm:mt-6 inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-5.5 py-3 rounded-full text-[14px] sm:text-[14.5px]"
+          className="mt-5 sm:mt-6 inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5.5 py-3 rounded-full text-[14px] sm:text-[14.5px]"
         >
           <Camera size={17} strokeWidth={2} /> Não sabe qual peça? Envie uma foto
         </Link>

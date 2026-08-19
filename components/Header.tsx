@@ -54,7 +54,7 @@ export function Header() {
           <button
             type="button"
             onClick={handleSearch}
-            className="border-none bg-orange-500 hover:bg-orange-600 text-white px-6 font-bold text-[15px] flex items-center gap-2"
+            className="border-none bg-orange-500 hover:bg-orange-600 text-white px-6 font-semibold text-[15px] flex items-center gap-2"
           >
             <Search size={18} strokeWidth={2} /> Buscar
           </button>

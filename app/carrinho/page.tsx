@@ -24,7 +24,7 @@ export default function CarrinhoPage() {
         <span>Carrinho</span>
       </div>
       <div className="py-5 pb-2.5">
-        <h1 className="text-[26px] font-extrabold text-navy-950">Seu carrinho</h1>
+        <h1 className="text-[26px] font-semibold tracking-tight text-navy-950">Seu carrinho</h1>
         <p className="mt-2">
           <span className="badge-proto">Simulação — nenhum pagamento é processado neste protótipo</span>
         </p>

@@ -125,7 +125,7 @@ export function ProductCard({ product: p }: { product: Product }) {
             <button
               type="button"
               onClick={handleAddToCart}
-              className="w-full bg-blue-500 hover:bg-blue-600 text-navy-950 font-bold text-[13px] rounded-lg py-2.5 flex items-center justify-center gap-2"
+              className="w-full bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold text-[13px] rounded-full py-2.5 flex items-center justify-center gap-2"
             >
               <ShoppingBag size={15} strokeWidth={2} /> Adicionar ao carrinho
             </button>

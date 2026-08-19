@@ -86,7 +86,7 @@ export function CategoriaClient() {
           <span>{catName}</span>
         </div>
         <div className="py-5 pb-2.5">
-          <h1 className="text-[26px] font-extrabold text-navy-950">{catName}</h1>
+          <h1 className="text-[26px] font-semibold tracking-tight text-navy-950">{catName}</h1>
           <p className="text-ink-500 text-sm mt-1.5">{sorted.length} produtos encontrados</p>
         </div>
       </div>

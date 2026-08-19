@@ -38,7 +38,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:items-end sm:text-left gap-4 mb-6.5">
             <div>
-              <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Encontre por equipamento</h2>
+              <h2 className="text-2xl font-semibold text-navy-950 tracking-tight">Encontre por equipamento</h2>
               <p className="text-ink-500 text-[14.5px] mt-1.5">Selecione o tipo de aparelho para ver as peças compatíveis.</p>
             </div>
             <Link href="/categorias" className="text-[13.5px] font-bold text-blue-600 hover:text-orange-600 whitespace-nowrap">
@@ -57,7 +57,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:items-end sm:text-left gap-4 mb-6.5">
             <div>
-              <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Peças mais procuradas</h2>
+              <h2 className="text-2xl font-semibold text-navy-950 tracking-tight">Peças mais procuradas</h2>
               <p className="text-ink-500 text-[14.5px] mt-1.5">Uma seleção das peças com maior procura no nosso catálogo.</p>
             </div>
             <Link href="/categorias" className="text-[13.5px] font-bold text-blue-600 hover:text-orange-600 whitespace-nowrap">
@@ -79,7 +79,7 @@ export default function HomePage() {
               <Search size={40} strokeWidth={1.5} />
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl font-extrabold text-navy-950">Não sabe qual peça você precisa?</h2>
+              <h2 className="text-2xl font-semibold tracking-tight text-navy-950">Não sabe qual peça você precisa?</h2>
               <p className="text-ink-700 mt-2 max-w-lg text-[14.5px]">
                 Envie uma foto do componente ou o modelo do equipamento. Nosso time ajuda você a encontrar a peça
                 adequada — sem complicação.
@@ -109,12 +109,12 @@ export default function HomePage() {
           <div className="rounded-lg overflow-hidden bg-gradient-to-br from-navy-900 via-navy-700 to-blue-600 text-white p-11 flex items-center justify-between gap-9 relative flex-col md:flex-row text-center md:text-left">
             <div className="max-w-lg">
               <span className="text-[12.5px] font-bold text-orange-500 tracking-widest uppercase">Campanha</span>
-              <h2 className="text-[30px] font-extrabold mt-2.5 tracking-tight">Peças originais para seu equipamento</h2>
+              <h2 className="text-[30px] font-semibold mt-2.5 tracking-tight">Peças originais para seu equipamento</h2>
               <p className="text-[#c6dcee] mt-2.5 text-[15px]">
                 Encontre o componente certo para o seu aparelho, com a garantia e o conhecimento técnico de quem
                 entende do assunto há mais de 35 anos.
               </p>
-              <Link href="/categorias" className="inline-flex mt-5.5 bg-orange-500 hover:bg-orange-600 text-white font-bold px-6.5 py-3.5 rounded-lg text-[14.5px]">
+              <Link href="/categorias" className="inline-flex mt-5.5 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6.5 py-3.5 rounded-full text-[14.5px]">
                 Encontrar peças →
               </Link>
             </div>
@@ -128,7 +128,7 @@ export default function HomePage() {
       <section className="py-13">
         <div className="wrap grid md:grid-cols-[1.1fr_.9fr] gap-12 items-center">
           <div>
-            <h2 className="text-[28px] font-extrabold text-navy-950 tracking-tight leading-tight">
+            <h2 className="text-[28px] font-semibold text-navy-950 tracking-tight leading-tight">
               Mais de 35 anos ajudando equipamentos a voltar a funcionar.
             </h2>
             <p className="text-ink-500 mt-3.5 text-[15px] max-w-md">
@@ -158,7 +158,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:items-end sm:text-left gap-4 mb-6.5">
             <div>
-              <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Marcas parceiras</h2>
+              <h2 className="text-2xl font-semibold text-navy-950 tracking-tight">Marcas parceiras</h2>
               <p className="text-ink-500 text-[14.5px] mt-1.5">Trabalhamos com as principais marcas do mercado de eletroeletrônicos.</p>
             </div>
             <Link href="/marcas" className="text-[13.5px] font-bold text-blue-600 hover:text-orange-600 whitespace-nowrap">
@@ -173,7 +173,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:items-end sm:text-left gap-4 mb-6.5">
             <div>
-              <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Conteúdos para ajudar você</h2>
+              <h2 className="text-2xl font-semibold text-navy-950 tracking-tight">Conteúdos para ajudar você</h2>
               <p className="text-ink-500 text-[14.5px] mt-1.5">Guias práticos para identificar e escolher a peça certa.</p>
             </div>
             <Link href="/conteudo" className="text-[13.5px] font-bold text-blue-600 hover:text-orange-600 whitespace-nowrap">
@@ -195,7 +195,7 @@ export default function HomePage() {
       <section className="py-13 bg-white border-y border-line-soft">
         <div className="wrap">
           <div className="mb-6.5">
-            <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Quem compra, confia.</h2>
+            <h2 className="text-2xl font-semibold text-navy-950 tracking-tight">Quem compra, confia.</h2>
             <p className="text-ink-500 text-[14.5px] mt-1.5">Depoimentos de clientes reais da Neshop (texto ilustrativo para o protótipo).</p>
           </div>
           <div className="grid md:grid-cols-3 gap-4.5">

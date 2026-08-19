@@ -144,7 +144,7 @@ export function ProdutoClient() {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <span className="text-[12.5px] font-semibold text-blue-400 uppercase tracking-wide">{p.brand}</span>
-                <h1 className="text-2xl font-extrabold mt-1.5 leading-snug">
+                <h1 className="text-2xl font-semibold tracking-tight mt-1.5 leading-snug">
                   {p.name} <span className="text-white/40 font-mono text-xl tracking-tight">— {p.codigo}</span>
                 </h1>
               </div>
@@ -194,7 +194,7 @@ export function ProdutoClient() {
               <button
                 type="button"
                 onClick={handleBuy}
-                className="flex-1 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold text-sm rounded-lg py-3"
+                className="flex-1 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold text-sm rounded-full py-3"
               >
                 <ShoppingCart size={16} strokeWidth={2} /> {p.stock ? "Comprar agora" : "Avisar quando disponível"}
               </button>
@@ -246,7 +246,7 @@ export function ProdutoClient() {
 
             {/* Compatibilidade */}
             <div className="mt-5 border-t border-white/10 pt-4">
-              <h2 className="text-[13px] font-extrabold text-white uppercase tracking-wide mb-3">Compatibilidade</h2>
+              <h2 className="text-[13px] font-semibold text-white uppercase tracking-wide mb-3">Compatibilidade</h2>
               <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-[13px]">
                 <div>
                   <div className="text-white/40 text-[11.5px]">Marca</div>
@@ -315,7 +315,7 @@ export function ProdutoClient() {
 
       {/* Avaliações */}
       <div className="wrap mt-3">
-        <h2 className="text-xl font-extrabold text-navy-950">Avaliações</h2>
+        <h2 className="text-xl font-semibold tracking-tight text-navy-950">Avaliações</h2>
         <div className="grid md:grid-cols-3 gap-4.5 mt-4">
           {REVIEWS.map((r) => (
             <div key={r.who} className="card p-5.5">
@@ -336,7 +336,7 @@ export function ProdutoClient() {
       <section className="py-13 bg-white border-t border-line-soft mt-9">
         <div className="wrap">
           <div className="mb-6.5">
-            <h2 className="text-2xl font-extrabold text-navy-950 tracking-tight">Produtos relacionados</h2>
+            <h2 className="text-2xl font-semibold text-navy-950 tracking-tight">Produtos relacionados</h2>
             <p className="text-ink-500 text-[14.5px] mt-1.5">Outras peças da mesma categoria que podem te interessar.</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4.5">
@@ -356,7 +356,7 @@ export function ProdutoClient() {
         <button
           type="button"
           onClick={handleBuy}
-          className="flex-shrink-0 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold text-sm rounded-lg px-5.5 py-3"
+          className="flex-shrink-0 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold text-sm rounded-full px-5.5 py-3"
         >
           <ShoppingCart size={16} strokeWidth={2} /> {p.stock ? "Comprar agora" : "Avisar"}
         </button>

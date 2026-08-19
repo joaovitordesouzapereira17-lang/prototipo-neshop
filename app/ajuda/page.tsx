@@ -50,7 +50,7 @@ export default function AjudaPage() {
         <div className="card p-5 sm:p-9">
           {step === 1 && (
             <div>
-              <h2 className="text-[21px] font-extrabold text-navy-950">Não sabe qual peça comprar?</h2>
+              <h2 className="text-[21px] font-semibold tracking-tight text-navy-950">Não sabe qual peça comprar?</h2>
               <p className="text-ink-500 mt-2 text-sm">
                 Sem problema. Você não precisa saber o nome técnico da peça — nosso time de especialistas te ajuda a
                 identificar o componente certo a partir de uma foto ou do modelo do equipamento.
@@ -73,7 +73,7 @@ export default function AjudaPage() {
 
           {step === 2 && (
             <div>
-              <h2 className="text-[21px] font-extrabold text-navy-950">Envie uma foto ou o modelo do equipamento</h2>
+              <h2 className="text-[21px] font-semibold tracking-tight text-navy-950">Envie uma foto ou o modelo do equipamento</h2>
               <p className="text-ink-500 mt-2 text-sm">Isso ajuda nosso time a identificar rapidamente a peça correta.</p>
               <div className="mt-5.5 border-2 border-dashed border-line rounded-xl p-9 text-center text-ink-500 bg-bg">
                 <Camera size={34} strokeWidth={1.4} className="mx-auto text-ink-300" />
@@ -105,7 +105,7 @@ export default function AjudaPage() {
 
           {step === 3 && (
             <div>
-              <h2 className="text-[21px] font-extrabold text-navy-950">Só mais alguns dados</h2>
+              <h2 className="text-[21px] font-semibold tracking-tight text-navy-950">Só mais alguns dados</h2>
               <p className="text-ink-500 mt-2 text-sm">Assim nosso time consegue te responder pelo canal que preferir.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-5.5">
                 <div className="field"><label>Nome</label><input type="text" placeholder="Seu nome" /></div>
@@ -125,7 +125,7 @@ export default function AjudaPage() {
               <div className="w-18.5 h-18.5 rounded-full bg-[#e9f7ee] text-green-600 flex items-center justify-center mx-auto mb-4.5">
                 <CheckCircle2 size={36} strokeWidth={1.6} />
               </div>
-              <h2 className="text-[21px] font-extrabold text-navy-950">Solicitação enviada com sucesso!</h2>
+              <h2 className="text-[21px] font-semibold tracking-tight text-navy-950">Solicitação enviada com sucesso!</h2>
               <p className="text-ink-500 mt-2">
                 Nosso time de especialistas vai analisar as informações enviadas e retornar em breve com a peça
                 correta para o seu equipamento.

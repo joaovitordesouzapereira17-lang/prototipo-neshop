@@ -15,7 +15,7 @@ export default function PedidosPage() {
         <span>Meus pedidos</span>
       </div>
       <div className="py-5 pb-2.5">
-        <h1 className="text-[26px] font-extrabold text-navy-950">Meus pedidos</h1>
+        <h1 className="text-[26px] font-semibold tracking-tight text-navy-950">Meus pedidos</h1>
       </div>
 
       <section className="pb-15">

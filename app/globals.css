@@ -28,7 +28,7 @@
   }
 
   .btn {
-    @apply inline-flex items-center gap-2 rounded-lg px-[22px] py-3 font-semibold text-sm border border-transparent
+    @apply inline-flex items-center gap-2 rounded-full px-[22px] py-3 font-semibold text-sm border border-transparent
            transition-colors duration-150 active:scale-[0.98]
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2
            disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100;
