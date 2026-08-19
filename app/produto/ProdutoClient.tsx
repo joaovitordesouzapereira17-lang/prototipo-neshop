@@ -66,7 +66,7 @@ export function ProdutoClient() {
   }
 
   return (
-    <div className="pb-40 md:pb-0">
+    <>
       <div className="wrap">
         <div className="text-[13px] text-ink-500 pt-4">
           <Link href="/" className="text-blue-600 font-semibold">Início</Link>
@@ -304,8 +304,12 @@ export function ProdutoClient() {
         </div>
       </section>
 
+      {/* Reserva o espaço da barra de compra fixa, para o rodapé (fora deste componente,
+          renderizado depois de <main> no layout) não ficar coberto por ela no mobile. */}
+      <div className="produto-buybar-spacer md:hidden" aria-hidden />
+
       {/* Barra de compra fixa — mobile, logo acima da navegação inferior */}
-      <div className="md:hidden fixed bottom-20 inset-x-0 z-40 bg-navy-900/97 backdrop-blur border-t border-white/10 px-4 py-3 flex items-center gap-3">
+      <div className="produto-buybar md:hidden fixed inset-x-0 z-40 bg-navy-900/97 backdrop-blur border-t border-white/10 px-4 py-3 flex items-center gap-3">
         <div className="flex-1 min-w-0">
           <div className="text-[10.5px] text-white/50 font-semibold uppercase tracking-wide leading-none">Total</div>
           <div className="text-lg font-extrabold text-white leading-tight mt-1 truncate">{money(p.price)}</div>
@@ -318,6 +322,6 @@ export function ProdutoClient() {
           <ShoppingCart size={16} strokeWidth={2} /> {p.stock ? "Comprar agora" : "Avisar"}
         </button>
       </div>
-    </div>
+    </>
   );
 }
