@@ -70,6 +70,7 @@ export function ProductCard({ product: p }: { product: Product }) {
         <div className="p-3 flex flex-col gap-1 flex-1">
           <span className="text-[10.5px] font-bold text-blue-400 uppercase tracking-wide">{p.brand}</span>
           <h3 className="text-[13px] font-bold text-white leading-snug line-clamp-2">{p.name}</h3>
+          <span className="text-[10.5px] text-white/40">Cód. {p.codigo}</span>
           <div className="flex items-center gap-1 text-[10.5px] text-white/50">
             <StarRating rating={p.rating} size={11} />
             <span>{p.rating} ({p.reviews})</span>
@@ -141,6 +142,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           </div>
           <span className="text-[11.5px] font-bold text-blue-400 uppercase tracking-wide">{p.brand}</span>
           <h3 className="text-sm font-bold text-white leading-tight line-clamp-2">{p.name}</h3>
+          <span className="text-[11px] text-white/40">Cód. {p.codigo}</span>
           <div className="flex items-baseline gap-2 mt-auto pt-0.5">
             <span className="text-[19px] font-extrabold text-white">{money(p.price)}</span>
             {p.oldPrice && <span className="text-white/40 text-xs line-through">{money(p.oldPrice)}</span>}

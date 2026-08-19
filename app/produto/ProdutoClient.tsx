@@ -5,16 +5,22 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   MessageCircle, Heart, Share2, ShoppingCart, Tag, ShieldCheck, CheckCircle2, Truck,
-  ChevronLeft, ChevronRight, ChevronDown, Search, Ruler, FileText,
+  ChevronLeft, ChevronRight, ChevronDown, Search, Ruler, FileText, Info,
 } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { StarRating } from "@/components/StarRating";
 import { useCart } from "@/lib/cart-context";
 import { useWhatsApp } from "@/lib/whatsapp-context";
-import { CAT_NAMES, PRODUCTS, money } from "@/lib/products";
+import { CAT_NAMES, PRODUCTS, money, typeOf } from "@/lib/products";
 import { categoryIcon } from "@/lib/category-icons";
 
 const GALLERY_EXTRA_ICONS = [Search, Ruler, FileText];
+
+const TYPE_LABELS: Record<string, string> = {
+  placa: "Placa",
+  motor: "Motor / Compressor",
+  outros: "Peça",
+};
 
 const REVIEWS = [
   { rating: 5, quote: "Peça original, chegou rápido e resolveu o problema do equipamento.", who: "Carlos M.", initial: "C" },
@@ -225,32 +231,69 @@ export function ProdutoClient() {
               </span>
             </div>
 
-            {/* Descrição / compatibilidade em sanfona */}
-            <div className="mt-5 border-t border-white/10 pt-4">
-              <p className="text-[13.5px] text-white/70 leading-relaxed">
-                Peça de reposição indicada para o modelo {p.modelo}. Componente testado e revisado, seguindo os
-                padrões técnicos do fabricante.
+            {/* Antes de comprar — previne compra incorreta */}
+            <div className="mt-5 bg-white/[0.05] border border-white/10 rounded-xl px-4 py-3.5">
+              <div className="flex items-center gap-2 text-[12px] font-extrabold text-white uppercase tracking-wide">
+                <Info size={14} strokeWidth={2} /> Antes de comprar
+              </div>
+              <p className="text-[12.5px] text-white/65 mt-1.5 leading-relaxed">
+                Confira o modelo do equipamento e o código da peça antes de finalizar a compra.
               </p>
+              <p className="text-[12.5px] text-white/65 mt-1 leading-relaxed">
+                Não encontrou seu modelo? Nossa equipe pode ajudar a validar a aplicação.
+              </p>
+            </div>
+
+            {/* Compatibilidade */}
+            <div className="mt-5 border-t border-white/10 pt-4">
+              <h2 className="text-[13px] font-extrabold text-white uppercase tracking-wide mb-3">Compatibilidade</h2>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-[13px]">
+                <div>
+                  <div className="text-white/40 text-[11.5px]">Marca</div>
+                  <div className="font-semibold text-white mt-0.5">{p.brand}</div>
+                </div>
+                <div>
+                  <div className="text-white/40 text-[11.5px]">Modelo</div>
+                  <div className="font-semibold text-white mt-0.5">{p.modelo}</div>
+                </div>
+                <div>
+                  <div className="text-white/40 text-[11.5px]">Código da peça</div>
+                  <div className="font-semibold text-white mt-0.5">{p.codigo}</div>
+                </div>
+                <div>
+                  <div className="text-white/40 text-[11.5px]">Tipo</div>
+                  <div className="font-semibold text-white mt-0.5">{TYPE_LABELS[typeOf(p)]}</div>
+                </div>
+              </div>
+
               <button
                 type="button"
                 onClick={() => setDescExpanded((v) => !v)}
-                className="mt-2 flex items-center gap-1.5 text-[13px] font-bold text-blue-400 hover:text-blue-300"
+                className="mt-3.5 flex items-center gap-1.5 text-[13px] font-bold text-blue-400 hover:text-blue-300"
               >
-                {descExpanded ? "Ver menos" : "Ver detalhes completos de compatibilidade"}
+                {descExpanded ? "Ver menos" : "Ver outros modelos compatíveis"}
                 <ChevronDown size={15} strokeWidth={2.2} className={`transition-transform ${descExpanded ? "rotate-180" : ""}`} />
               </button>
               {descExpanded && (
-                <div className="mt-3 text-[13px] text-white/70 leading-relaxed">
-                  <p>Componente testado e revisado, garantindo o funcionamento correto do equipamento. Compatível com:</p>
-                  <ul className="grid grid-cols-2 gap-2 mt-2.5">
-                    {[p.modelo, `${p.modelo} (variante A)`, `${p.modelo} (variante B)`, "Consulte outros modelos compatíveis"].map((m) => (
-                      <li key={m} className="bg-white/[0.06] rounded-md px-3 py-2 text-[12.5px] text-white/85 font-semibold">
-                        {m}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="grid grid-cols-2 gap-2 mt-2.5">
+                  {[p.modelo, `${p.modelo} (variante A)`, `${p.modelo} (variante B)`, "Consulte outros modelos compatíveis"].map((m) => (
+                    <li key={m} className="bg-white/[0.06] rounded-md px-3 py-2 text-[12.5px] text-white/85 font-semibold">
+                      {m}
+                    </li>
+                  ))}
+                </ul>
               )}
+
+              <div className="mt-3.5 pt-3.5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
+                <p className="text-[12.5px] text-white/60">Não encontrou o modelo do seu equipamento?</p>
+                <button
+                  type="button"
+                  onClick={() => openWhatsApp(`Olá! Não encontrei meu modelo para o produto '${p.name}'. Podem me ajudar a validar a aplicação?`)}
+                  className="text-[12.5px] font-bold text-blue-400 hover:text-blue-300 whitespace-nowrap"
+                >
+                  Falar com especialista →
+                </button>
+              </div>
             </div>
 
             {/* Vendedor / autoridade técnica */}
@@ -259,8 +302,8 @@ export function ProdutoClient() {
                 NE
               </span>
               <div className="flex-1 min-w-0">
-                <div className="font-bold text-sm">Neshop — Distribuidor Autorizado</div>
-                <StarRating rating={5} size={12} />
+                <div className="font-bold text-sm">Vendido e entregue pela Neshop</div>
+                <div className="text-[12px] text-white/50">Mais de 35 anos no mercado de peças e componentes</div>
               </div>
               <Link href={`/marca?marca=${encodeURIComponent(p.brand)}`} className="text-[12.5px] font-bold text-blue-400 hover:text-blue-300 whitespace-nowrap">
                 Ver todos os modelos →

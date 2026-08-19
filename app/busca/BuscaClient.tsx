@@ -169,11 +169,18 @@ export function BuscaClient() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-15">
-              <p className="font-bold text-navy-950">Não encontramos peças exatas para essa busca.</p>
-              <p className="text-ink-500 mt-2">Tente buscar pelo código da peça, modelo do equipamento ou fale com um especialista.</p>
-              <div className="flex justify-center mt-7.5">
-                <Link href="/ajuda" className="btn btn-primary">Enviar foto ou modelo</Link>
+            <div className="text-center py-15 mb-8 md:mb-0 max-w-md mx-auto">
+              <p className="font-bold text-navy-950 text-lg">Não encontramos exatamente o que você procurou.</p>
+              <ul className="mt-4 text-left text-[13.5px] text-ink-700 space-y-1.5 inline-block">
+                <li>• Verifique o código digitado.</li>
+                <li>• Tente pesquisar pelo modelo do equipamento.</li>
+                <li>• Pesquise pelo nome da peça.</li>
+                <li>• Escolha uma categoria no menu.</li>
+                <li>• Fale com nosso especialista.</li>
+              </ul>
+              <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
+                <Link href="/ajuda" className="btn btn-primary justify-center w-full sm:w-auto">Enviar foto da peça</Link>
+                <Link href="/categorias" className="btn btn-secondary justify-center w-full sm:w-auto">Ver categorias</Link>
               </div>
             </div>
           )}
