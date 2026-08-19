@@ -1,14 +1,20 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { FilterPill } from "@/components/FilterPill";
+import { Pagination } from "@/components/Pagination";
 import { CAT_NAMES, CATEGORIES, PRODUCTS, matchesQuery, sortProducts, type SortMode } from "@/lib/products";
 
 const BRAND_OPTIONS = ["LG", "Samsung", "Philco"];
+
+// Tamanho de página reduzido de propósito para demonstrar a paginação com o
+// catálogo pequeno do protótipo — ajustar para um valor realista (ex.: 24)
+// quando o catálogo real for integrado.
+const PAGE_SIZE = 6;
 
 export function BuscaClient() {
   const searchParams = useSearchParams();
@@ -37,6 +43,14 @@ export function BuscaClient() {
   }, [baseList, cats, brands, priceMin, priceMax]);
 
   const sorted = sort === "relevance" ? filtered : sortProducts(filtered, sort);
+
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const paged = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  useEffect(() => {
+    setPage(1);
+  }, [q, cats, brands, priceMin, priceMax, sort]);
 
   function toggle(list: string[], value: string, setList: (v: string[]) => void) {
     setList(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
@@ -163,11 +177,14 @@ export function BuscaClient() {
           </div>
 
           {sorted.length > 0 ? (
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4.5">
-              {sorted.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4.5">
+                {paged.map((p) => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+              </div>
+              <Pagination page={page} totalPages={totalPages} onChange={setPage} />
+            </>
           ) : (
             <div className="text-center py-15 mb-8 md:mb-0 max-w-md mx-auto">
               <p className="font-bold text-navy-950 text-lg">Não encontramos exatamente o que você procurou.</p>

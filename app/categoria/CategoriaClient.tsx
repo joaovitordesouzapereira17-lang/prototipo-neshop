@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { FilterPill } from "@/components/FilterPill";
+import { Pagination } from "@/components/Pagination";
 import { CAT_NAMES, PRODUCTS, sortProducts, typeOf, type SortMode } from "@/lib/products";
 
 const BRAND_OPTIONS = ["LG", "Samsung", "Philco", "Brastemp", "Consul"];
@@ -13,6 +14,11 @@ const TYPE_OPTIONS: { value: "placa" | "motor" | "outros"; label: string }[] = [
   { value: "motor", label: "Motores / Compressores" },
   { value: "outros", label: "Outras peças" },
 ];
+
+// Tamanho de página reduzido de propósito para demonstrar a paginação com o
+// catálogo pequeno do protótipo — ajustar para um valor realista (ex.: 24)
+// quando o catálogo real for integrado.
+const PAGE_SIZE = 6;
 
 export function CategoriaClient() {
   const searchParams = useSearchParams();
@@ -41,6 +47,14 @@ export function CategoriaClient() {
   }, [baseList, brands, types, onlyStock, priceMin, priceMax]);
 
   const sorted = sort === "relevance" ? filtered : sortProducts(filtered, sort);
+
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const paged = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  useEffect(() => {
+    setPage(1);
+  }, [cat, brands, types, onlyStock, priceMin, priceMax, sort]);
 
   function toggle(list: string[], value: string, setList: (v: string[]) => void) {
     setList(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
@@ -184,10 +198,11 @@ export function CategoriaClient() {
             </select>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4.5">
-            {sorted.map((p) => (
+            {paged.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
+          <Pagination page={page} totalPages={totalPages} onChange={setPage} />
         </div>
       </div>
     </>
