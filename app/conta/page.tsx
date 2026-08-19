@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Key, Mail, Lock, CheckCircle2 } from "lucide-react";
+import { Key, Mail, Lock, CheckCircle2, Info } from "lucide-react";
 import { useWhatsApp } from "@/lib/whatsapp-context";
 
 function validateEmail(email: string) {
@@ -13,9 +13,11 @@ export default function ContaPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [notice, setNotice] = useState("");
   const { open: openWhatsApp } = useWhatsApp();
 
   function handleSignIn() {
+    setNotice("");
     if (!email || !password) {
       setError("Preencha e-mail e senha.");
       setSuccess(false);
@@ -28,6 +30,12 @@ export default function ContaPage() {
     }
     setError("");
     setSuccess(true);
+  }
+
+  function handleUnavailable(message: string) {
+    setSuccess(false);
+    setError("");
+    setNotice(message);
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -102,6 +110,13 @@ export default function ContaPage() {
               </div>
             )}
 
+            {notice && (
+              <div className="w-full mt-3.5 bg-blue-100 border border-blue-500/20 text-navy-900 rounded-[10px] px-3.5 py-3 text-[13px] text-left leading-relaxed flex gap-2">
+                <Info size={16} strokeWidth={1.8} className="flex-shrink-0 mt-0.5 text-blue-600" />
+                <span>{notice}</span>
+              </div>
+            )}
+
             <div className="flex items-center gap-2.5 w-full my-5.5 text-ink-300 text-xs font-bold">
               <div className="flex-1 h-px bg-line" />
               ou entre com
@@ -113,7 +128,7 @@ export default function ContaPage() {
                 <button
                   key={i}
                   type="button"
-                  onClick={() => alert("Simulação: login social não é funcional neste protótipo.")}
+                  onClick={() => handleUnavailable("Login social simulado — em uma implementação real, você entraria com essa conta diretamente.")}
                   className="flex-1 h-11 rounded-[10px] border border-line bg-white font-extrabold text-[15px] text-ink-700 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-100"
                 >
                   {label}
@@ -123,16 +138,13 @@ export default function ContaPage() {
 
             <p className="text-[12.5px] text-ink-500 mt-5">
               Ainda não tem conta?{" "}
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Simulação: cadastro não é funcional neste protótipo.");
-                }}
+              <button
+                type="button"
+                onClick={() => handleUnavailable("Cadastro simulado — em uma implementação real, você criaria sua conta aqui.")}
                 className="text-blue-600 font-bold"
               >
                 Criar conta
-              </a>
+              </button>
             </p>
           </div>
         </div>
