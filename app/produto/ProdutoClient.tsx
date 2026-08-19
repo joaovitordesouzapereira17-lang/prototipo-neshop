@@ -66,7 +66,7 @@ export function ProdutoClient() {
   }
 
   return (
-    <>
+    <div className="pb-40 md:pb-0">
       <div className="wrap">
         <div className="text-[13px] text-ink-500 pt-4">
           <Link href="/" className="text-blue-600 font-semibold">Início</Link>
@@ -184,7 +184,7 @@ export function ProdutoClient() {
               {p.stock ? "Em estoque — envio imediato" : "Fora de estoque — consulte disponibilidade"}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-2.5 mt-5">
+            <div className="hidden md:flex gap-2.5 mt-5">
               <button
                 type="button"
                 onClick={handleBuy}
@@ -200,6 +200,15 @@ export function ProdutoClient() {
                 <MessageCircle size={16} strokeWidth={2} /> Falar com técnico no WhatsApp
               </button>
             </div>
+
+            {/* No mobile o botão de compra some do fluxo — fica fixo na barra inferior */}
+            <button
+              type="button"
+              onClick={() => openWhatsApp("Olá! Tenho uma dúvida técnica sobre um produto do site.")}
+              className="md:hidden flex items-center justify-center gap-2 border border-white/25 hover:border-white/50 text-white font-bold text-sm rounded-lg py-3 mt-5 transition-colors"
+            >
+              <MessageCircle size={16} strokeWidth={2} /> Falar com técnico no WhatsApp
+            </button>
 
             <div className="flex flex-wrap gap-2 mt-5">
               <span className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/10 text-white/80 text-[11.5px] font-semibold px-3 py-1.5 rounded-full">
@@ -294,6 +303,21 @@ export function ProdutoClient() {
           </div>
         </div>
       </section>
-    </>
+
+      {/* Barra de compra fixa — mobile, logo acima da navegação inferior */}
+      <div className="md:hidden fixed bottom-20 inset-x-0 z-40 bg-navy-900/97 backdrop-blur border-t border-white/10 px-4 py-3 flex items-center gap-3">
+        <div className="flex-1 min-w-0">
+          <div className="text-[10.5px] text-white/50 font-semibold uppercase tracking-wide leading-none">Total</div>
+          <div className="text-lg font-extrabold text-white leading-tight mt-1 truncate">{money(p.price)}</div>
+        </div>
+        <button
+          type="button"
+          onClick={handleBuy}
+          className="flex-shrink-0 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-bold text-sm rounded-lg px-5.5 py-3"
+        >
+          <ShoppingCart size={16} strokeWidth={2} /> {p.stock ? "Comprar agora" : "Avisar"}
+        </button>
+      </div>
+    </div>
   );
 }
