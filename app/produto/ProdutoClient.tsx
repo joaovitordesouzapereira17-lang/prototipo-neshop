@@ -85,12 +85,12 @@ export function ProdutoClient() {
 
       {/* Ficha split-screen */}
       <div className="wrap py-6">
-        <div className="bg-navy-800 rounded-3xl border border-white/10 p-4 md:p-6 grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="bg-navy-800 rounded-2xl border border-white/10 p-4 md:p-6 grid md:grid-cols-2 gap-6 md:gap-8">
           {/* Lado esquerdo — galeria */}
           <div>
-            <div className="relative aspect-square rounded-3xl bg-white/[0.04] flex items-center justify-center overflow-hidden">
+            <div className="relative aspect-square rounded-2xl bg-white/[0.04] flex items-center justify-center overflow-hidden">
               {p.orig && (
-                <span className="absolute top-4 left-4 z-10 bg-green-600 text-white text-xs font-bold px-2.5 py-1.5 rounded-md">
+                <span className="absolute top-4 left-4 z-10 bg-green-600 text-white text-xs font-semibold px-2.5 py-1.5 rounded-md">
                   Original
                 </span>
               )}
@@ -118,7 +118,7 @@ export function ProdutoClient() {
               <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-navy-950/70 to-transparent">
                 <Link
                   href={`/categoria?cat=${p.cat}`}
-                  className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white font-bold text-[13px] rounded-lg py-2.5 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white font-semibold text-[13px] rounded-lg py-2.5 transition-colors"
                 >
                   <Search size={15} strokeWidth={2} /> Buscar peças compatíveis
                 </Link>
@@ -143,9 +143,9 @@ export function ProdutoClient() {
           <div className="flex flex-col text-white">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <span className="text-[12.5px] font-bold text-blue-400 uppercase tracking-wide">{p.brand}</span>
+                <span className="text-[12.5px] font-semibold text-blue-400 uppercase tracking-wide">{p.brand}</span>
                 <h1 className="text-2xl font-extrabold mt-1.5 leading-snug">
-                  {p.name} <span className="text-white/40 font-semibold">— {p.codigo}</span>
+                  {p.name} <span className="text-white/40 font-mono text-xl tracking-tight">— {p.codigo}</span>
                 </h1>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
@@ -185,7 +185,7 @@ export function ProdutoClient() {
               {p.oldPrice && <span className="text-white/40 text-base line-through">{money(p.oldPrice)}</span>}
               <span className="text-[13px] text-blue-400 font-semibold">ou {p.installment}</span>
             </div>
-            <div className={`mt-2 flex items-center gap-2 text-[13px] font-bold ${p.stock ? "text-green-500" : "text-red-400"}`}>
+            <div className={`mt-2 flex items-center gap-2 text-[13px] font-semibold ${p.stock ? "text-green-500" : "text-red-400"}`}>
               <span className={`w-2 h-2 rounded-full ${p.stock ? "bg-green-500" : "bg-red-400"}`} />
               {p.stock ? "Em estoque — envio imediato" : "Fora de estoque — consulte disponibilidade"}
             </div>
@@ -194,14 +194,14 @@ export function ProdutoClient() {
               <button
                 type="button"
                 onClick={handleBuy}
-                className="flex-1 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-bold text-sm rounded-lg py-3"
+                className="flex-1 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold text-sm rounded-lg py-3"
               >
                 <ShoppingCart size={16} strokeWidth={2} /> {p.stock ? "Comprar agora" : "Avisar quando disponível"}
               </button>
               <button
                 type="button"
                 onClick={() => openWhatsApp("Olá! Tenho uma dúvida técnica sobre um produto do site.")}
-                className="flex-1 flex items-center justify-center gap-2 border border-white/25 hover:border-white/50 text-white font-bold text-sm rounded-lg py-3 transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 border border-white/25 hover:border-white/50 text-white font-semibold text-sm rounded-lg py-3 transition-colors"
               >
                 <MessageCircle size={16} strokeWidth={2} /> Falar com técnico no WhatsApp
               </button>
@@ -211,14 +211,14 @@ export function ProdutoClient() {
             <button
               type="button"
               onClick={() => openWhatsApp("Olá! Tenho uma dúvida técnica sobre um produto do site.")}
-              className="md:hidden flex items-center justify-center gap-2 border border-white/25 hover:border-white/50 text-white font-bold text-sm rounded-lg py-3 mt-5 transition-colors"
+              className="md:hidden flex items-center justify-center gap-2 border border-white/25 hover:border-white/50 text-white font-semibold text-sm rounded-lg py-3 mt-5 transition-colors"
             >
               <MessageCircle size={16} strokeWidth={2} /> Falar com técnico no WhatsApp
             </button>
 
             <div className="flex flex-wrap gap-2 mt-5">
               <span className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/10 text-white/80 text-[11.5px] font-semibold px-3 py-1.5 rounded-full">
-                <Tag size={12} strokeWidth={2} /> OEM: {p.codigo}
+                <Tag size={12} strokeWidth={2} /> OEM: <span className="font-mono">{p.codigo}</span>
               </span>
               <span className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/10 text-white/80 text-[11.5px] font-semibold px-3 py-1.5 rounded-full">
                 <ShieldCheck size={12} strokeWidth={2} /> 90 dias de garantia
@@ -254,11 +254,11 @@ export function ProdutoClient() {
                 </div>
                 <div>
                   <div className="text-white/40 text-[11.5px]">Modelo</div>
-                  <div className="font-semibold text-white mt-0.5">{p.modelo}</div>
+                  <div className="font-mono text-white mt-0.5 tracking-tight">{p.modelo}</div>
                 </div>
                 <div>
                   <div className="text-white/40 text-[11.5px]">Código da peça</div>
-                  <div className="font-semibold text-white mt-0.5">{p.codigo}</div>
+                  <div className="font-mono text-white mt-0.5 tracking-tight">{p.codigo}</div>
                 </div>
                 <div>
                   <div className="text-white/40 text-[11.5px]">Tipo</div>
@@ -269,7 +269,7 @@ export function ProdutoClient() {
               <button
                 type="button"
                 onClick={() => setDescExpanded((v) => !v)}
-                className="mt-3.5 flex items-center gap-1.5 text-[13px] font-bold text-blue-400 hover:text-blue-300"
+                className="mt-3.5 flex items-center gap-1.5 text-[13px] font-semibold text-blue-400 hover:text-blue-300"
               >
                 {descExpanded ? "Ver menos" : "Ver outros modelos compatíveis"}
                 <ChevronDown size={15} strokeWidth={2.2} className={`transition-transform ${descExpanded ? "rotate-180" : ""}`} />
@@ -289,7 +289,7 @@ export function ProdutoClient() {
                 <button
                   type="button"
                   onClick={() => openWhatsApp(`Olá! Não encontrei meu modelo para o produto '${p.name}'. Podem me ajudar a validar a aplicação?`)}
-                  className="text-[12.5px] font-bold text-blue-400 hover:text-blue-300 whitespace-nowrap"
+                  className="text-[12.5px] font-semibold text-blue-400 hover:text-blue-300 whitespace-nowrap"
                 >
                   Falar com especialista →
                 </button>
@@ -302,10 +302,10 @@ export function ProdutoClient() {
                 NE
               </span>
               <div className="flex-1 min-w-0">
-                <div className="font-bold text-sm">Vendido e entregue pela Neshop</div>
+                <div className="font-semibold text-sm">Vendido e entregue pela Neshop</div>
                 <div className="text-[12px] text-white/50">Mais de 35 anos no mercado de peças e componentes</div>
               </div>
-              <Link href={`/marca?marca=${encodeURIComponent(p.brand)}`} className="text-[12.5px] font-bold text-blue-400 hover:text-blue-300 whitespace-nowrap">
+              <Link href={`/marca?marca=${encodeURIComponent(p.brand)}`} className="text-[12.5px] font-semibold text-blue-400 hover:text-blue-300 whitespace-nowrap">
                 Ver todos os modelos →
               </Link>
             </div>
@@ -321,7 +321,7 @@ export function ProdutoClient() {
             <div key={r.who} className="card p-5.5">
               <StarRating rating={r.rating} />
               <p className="mt-3 text-sm text-ink-700 leading-relaxed">&quot;{r.quote}&quot;</p>
-              <div className="mt-3.5 text-[13px] font-bold text-navy-950 flex items-center gap-2">
+              <div className="mt-3.5 text-[13px] font-semibold text-navy-950 flex items-center gap-2">
                 <span className="w-7 h-7 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-extrabold text-xs">
                   {r.initial}
                 </span>
@@ -356,7 +356,7 @@ export function ProdutoClient() {
         <button
           type="button"
           onClick={handleBuy}
-          className="flex-shrink-0 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-bold text-sm rounded-lg px-5.5 py-3"
+          className="flex-shrink-0 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-navy-950 font-semibold text-sm rounded-lg px-5.5 py-3"
         >
           <ShoppingCart size={16} strokeWidth={2} /> {p.stock ? "Comprar agora" : "Avisar"}
         </button>

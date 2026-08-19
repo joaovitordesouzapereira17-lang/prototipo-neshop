@@ -28,29 +28,33 @@
   }
 
   .btn {
-    @apply inline-flex items-center gap-2 rounded-[9px] px-[22px] py-3 font-bold text-sm border border-transparent transition-colors;
+    @apply inline-flex items-center gap-2 rounded-lg px-[22px] py-3 font-semibold text-sm border border-transparent
+           transition-colors duration-150 active:scale-[0.98]
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100;
   }
   .btn-lg { @apply px-[26px] py-3.5 text-[15px]; }
   .btn-block { @apply w-full justify-center; }
   .btn-primary { @apply bg-orange-500 text-white hover:bg-orange-600; }
-  .btn-secondary { @apply bg-white border-line text-navy-900 hover:border-blue-500 hover:text-blue-600; }
+  .btn-secondary { @apply bg-white border-line text-navy-900 hover:border-blue-500 hover:text-blue-600 hover:bg-bg; }
   .btn-whatsapp { @apply bg-green-600 text-white hover:bg-[#1e8a4b]; }
 
   .badge-proto {
-    @apply inline-flex items-center gap-1.5 rounded-full bg-orange-100 text-orange-600 text-[11.5px] font-bold px-2.5 py-1;
+    @apply inline-flex items-center gap-1.5 rounded-full bg-orange-100 text-orange-600 text-[11.5px] font-semibold px-2.5 py-1;
   }
 
   .field label {
-    @apply block text-[13px] font-bold text-ink-900 mb-1.5;
+    @apply block text-[13px] font-semibold text-ink-900 mb-1.5;
   }
   .field input,
   .field textarea,
   .field select {
-    @apply w-full rounded-[9px] border border-line px-3.5 py-2.5 text-sm outline-none focus:border-blue-500;
+    @apply w-full rounded-md border border-line px-3.5 py-2.5 text-sm outline-none transition-colors
+           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15;
   }
 
   .card {
-    @apply bg-white border border-line rounded-lg shadow-sm;
+    @apply bg-white border border-line rounded-lg;
   }
 
   /* Página de produto (mobile): a barra de compra fixa fica colada acima da

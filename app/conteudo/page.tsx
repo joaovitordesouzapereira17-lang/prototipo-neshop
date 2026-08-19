@@ -30,7 +30,7 @@ export default function ConteudoPage() {
       <section className="py-6.5 pb-15">
         <div className="grid md:grid-cols-3 gap-4.5">
           {CONTENT_CARDS.map((c) => (
-            <a key={c.title} href="#" className="card p-5.5 hover:border-blue-500 hover:shadow-md transition-shadow">
+            <a key={c.title} href="#" className="card p-5.5 hover:border-blue-500 transition-colors">
               <span className="text-[11.5px] font-bold text-blue-600 uppercase tracking-wide">{c.kicker}</span>
               <h3 className="text-[15.5px] font-bold mt-2.5 text-navy-950 leading-snug">{c.title}</h3>
               <span className="block mt-3.5 text-[13px] font-bold text-orange-600">Ler conteúdo →</span>

@@ -13,7 +13,7 @@ export function CategoryCard({ slug, name }: { slug: string; name: string }) {
       </div>
 
       {/* Desktop (lg+) — ícone centralizado acima do texto */}
-      <div className="hidden lg:block card px-3.5 py-5.5 text-center hover:border-blue-500 hover:shadow-md hover:-translate-y-0.5 transition-all">
+      <div className="hidden lg:block card px-3.5 py-5.5 text-center hover:border-blue-500 hover:-translate-y-0.5 transition-all">
         <span className="w-13 h-13 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-3">
           <Icon size={24} strokeWidth={1.6} />
         </span>

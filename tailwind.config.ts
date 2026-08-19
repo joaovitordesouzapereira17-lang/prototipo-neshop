@@ -5,22 +5,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Paleta oficial Neshop: fundo escuro, azul-petróleo e ciano de destaque.
+        // Paleta oficial Neshop — hierarquia sofisticada e controlada:
+        // navy = superfícies escuras/institucionais; orange = Primary (ação
+        // principal, azul profundo); blue = Accent (links, foco, seleção,
+        // um tom mais claro e usado com moderação).
         navy: {
           950: "#030a1a",
           900: "#042038",
           800: "#053755",
           700: "#064e74",
         },
+        // Accent — azul de interação (links, foco, chips selecionados).
         blue: {
-          600: "#00b5ff",
-          500: "#00b5ff",
-          100: "#e0f6ff",
-        },
-        orange: {
           600: "#0090cc",
-          500: "#00b5ff",
-          100: "#e0f6ff",
+          500: "#00a3d9",
+          100: "#e6f6fc",
+        },
+        // Primary — azul profundo institucional (CTA principal, estados ativos).
+        orange: {
+          600: "#053755",
+          500: "#064e74",
+          100: "#e9f1f5",
         },
         ink: {
           900: "#101820",
@@ -37,13 +42,13 @@ const config: Config = {
         star: "#f2a71b",
       },
       borderRadius: {
-        DEFAULT: "10px",
-        lg: "16px",
+        DEFAULT: "8px",
+        lg: "12px",
       },
       boxShadow: {
-        sm: "0 1px 2px rgba(16,24,32,.06)",
-        md: "0 6px 20px rgba(16,24,32,.08)",
-        lg: "0 16px 40px rgba(16,24,32,.14)",
+        sm: "0 1px 2px rgba(16,24,32,.05)",
+        md: "0 4px 14px rgba(16,24,32,.08)",
+        lg: "0 12px 32px rgba(16,24,32,.12)",
       },
       maxWidth: {
         wrap: "1240px",

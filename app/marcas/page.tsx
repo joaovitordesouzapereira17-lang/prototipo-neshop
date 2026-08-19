@@ -20,7 +20,7 @@ export default function MarcasPage() {
             <Link
               key={b}
               href={`/marca?marca=${encodeURIComponent(b)}`}
-              className="card px-3 py-6 text-center font-extrabold text-navy-900 text-[15px] hover:border-blue-500 hover:shadow-md hover:-translate-y-0.5 transition-all"
+              className="card px-3 py-6 text-center font-extrabold text-navy-900 text-[15px] hover:border-blue-500 hover:-translate-y-0.5 transition-all"
             >
               {b}
             </Link>

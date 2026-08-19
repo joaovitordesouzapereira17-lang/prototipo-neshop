@@ -33,7 +33,7 @@ export function ProductCard({ product: p }: { product: Product }) {
   return (
     <Link
       href={`/produto?id=${p.id}`}
-      className="group relative flex flex-col h-full bg-navy-800 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 ease-in-out lg:hover:-translate-y-1 lg:hover:shadow-2xl lg:hover:shadow-blue-500/10"
+      className="group relative flex flex-col h-full bg-navy-800 border border-white/10 rounded-2xl overflow-hidden transition-all duration-200 ease-in-out lg:hover:-translate-y-1 lg:hover:border-white/20"
     >
       {/* ================= MOBILE / TABLET (< lg) — cartão compacto, imagem em destaque ================= */}
       <div className="lg:hidden flex flex-col h-full">
@@ -69,8 +69,8 @@ export function ProductCard({ product: p }: { product: Product }) {
 
         <div className="p-3 flex flex-col gap-1 flex-1">
           <span className="text-[10.5px] font-bold text-blue-400 uppercase tracking-wide">{p.brand}</span>
-          <h3 className="text-[13px] font-bold text-white leading-snug line-clamp-2">{p.name}</h3>
-          <span className="text-[10.5px] text-white/40">Cód. {p.codigo}</span>
+          <h3 className="text-[13px] font-semibold text-white leading-snug line-clamp-2">{p.name}</h3>
+          <span className="text-[10.5px] text-white/40 font-mono tracking-tight">Cód. {p.codigo}</span>
           <div className="flex items-center gap-1 text-[10.5px] text-white/50">
             <StarRating rating={p.rating} size={11} />
             <span>{p.rating} ({p.reviews})</span>
@@ -113,7 +113,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           >
             <ul className="space-y-1.5 text-[11.5px] text-white/75 leading-snug">
               <li className="flex gap-1.5">
-                <span className="text-blue-500">•</span>Código OEM: {p.codigo}
+                <span className="text-blue-500">•</span>Código OEM: <span className="font-mono">{p.codigo}</span>
               </li>
               <li className="flex gap-1.5">
                 <span className="text-blue-500">•</span>Compatível com: {p.modelo}
@@ -141,8 +141,8 @@ export function ProductCard({ product: p }: { product: Product }) {
             <span className="text-white/50">{p.rating} ({p.reviews} avaliações)</span>
           </div>
           <span className="text-[11.5px] font-bold text-blue-400 uppercase tracking-wide">{p.brand}</span>
-          <h3 className="text-sm font-bold text-white leading-tight line-clamp-2">{p.name}</h3>
-          <span className="text-[11px] text-white/40">Cód. {p.codigo}</span>
+          <h3 className="text-sm font-semibold text-white leading-tight line-clamp-2">{p.name}</h3>
+          <span className="text-[11px] text-white/40 font-mono tracking-tight">Cód. {p.codigo}</span>
           <div className="flex items-baseline gap-2 mt-auto pt-0.5">
             <span className="text-[19px] font-extrabold text-white">{money(p.price)}</span>
             {p.oldPrice && <span className="text-white/40 text-xs line-through">{money(p.oldPrice)}</span>}
