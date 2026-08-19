@@ -348,7 +348,7 @@ export function ProdutoClient() {
       </section>
 
       {/* Barra de compra fixa — mobile, logo acima da navegação inferior */}
-      <div className="produto-buybar md:hidden fixed inset-x-0 z-40 bg-navy-900/97 backdrop-blur border-t border-white/10 px-4 py-3 flex items-center gap-3">
+      <div className="produto-buybar md:hidden fixed inset-x-0 z-40 bg-navy-900 border-t border-white/10 px-4 py-3 flex items-center gap-3">
         <div className="flex-1 min-w-0">
           <div className="text-[10.5px] text-white/50 font-semibold uppercase tracking-wide leading-none">Total</div>
           <div className="text-lg font-extrabold text-white leading-tight mt-1 truncate">{money(p.price)}</div>

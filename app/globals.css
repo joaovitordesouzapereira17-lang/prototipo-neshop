@@ -62,6 +62,16 @@
   .produto-buybar {
     bottom: calc(60px + env(safe-area-inset-bottom));
   }
+
+  /* Botão flutuante do WhatsApp (mobile): fica acima da navegação inferior
+     (60px + área segura), e mais alto ainda na página de produto, para não
+     ficar por cima da barra de compra fixa (~69px de altura). */
+  .whatsapp-fab {
+    bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+  .whatsapp-fab-produto {
+    bottom: calc(145px + env(safe-area-inset-bottom));
+  }
 }
 
 @keyframes marquee {

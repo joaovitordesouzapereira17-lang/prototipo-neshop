@@ -18,29 +18,34 @@ export function BottomNav() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-line flex items-stretch"
+      className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-line"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      {TABS.map((tab) => {
-        const active = tab.match(pathname);
-        return (
-          <Link
-            key={tab.href}
-            href={tab.href}
-            className={`relative flex-1 flex flex-col items-center justify-center gap-0.5 py-2.5 text-[10.5px] font-semibold ${
-              active ? "text-blue-600" : "text-ink-500"
-            }`}
-          >
-            <tab.icon size={21} strokeWidth={active ? 2.1 : 1.7} />
-            {tab.label}
-            {tab.href === "/carrinho" && totalQty > 0 && (
-              <span className="absolute top-1 right-[calc(50%-20px)] bg-orange-600 text-white rounded-full text-[9px] w-4 h-4 flex items-center justify-center">
-                {totalQty}
-              </span>
-            )}
-          </Link>
-        );
-      })}
+      {/* Altura fixa (em vez de depender do padding do conteúdo) para bater
+          exatamente com o cálculo usado pela barra de compra da página de
+          produto, sem depender de metrificação de fonte do aparelho. */}
+      <div className="h-[60px] flex items-stretch">
+        {TABS.map((tab) => {
+          const active = tab.match(pathname);
+          return (
+            <Link
+              key={tab.href}
+              href={tab.href}
+              className={`relative flex-1 flex flex-col items-center justify-center gap-0.5 text-[10.5px] font-semibold ${
+                active ? "text-blue-600" : "text-ink-500"
+              }`}
+            >
+              <tab.icon size={21} strokeWidth={active ? 2.1 : 1.7} />
+              {tab.label}
+              {tab.href === "/carrinho" && totalQty > 0 && (
+                <span className="absolute top-1 right-[calc(50%-20px)] bg-orange-600 text-white rounded-full text-[9px] w-4 h-4 flex items-center justify-center">
+                  {totalQty}
+                </span>
+              )}
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }

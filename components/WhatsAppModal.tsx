@@ -16,7 +16,7 @@ export function WhatsAppFloatButton() {
       type="button"
       onClick={() => open()}
       title="Fale no WhatsApp"
-      className={`fixed ${produto ? "bottom-[140px]" : "bottom-20"} right-4 md:bottom-6 md:right-6 z-[80] w-14 h-14 rounded-full bg-green-600 hover:bg-[#1e8a4b] text-white flex items-center justify-center shadow-lg border-none`}
+      className={`fixed ${produto ? "whatsapp-fab-produto" : "whatsapp-fab"} right-4 md:bottom-6 md:right-6 z-[80] w-14 h-14 rounded-full bg-green-600 hover:bg-[#1e8a4b] text-white flex items-center justify-center shadow-lg border-none`}
     >
       <MessageCircle size={26} strokeWidth={1.8} />
     </button>
