@@ -304,10 +304,6 @@ export function ProdutoClient() {
         </div>
       </section>
 
-      {/* Reserva o espaço da barra de compra fixa, para o rodapé (fora deste componente,
-          renderizado depois de <main> no layout) não ficar coberto por ela no mobile. */}
-      <div className="produto-buybar-spacer md:hidden" aria-hidden />
-
       {/* Barra de compra fixa — mobile, logo acima da navegação inferior */}
       <div className="produto-buybar md:hidden fixed inset-x-0 z-40 bg-navy-900/97 backdrop-blur border-t border-white/10 px-4 py-3 flex items-center gap-3">
         <div className="flex-1 min-w-0">

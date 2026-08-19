@@ -54,15 +54,9 @@
   }
 
   /* Página de produto (mobile): a barra de compra fixa fica colada acima da
-     navegação inferior (60px de conteúdo + área segura do aparelho). O spacer
-     reserva a altura da barra (~69px) no fluxo normal da página, para que o
-     rodapé — renderizado fora deste componente, depois de <main> no layout —
-     não fique coberto por ela ao rolar até o final. */
+     navegação inferior (60px de conteúdo + área segura do aparelho). */
   .produto-buybar {
     bottom: calc(60px + env(safe-area-inset-bottom));
-  }
-  .produto-buybar-spacer {
-    height: 69px;
   }
 }
 

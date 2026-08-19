@@ -1,10 +1,19 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Lock } from "lucide-react";
 import { Logo } from "@/components/Logo";
 
 export function Footer() {
+  // Página de produto tem uma barra de compra fixa extra no mobile, acima da
+  // navegação inferior — o rodapé precisa de uma folga a mais para não ficar
+  // coberto por ela ao rolar até o final.
+  const pathname = usePathname();
+  const extraSpace = pathname?.startsWith("/produto");
+
   return (
-    <footer className="bg-navy-950 text-[#a9c2d6] mt-5">
+    <footer className={`bg-navy-950 text-[#a9c2d6] mt-5 ${extraSpace ? "mb-20 md:mb-0" : ""}`}>
       <div className="wrap pt-12 pb-7">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div>
