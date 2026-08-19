@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
+import { FilterPill } from "@/components/FilterPill";
 import { CAT_NAMES, PRODUCTS, sortProducts, typeOf, type SortMode } from "@/lib/products";
 
 const BRAND_OPTIONS = ["LG", "Samsung", "Philco", "Brastemp", "Consul"];
@@ -77,7 +78,7 @@ export function CategoriaClient() {
       </div>
 
       <div className="wrap grid md:grid-cols-[260px_1fr] gap-7 pb-15 items-start">
-        <aside className="card p-5 md:sticky md:top-[142px]">
+        <aside className="hidden md:block card p-5 md:sticky md:top-[142px]">
           <h3 className="text-[14.5px] font-extrabold text-navy-950 mb-3.5">Filtrar resultados</h3>
 
           <div className="pb-4">
@@ -122,6 +123,46 @@ export function CategoriaClient() {
         </aside>
 
         <div>
+          {/* Barra de filtros expansível — só no mobile (estilo Mercado Livre/Shein) */}
+          <div className="md:hidden flex flex-wrap gap-2 mb-4">
+            <FilterPill label="Marca" count={brands.length}>
+              <div className="text-[13px] font-bold mb-2.5">Marca</div>
+              {BRAND_OPTIONS.map((b) => (
+                <label key={b} className="flex items-center gap-2.5 text-[13.5px] text-ink-700 py-1.5 cursor-pointer">
+                  <input type="checkbox" checked={brands.includes(b)} onChange={() => toggle(brands, b, setBrands)} className="accent-blue-600 w-[15px] h-[15px]" />
+                  {b}
+                </label>
+              ))}
+            </FilterPill>
+
+            <FilterPill label="Tipo de peça" count={types.length}>
+              <div className="text-[13px] font-bold mb-2.5">Tipo de peça</div>
+              {TYPE_OPTIONS.map((t) => (
+                <label key={t.value} className="flex items-center gap-2.5 text-[13.5px] text-ink-700 py-1.5 cursor-pointer">
+                  <input type="checkbox" checked={types.includes(t.value)} onChange={() => toggle(types, t.value, setTypes)} className="accent-blue-600 w-[15px] h-[15px]" />
+                  {t.label}
+                </label>
+              ))}
+            </FilterPill>
+
+            <FilterPill label="Filtros" count={(priceMin || priceMax ? 1 : 0) + (onlyStock ? 1 : 0)}>
+              <div className="text-[13px] font-bold mb-2.5">Faixa de preço</div>
+              <div className="flex gap-2">
+                <input type="number" placeholder="Mín." value={priceMin} onChange={(e) => setPriceMin(e.target.value)} className="w-full border border-line rounded-md px-2.5 py-2 text-[13px]" />
+                <input type="number" placeholder="Máx." value={priceMax} onChange={(e) => setPriceMax(e.target.value)} className="w-full border border-line rounded-md px-2.5 py-2 text-[13px]" />
+              </div>
+              <div className="border-t border-line-soft mt-4 pt-3.5">
+                <label className="flex items-center gap-2.5 text-[13.5px] text-ink-700 py-1.5 cursor-pointer">
+                  <input type="checkbox" checked={onlyStock} onChange={(e) => setOnlyStock(e.target.checked)} className="accent-blue-600 w-[15px] h-[15px]" />
+                  Somente em estoque
+                </label>
+              </div>
+              <button type="button" onClick={clearFilters} className="btn btn-secondary btn-block text-[13px] py-2 mt-3.5">
+                Limpar filtros
+              </button>
+            </FilterPill>
+          </div>
+
           <div className="flex justify-between items-center mb-4.5 flex-wrap gap-3">
             <div className="flex gap-2 flex-wrap">
               {chips.map((c, i) => (
