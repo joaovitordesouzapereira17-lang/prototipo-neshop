@@ -41,6 +41,8 @@ export function ProdutoClient() {
   const [favorited, setFavorited] = useState(false);
   const [shared, setShared] = useState(false);
   const [descExpanded, setDescExpanded] = useState(false);
+  const [cep, setCep] = useState("");
+  const [frete, setFrete] = useState<{ prazo: string; valor: string } | null>(null);
 
   if (!p) {
     return (
@@ -104,6 +106,13 @@ export function ProdutoClient() {
     }
     addToCart(p!.id);
     router.push("/carrinho");
+  }
+
+  function handleCalcFrete(e: React.FormEvent) {
+    e.preventDefault();
+    if (cep.replace(/\D/g, "").length !== 8) return;
+    // Simulação para fins de protótipo — sem integração real com transportadora.
+    setFrete({ prazo: "3 a 6 dias úteis", valor: "R$ 24,90 (ou grátis acima de R$ 300)" });
   }
 
   async function handleShare() {
@@ -239,6 +248,40 @@ export function ProdutoClient() {
               <span className={`w-2 h-2 rounded-full ${p.stock ? "bg-green-500" : "bg-red-400"}`} />
               {p.stock ? "Em estoque — envio imediato" : "Fora de estoque — consulte disponibilidade"}
             </div>
+
+            {/* Calcular frete — simulado para fins de protótipo */}
+            <form onSubmit={handleCalcFrete} className="mt-4">
+              <div className="flex items-center gap-1.5 text-[12.5px] font-semibold text-white/70 mb-1.5">
+                <Truck size={14} strokeWidth={2} /> Calcular frete e prazo
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="Digite seu CEP"
+                  value={cep}
+                  maxLength={9}
+                  onChange={(e) => {
+                    setFrete(null);
+                    const digits = e.target.value.replace(/\D/g, "").slice(0, 8);
+                    setCep(digits.length > 5 ? `${digits.slice(0, 5)}-${digits.slice(5)}` : digits);
+                  }}
+                  className="flex-1 min-w-0 bg-white/[0.06] border border-white/15 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder:text-white/35 outline-none focus:border-blue-500"
+                />
+                <button
+                  type="submit"
+                  className="flex-shrink-0 whitespace-nowrap bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-[13px] rounded-lg px-4 py-2.5"
+                >
+                  Calcular
+                </button>
+              </div>
+              {frete && (
+                <div className="mt-2.5 text-[12.5px] text-white/75 bg-white/[0.06] rounded-lg px-3.5 py-2.5 leading-relaxed">
+                  Chegará em <strong className="text-white">{frete.prazo}</strong> · Frete: {frete.valor}
+                  <span className="block text-white/40 text-[11px] mt-1">Simulação para fins de protótipo — sem integração real com transportadora.</span>
+                </div>
+              )}
+            </form>
 
             <div className="hidden md:flex gap-2.5 mt-5">
               <button
