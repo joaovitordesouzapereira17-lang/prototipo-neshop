@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   MessageCircle, Heart, Share2, ShoppingCart, Tag, ShieldCheck, CheckCircle2, Truck,
-  ChevronLeft, ChevronRight, ChevronDown, Search, Ruler, FileText, Info,
+  ChevronLeft, ChevronRight, ChevronDown, Search, Ruler, FileText, Info, ArrowLeft, PackageSearch,
 } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { StarRating } from "@/components/StarRating";
@@ -34,25 +34,75 @@ export function ProdutoClient() {
   const { addToCart } = useCart();
   const { open: openWhatsApp } = useWhatsApp();
 
-  const pid = searchParams.get("id") || "p01";
-  const p = PRODUCTS.find((x) => x.id === pid) || PRODUCTS[0];
-  const related = PRODUCTS.filter((x) => x.cat === p.cat && x.id !== p.id).slice(0, 4);
-  const relatedList = related.length ? related : PRODUCTS.filter((x) => x.id !== p.id).slice(0, 4);
-  const CatIcon = categoryIcon(p.cat);
-  const gallery = [CatIcon, ...GALLERY_EXTRA_ICONS];
+  const idParam = searchParams.get("id");
+  const p = PRODUCTS.find((x) => x.id === (idParam || "p01"));
 
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [favorited, setFavorited] = useState(false);
   const [shared, setShared] = useState(false);
   const [descExpanded, setDescExpanded] = useState(false);
+
+  if (!p) {
+    return (
+      <div className="wrap py-15">
+        <div className="max-w-md mx-auto text-center">
+          <div className="w-16 h-16 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mx-auto mb-5">
+            <PackageSearch size={30} strokeWidth={1.6} />
+          </div>
+          <h1 className="text-xl font-semibold tracking-tight text-navy-950">Produto não encontrado</h1>
+          <p className="text-ink-500 text-[14.5px] mt-2 leading-relaxed">
+            O produto que você procura não existe mais ou o link está incorreto. Mas ainda dá pra encontrar o que
+            você precisa:
+          </p>
+
+          <div className="grid grid-cols-2 gap-2.5 mt-6">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="btn btn-secondary justify-center col-span-2 sm:col-span-1"
+            >
+              <ArrowLeft size={16} strokeWidth={2} /> Voltar
+            </button>
+            <Link href="/busca" className="btn btn-secondary justify-center col-span-2 sm:col-span-1">
+              <Search size={16} strokeWidth={2} /> Nova busca
+            </Link>
+            <Link href="/categorias" className="btn btn-primary justify-center col-span-2">
+              Ver produtos semelhantes
+            </Link>
+            <button
+              type="button"
+              onClick={() => openWhatsApp("Olá! Eu estava procurando um produto no site e não consegui encontrar. Podem me ajudar?")}
+              className="btn btn-whatsapp justify-center col-span-2"
+            >
+              <MessageCircle size={16} strokeWidth={2} /> Falar com atendimento
+            </button>
+          </div>
+        </div>
+
+        <div className="border-t border-line-soft mt-13 pt-8">
+          <h2 className="text-[15px] font-semibold text-navy-950 mb-4 text-center">Peças mais procuradas</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4.5">
+            {PRODUCTS.slice(0, 4).map((rp) => (
+              <ProductCard key={rp.id} product={rp} />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const related = PRODUCTS.filter((x) => x.cat === p.cat && x.id !== p.id).slice(0, 4);
+  const relatedList = related.length ? related : PRODUCTS.filter((x) => x.id !== p.id).slice(0, 4);
+  const CatIcon = categoryIcon(p.cat);
+  const gallery = [CatIcon, ...GALLERY_EXTRA_ICONS];
   const GalleryIcon = gallery[galleryIndex];
 
   function handleBuy() {
-    if (!p.stock) {
-      openWhatsApp(`Olá! Gostaria de ser avisado quando o produto '${p.name}' estiver disponível.`);
+    if (!p!.stock) {
+      openWhatsApp(`Olá! Gostaria de ser avisado quando o produto '${p!.name}' estiver disponível.`);
       return;
     }
-    addToCart(p.id);
+    addToCart(p!.id);
     router.push("/carrinho");
   }
 
@@ -60,7 +110,7 @@ export function ProdutoClient() {
     const url = typeof window !== "undefined" ? window.location.href : "";
     try {
       if (navigator.share) {
-        await navigator.share({ title: p.name, url });
+        await navigator.share({ title: p!.name, url });
       } else if (navigator.clipboard) {
         await navigator.clipboard.writeText(url);
         setShared(true);
