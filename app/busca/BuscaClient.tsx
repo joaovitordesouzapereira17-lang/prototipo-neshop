@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { X } from "lucide-react";
+import { ArrowLeft, Search, MessageCircle, X } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { FilterPill } from "@/components/FilterPill";
 import { Pagination } from "@/components/Pagination";
+import { useWhatsApp } from "@/lib/whatsapp-context";
 import { CAT_NAMES, CATEGORIES, PRODUCTS, matchesQuery, sortProducts, type SortMode } from "@/lib/products";
 
 const BRAND_OPTIONS = ["LG", "Samsung", "Philco"];
@@ -17,7 +18,9 @@ const BRAND_OPTIONS = ["LG", "Samsung", "Philco"];
 const PAGE_SIZE = 6;
 
 export function BuscaClient() {
+  const router = useRouter();
   const searchParams = useSearchParams();
+  const { open: openWhatsApp } = useWhatsApp();
   const q = searchParams.get("q") || "placa LG";
 
   const [cats, setCats] = useState<string[]>([]);
@@ -26,10 +29,7 @@ export function BuscaClient() {
   const [priceMax, setPriceMax] = useState("");
   const [sort, setSort] = useState<SortMode>("relevance");
 
-  const baseList = useMemo(() => {
-    const matched = PRODUCTS.filter((p) => matchesQuery(p, q));
-    return matched.length ? matched : PRODUCTS.filter((p) => p.cat === "tv" || p.brand === "LG");
-  }, [q]);
+  const baseList = useMemo(() => PRODUCTS.filter((p) => matchesQuery(p, q)), [q]);
 
   const filtered = useMemo(() => {
     const min = parseFloat(priceMin) || 0;
@@ -196,9 +196,27 @@ export function BuscaClient() {
                   <li>• Escolha uma categoria no menu.</li>
                   <li>• Fale com nosso especialista.</li>
                 </ul>
-                <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
-                  <Link href="/ajuda" className="btn btn-primary justify-center w-full sm:w-auto">Enviar foto da peça</Link>
-                  <Link href="/categorias" className="btn btn-secondary justify-center w-full sm:w-auto">Ver categorias</Link>
+                <div className="grid grid-cols-2 gap-2.5 mt-6">
+                  <button
+                    type="button"
+                    onClick={() => router.back()}
+                    className="btn btn-secondary justify-center col-span-2 sm:col-span-1"
+                  >
+                    <ArrowLeft size={16} strokeWidth={2} /> Voltar
+                  </button>
+                  <Link href="/" className="btn btn-secondary justify-center col-span-2 sm:col-span-1">
+                    <Search size={16} strokeWidth={2} /> Nova busca
+                  </Link>
+                  <Link href="/categorias" className="btn btn-primary justify-center col-span-2">
+                    Ver produtos semelhantes
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => openWhatsApp(`Olá! Busquei por "${q}" no site e não encontrei o que precisava. Podem me ajudar?`)}
+                    className="btn btn-whatsapp justify-center col-span-2"
+                  >
+                    <MessageCircle size={16} strokeWidth={2} /> Falar com atendimento
+                  </button>
                 </div>
               </div>
 
