@@ -186,18 +186,31 @@ export function BuscaClient() {
               <Pagination page={page} totalPages={totalPages} onChange={setPage} />
             </>
           ) : (
-            <div className="text-center py-15 mb-8 md:mb-0 max-w-md mx-auto">
-              <p className="font-bold text-navy-950 text-lg">Não encontramos exatamente o que você procurou.</p>
-              <ul className="mt-4 text-left text-[13.5px] text-ink-700 space-y-1.5 inline-block">
-                <li>• Verifique o código digitado.</li>
-                <li>• Tente pesquisar pelo modelo do equipamento.</li>
-                <li>• Pesquise pelo nome da peça.</li>
-                <li>• Escolha uma categoria no menu.</li>
-                <li>• Fale com nosso especialista.</li>
-              </ul>
-              <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
-                <Link href="/ajuda" className="btn btn-primary justify-center w-full sm:w-auto">Enviar foto da peça</Link>
-                <Link href="/categorias" className="btn btn-secondary justify-center w-full sm:w-auto">Ver categorias</Link>
+            <div className="pb-8 md:pb-0">
+              <div className="text-center py-15 pb-8 max-w-md mx-auto">
+                <p className="font-bold text-navy-950 text-lg">Não encontramos exatamente o que você procurou.</p>
+                <ul className="mt-4 text-left text-[13.5px] text-ink-700 space-y-1.5 inline-block">
+                  <li>• Verifique o código digitado.</li>
+                  <li>• Tente pesquisar pelo modelo do equipamento.</li>
+                  <li>• Pesquise pelo nome da peça.</li>
+                  <li>• Escolha uma categoria no menu.</li>
+                  <li>• Fale com nosso especialista.</li>
+                </ul>
+                <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
+                  <Link href="/ajuda" className="btn btn-primary justify-center w-full sm:w-auto">Enviar foto da peça</Link>
+                  <Link href="/categorias" className="btn btn-secondary justify-center w-full sm:w-auto">Ver categorias</Link>
+                </div>
+              </div>
+
+              {/* Sempre mostra algo clicável — nunca deixa o usuário numa página
+                  sem saída (ver: alta taxa de abandono em buscas sem resultado). */}
+              <div className="border-t border-line-soft pt-7">
+                <h2 className="text-[15px] font-semibold text-navy-950 mb-4 text-center">Peças mais procuradas</h2>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4.5">
+                  {PRODUCTS.slice(0, 4).map((p) => (
+                    <ProductCard key={p.id} product={p} />
+                  ))}
+                </div>
               </div>
             </div>
           )}
