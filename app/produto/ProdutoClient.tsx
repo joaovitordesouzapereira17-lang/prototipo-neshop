@@ -321,17 +321,26 @@ export function ProdutoClient() {
                 onClick={() => setDescExpanded((v) => !v)}
                 className="mt-3.5 flex items-center gap-1.5 text-[13px] font-semibold text-blue-400 hover:text-blue-300"
               >
-                {descExpanded ? "Ver menos" : "Ver outros modelos compatíveis"}
+                {descExpanded ? "Ver menos" : `Ver ${p.compatModels ? `todos os ${p.compatModels.length} modelos` : "outros modelos"} compatíveis`}
                 <ChevronDown size={15} strokeWidth={2.2} className={`transition-transform ${descExpanded ? "rotate-180" : ""}`} />
               </button>
               {descExpanded && (
-                <ul className="grid grid-cols-2 gap-2 mt-2.5">
-                  {[p.modelo, `${p.modelo} (variante A)`, `${p.modelo} (variante B)`, "Consulte outros modelos compatíveis"].map((m) => (
-                    <li key={m} className="bg-white/[0.06] rounded-md px-3 py-2 text-[12.5px] text-white/85 font-semibold">
+                <ul className="grid grid-cols-2 gap-2 mt-2.5 max-h-64 overflow-y-auto pr-1">
+                  {(p.compatModels || [p.modelo, `${p.modelo} (variante A)`, `${p.modelo} (variante B)`, "Consulte outros modelos compatíveis"]).map((m) => (
+                    <li key={m} className="bg-white/[0.06] rounded-md px-3 py-2 text-[12px] text-white/85 font-mono tracking-tight">
                       {m}
                     </li>
                   ))}
                 </ul>
+              )}
+
+              {p.partNumbers && p.partNumbers.length > 1 && (
+                <div className="mt-3.5">
+                  <div className="text-white/40 text-[11.5px]">Outros códigos desta peça</div>
+                  <div className="font-mono text-white/80 text-[12.5px] mt-1 tracking-tight leading-relaxed">
+                    {p.partNumbers.join(" · ")}
+                  </div>
+                </div>
               )}
 
               <div className="mt-3.5 pt-3.5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">

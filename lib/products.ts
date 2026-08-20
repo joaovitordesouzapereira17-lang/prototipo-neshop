@@ -12,6 +12,13 @@ export type Product = {
   reviews: number;
   orig: boolean;
   stock: boolean;
+  // Lista completa de modelos de equipamento compatíveis com a peça, quando
+  // houver mais de um. Opcional — produtos sem essa lista continuam usando
+  // apenas `modelo` como referência principal.
+  compatModels?: string[];
+  // Outros códigos/part numbers da mesma peça (versões de placa, etc.),
+  // além do `codigo` principal já exibido em destaque.
+  partNumbers?: string[];
 };
 
 export const PRODUCTS: Product[] = [
@@ -27,6 +34,46 @@ export const PRODUCTS: Product[] = [
   { id: "p10", name: "Alto-falante para Caixa de Som Bluetooth", brand: "AOC", modelo: "SP2000", codigo: "SPK-AOC2000", cat: "radio-e-som", price: 99.9, oldPrice: 149.9, installment: "3x de R$ 33,30", rating: 4.2, reviews: 9, orig: false, stock: true },
   { id: "p11", name: "Bateria para Parafusadeira Profissional", brand: "Toshiba", modelo: "PF-14V", codigo: "BAT-PF14V", cat: "ferramentas", price: 219.9, installment: "6x de R$ 36,65", rating: 4.7, reviews: 24, orig: true, stock: true },
   { id: "p12", name: "Placa Principal para TV LED 4K", brand: "LG", modelo: "65NANO75", codigo: "EBT65432901", cat: "tv", price: 459.0, installment: "10x de R$ 45,90", rating: 4.9, reviews: 63, orig: true, stock: true },
+  {
+    id: "p13",
+    name: "Placa Fonte Original para TV LED",
+    brand: "LG",
+    modelo: "55UM7470PSA",
+    codigo: "EAY65149301",
+    cat: "tv",
+    price: 249.9,
+    oldPrice: 329.9,
+    installment: "6x de R$ 41,65",
+    rating: 4.7,
+    reviews: 18,
+    orig: true,
+    stock: true,
+    partNumbers: ["EAY65149301", "EAY65149308", "EBR88833401", "CRB38310001", "LGP55T-19U1"],
+    compatModels: [
+      "55NANO79SND.AWZWLJZ",
+      "55UL3G-BJ.AWZFLJS",
+      "55UM7470PSA.AWZYLJZ",
+      "55UM7520PSB.AWZGLJZ",
+      "55UM7520PSB.AWZYLJZ",
+      "55UM7520PSB.BWZYLJZ",
+      "55UM761C0SB.BWZYLJZ",
+      "55UM7650PSB.BWZYLJZ",
+      "55UN7310PSC.AWZWLJZ",
+      "55UN7310PSC.BWZWLJZ",
+      "55UN731C0SC.BWZWLJZ",
+      "55UP751C0SF.BWHYLKR",
+      "55UP751C0SF.BWZYLJZ",
+      "55UP7550PSF.BWZYLJZ",
+      "55US660H0SD.BWZWLSZ",
+      "55UT660H0SA.AWFYLOR",
+      "55UT660H0SA.AWHYLKR",
+      "55UT660H0SA.AWHYLOR",
+      "55UT660H0SA.AWNYLOR",
+      "55UT670H0UA.AUSYLKR",
+      "55UT670H0UA.AUSYLOR",
+      "55UT670H0UA.BUSYLKR",
+    ],
+  },
 ];
 
 export type Category = { slug: string; name: string };
@@ -65,7 +112,7 @@ export function typeOf(p: Product): "placa" | "motor" | "outros" {
 }
 
 export function matchesQuery(p: Product, q: string): boolean {
-  const hay = `${p.name} ${p.brand} ${p.modelo} ${p.codigo} ${p.cat}`.toLowerCase();
+  const hay = `${p.name} ${p.brand} ${p.modelo} ${p.codigo} ${p.cat} ${(p.compatModels || []).join(" ")} ${(p.partNumbers || []).join(" ")}`.toLowerCase();
   return q
     .toLowerCase()
     .split(" ")

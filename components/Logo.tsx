@@ -16,8 +16,8 @@ export function Logo({ className = "", light = false }: { className?: string; li
       </span>
       <span>
         Neshop
-        <span className={`block -mt-0.5 text-[9px] md:text-[11.5px] font-semibold tracking-wide uppercase ${light ? "text-[#8fa9be]" : "text-ink-500"}`}>
-          Peças &amp; Componentes
+        <span className={`block -mt-0.5 max-w-[130px] md:max-w-[190px] leading-snug text-[9px] md:text-[11.5px] font-semibold tracking-wide uppercase ${light ? "text-[#8fa9be]" : "text-ink-500"}`}>
+          O distribuidor oficial das grandes marcas
         </span>
       </span>
     </span>
